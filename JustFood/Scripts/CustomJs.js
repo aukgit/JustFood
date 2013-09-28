@@ -75,17 +75,46 @@ $(function () {
 
                 if ($form.hasClass("leftover")) {
                     //adding form
-                    var $divStructure = $(".starting-point.inventoryid-" + inventoryId + " .structure.hide").clone().removeClass("hide"),
-                        $prevHiddenInputCreator = $form.filter(".Hidden-Inputs-Creator").html(),
+                    var $divStructure = $(".starting-point.inventoryid-" + inventoryId + " .structure.hide")
+                                                                                                    .first()
+                                                                                                    .clone()
+                                                                                                    .removeClass("hide"),
+                        $prevHiddenInputCreatorHtml = $form.find(".Hidden-Inputs-Creator").clone(),
                         $savingForm = $("form.saved").first(),
                         newFromString = "<form class='Creating-New-Form' action='" + $savingForm.attr("action") + "' method='post'></form>",
                         $divStartingPoint = $(".starting-point.inventoryid-" + inventoryId),
-                        $newHiddenInputFreeSpace = $divStructure.filter(".Hidden-Inputs-Creator"),
-                        $newFormCreation = $divStartingPoint.prependTo(newFromString),
-                        $newForm = $(".Creating-New-Form").first().removeClass("Creating-New-Form");
+                        $newFormCreation = $divStartingPoint.prepend(newFromString),
+                        $newForm = $(".Creating-New-Form").first().removeClass("Creating-New-Form"),
+                        $divDiscardSelection = $newForm.find(".discardSelection"),
+                        $divQuantityValue = $newForm.find(".discardSelection"),
+                        $divQuantityType = $newForm.find(".discardSelection");
 
-                    $prevHiddenInputCreator.appendTo($newHiddenInputFreeSpace);
+                    /** PrependTo/Prepend or Append/AppendTo:
+                      * When HTML add use append(bottom in the list) or prepend (top in the list).  
+                      * When add jQuery object like clone or any selected object use appendTo or prependTo.
+                      * */
 
+                    console.log("$divStructure : ");
+                    console.log($divStructure);
+                    
+                    console.log("$prevHiddenInputCreatorHtml : ");
+                    console.log($prevHiddenInputCreatorHtml);
+                    console.log("$savingForm : ");
+                    console.log($savingForm);
+                    console.log("$divStartingPoint : ");
+                    console.log($divStartingPoint);
+
+                
+                    console.log("$newForm : ");
+                    console.log($newForm);
+                    
+
+                    // now add the div structure to the new form
+                    $divStructure.appendTo($newForm);
+                    //add hidden inputs to the structure's new free space for hiddens
+                    $prevHiddenInputCreatorHtml.prependTo($newForm);
+                    $newForm.prependTo($divStartingPoint);
+                    
                 }
 
 
