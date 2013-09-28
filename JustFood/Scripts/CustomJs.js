@@ -88,7 +88,11 @@ $(function () {
                         $divDiscardSelection = $newForm.find(".discardSelection"),
                         $divQuantityValue = $newForm.find(".discardSelection"),
                         $divQuantityType = $newForm.find(".discardSelection"),
-                        $divButtonPlaces = $newForm.find(".buttonPlaces");
+                        $divButtonPlaces = $newForm.find(".buttonPlaces"),
+                        $listDiscardItems = $form.find("[name='DiscardCategoryID'").clone(),
+                        $textQuantity = $form.find("[name='Quantity'").clone(),
+                        
+                        ;
 
                     /** PrependTo/Prepend or Append/AppendTo:
                       * When HTML add use append(bottom in the list) or prepend (top in the list).  
