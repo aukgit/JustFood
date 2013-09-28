@@ -27,13 +27,10 @@ $(function () {
     });
 
     $(".execute_dropdown").change(function (e) {
-        var inventoryID = $(this).attr("data-inventory"),
+        var inventoryId = $(this).attr("data-inventory"),
             typeOfInventoryForm = $(this).attr("data-inventory-type"),
-            $form = $("form.inventoryid-" + inventoryID + "." + typeOfInventoryForm),
+            $form = $("form.inventoryid-" + inventoryId + "." + typeOfInventoryForm),
             replacingClass = "replacing";
-
-
-
 
 
         $.ajax({
@@ -78,17 +75,16 @@ $(function () {
 
                 if ($form.hasClass("leftover")) {
                     //adding form
-                    var $divStructure = $(".structure hide").clone().removeClass("hide"),
+                    var $divStructure = $(".starting-point.inventoryid-" + inventoryId + " .structure.hide").clone().removeClass("hide"),
                         $prevHiddenInputCreator = $form.filter(".Hidden-Inputs-Creator").html(),
                         $savingForm = $("form.saved").first(),
                         newFromString = "<form class='Creating-New-Form' action='" + $savingForm.attr("action") + "' method='post'></form>",
-                        $divStartingPoint = $(".starting-point.inventoryid-" + inventoryID),
-                        $divStartingPointClone = $divStartingPoint.clone(),
-                        $newHiddenInputCreator = $divStartingPointClone.filter(".Hidden-Inputs-Creator"),
+                        $divStartingPoint = $(".starting-point.inventoryid-" + inventoryId),
+                        $newHiddenInputFreeSpace = $divStructure.filter(".Hidden-Inputs-Creator"),
                         $newFormCreation = $divStartingPoint.prependTo(newFromString),
                         $newForm = $(".Creating-New-Form").first().removeClass("Creating-New-Form");
 
-                    $prevHiddenInputCreator.appendTo($newHiddenInputCreator);
+                    $prevHiddenInputCreator.appendTo($newHiddenInputFreeSpace);
 
                 }
 
