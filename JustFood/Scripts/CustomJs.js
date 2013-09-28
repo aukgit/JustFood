@@ -87,7 +87,8 @@ $(function () {
                         $newForm = $(".Creating-New-Form").first().removeClass("Creating-New-Form"),
                         $divDiscardSelection = $newForm.find(".discardSelection"),
                         $divQuantityValue = $newForm.find(".discardSelection"),
-                        $divQuantityType = $newForm.find(".discardSelection");
+                        $divQuantityType = $newForm.find(".discardSelection"),
+                        $divButtonPlaces = $newForm.find(".buttonPlaces");
 
                     /** PrependTo/Prepend or Append/AppendTo:
                       * When HTML add use append(bottom in the list) or prepend (top in the list).  
