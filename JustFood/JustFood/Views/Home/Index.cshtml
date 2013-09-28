@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "Just Food";
+}
+<h2>@ViewBag.Message</h2>
+
+<ul data-role="listview" data-inset="true">
+    <li data-role="list-divider">
+        Navigation</li>
+    @if (!User.Identity.IsAuthenticated) {
+        <li>@Html.ActionLink("Register", "Register", "Account")</li>
+        <li>@Html.ActionLink("Login", "Login", "Account")</li>
+    } else {
+        <li>@Html.ActionLink("Admin", "Index", "Home", new {Area = "Admin"}, "")</li>
+        <li>@Html.ActionLink("Sale", "Index", "Home", new {Area = "Sale"}, "")</li>
+        <li>@Html.ActionLink("Logout", "LogOff", "Account")</li>
+    }
+</ul>

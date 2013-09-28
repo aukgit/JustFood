@@ -1,0 +1,36 @@
+﻿@model JustFood.Models.QuantityConversation
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>QuantityConversation</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.QuantityType.QtyType)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.QuantityType.QtyType)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ConvertedTypeID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ConvertedTypeID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Difference)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Difference)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.QuantityConversationID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,53 @@
+﻿@model JustFood.Models.QuantityConversation
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>QuantityConversation</legend>
+
+        @Html.HiddenFor(model => model.QuantityConversationID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.QuantityTypeID, "QuantityType")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("QuantityTypeID", String.Empty)
+            @Html.ValidationMessageFor(model => model.QuantityTypeID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ConvertedTypeID)
+        </div>
+        <div class="editor-field">
+           @Html.DropDownList("ConvertedTypeID", String.Empty)
+           @Html.ValidationMessageFor(model => model.ConvertedTypeID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Difference)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Difference)
+            @Html.ValidationMessageFor(model => model.Difference)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

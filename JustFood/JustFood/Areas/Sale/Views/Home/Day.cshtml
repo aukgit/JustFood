@@ -1,0 +1,104 @@
+﻿@using JustFood.Modules.TimeZone
+@model SaleDayView
+@{
+    ViewBag.Title = "Sale Of " + @Zone.GetDate(Model.SaleDated);
+    var Summary = Model.GetSummary();
+    bool IsSummary = Model.IsSummaryExist;
+    int SaleID = ViewBag.SaleID;
+}
+<h2 style="text-align: center">
+    @ViewBag.Title
+</h2>
+<div data-role="collapsible-set" data-theme="a" data-mini="true">
+    <div data-role="collapsible" data-collapsed="true" data-theme="a" data-content-theme="c">
+        <h3>
+            Total Sold : <span id="total-sold">Tk. @Model.Sale.TotalSold</span> | Total Cash : Tk. <span id="total-acheived">@Model.Sale.TotalAcheived</span>
+        </h3>
+        <table>
+            <tr>
+                <td>
+                    Total Discount
+                </td>
+                <td>
+                    :
+                </td>
+                <td class="red">@(Model.Sale.Discount * -1)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Total Expenses
+                </td>
+                <td>
+                    :
+                </td>
+                <td class="red">@(Model.Sale.OtherExpenses * -1)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Total Less
+                </td>
+                <td>
+                    :
+                </td>
+                <td class="red">@(Model.Sale.TotalLess * -1)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Total Sold
+                </td>
+                <td>
+                    :
+                </td>
+                <td class="green">@Model.Sale.TotalSold
+                </td>
+            </tr>
+            <tr>
+                <td class="bold">
+                    Total
+                </td>
+                <td>
+                    :
+                </td>
+                <td class="green bold">@(Model.Sale.TotalAcheived)
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div>
+    @Html.ActionLink("Inventory", "InventorySetter", new { Controller = "Home", SaleID = SaleID }, new { data_role = "button" })
+    <div data-role="collapsible-set" data-corners="true">
+        @Html.Partial("_AddProduct")
+        @Html.Partial("_Expense")
+        @Html.Partial("_Discount")
+        @Html.Partial("_Requisition")
+    </div>
+</div>
+<hr />
+<div>
+    @foreach (var item in Model.Salables) {
+        <div data-role="controlgroup" data-theme="a">
+            @if (!IsSummary) {
+                <button data-role="button">@item.Category : 0</button>
+            } else {
+
+                var itemBySummaryCategory = Summary.FirstOrDefault(n => n.CategoryID == item.CategoryID);
+                if (itemBySummaryCategory != null) {
+                <a data-role="button" data-icon="bars" href="@Url.Action("DetailsOf", new { SaleID = @SaleID, CategoryID = item.CategoryID, time = DateTime.UtcNow })">@item.Category : @itemBySummaryCategory.SoldQuantity | Cash: @itemBySummaryCategory.CashInHand</a>
+                    
+                } else {
+                <button data-role="button" data-theme="a" data-icon="bars">@item.Category : 0</button>
+                    
+                }
+            }
+            @Html.ActionLink("Add", "SaleItem", new { SaleID = @SaleID, CategoryID = item.CategoryID, time = @Zone.GetTimeDynamic()}, new { data_role = "button", data_icon = "plus", data_ajax_sync = "false" })
+            @Html.ActionLink("Remove", "DiscardItem", new { SaleID = @SaleID, CategoryID = item.CategoryID, time = @Zone.GetTimeDynamic() }, new { data_role = "button", @class = "", data_icon = "delete" })
+        </div>
+    }
+</div>
+<p>
+    @Html.ActionLink("Back", "Index", new { Controller = "Home" }, new { data_role = "button" })
+</p>

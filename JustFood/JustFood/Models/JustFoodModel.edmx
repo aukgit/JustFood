@@ -1,0 +1,2786 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="JustFoodDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="JustFoodDBModelStoreContainer">
+          <EntitySet Name="AccountBalance" EntityType="JustFoodDBModel.Store.AccountBalance" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Category" EntityType="JustFoodDBModel.Store.Category" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CategoryWiseSold" EntityType="JustFoodDBModel.Store.CategoryWiseSold" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Code" EntityType="JustFoodDBModel.Store.Code" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Config" EntityType="JustFoodDBModel.Store.Config" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="DailyStock" EntityType="JustFoodDBModel.Store.DailyStock" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="DetailedSale" EntityType="JustFoodDBModel.Store.DetailedSale" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Inventory" EntityType="JustFoodDBModel.Store.Inventory" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="InventoryIn" EntityType="JustFoodDBModel.Store.InventoryIn" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="InventoryOut" EntityType="JustFoodDBModel.Store.InventoryOut" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="InventoryOutConfig" EntityType="JustFoodDBModel.Store.InventoryOutConfig" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Notification" EntityType="JustFoodDBModel.Store.Notification" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="NotificationSeen" EntityType="JustFoodDBModel.Store.NotificationSeen" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="QuantityConversation" EntityType="JustFoodDBModel.Store.QuantityConversation" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="QuantityType" EntityType="JustFoodDBModel.Store.QuantityType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Requisition" EntityType="JustFoodDBModel.Store.Requisition" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SalaryPaid" EntityType="JustFoodDBModel.Store.SalaryPaid" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Sale" EntityType="JustFoodDBModel.Store.Sale" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TimeZone" EntityType="JustFoodDBModel.Store.TimeZone" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="User" EntityType="JustFoodDBModel.Store.User" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserRole" EntityType="JustFoodDBModel.Store.UserRole" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ViewAccountBalance" EntityType="JustFoodDBModel.Store.ViewAccountBalance" store:Type="Views" store:Schema="dbo" store:Name="ViewAccountBalance">
+            <DefiningQuery>SELECT 
+      [ViewAccountBalance].[AccountOfLog] AS [AccountOfLog], 
+      [ViewAccountBalance].[AccountOfName] AS [AccountOfName], 
+      [ViewAccountBalance].[AddedByLog] AS [AddedByLog], 
+      [ViewAccountBalance].[Dated] AS [Dated], 
+      [ViewAccountBalance].[Amount] AS [Amount], 
+      [ViewAccountBalance].[IsBoughtProduct] AS [IsBoughtProduct], 
+      [ViewAccountBalance].[CategoryProduct] AS [CategoryProduct], 
+      [ViewAccountBalance].[AddedQuantity] AS [AddedQuantity], 
+      [ViewAccountBalance].[IsExpense] AS [IsExpense], 
+      [ViewAccountBalance].[IsAddedMoney] AS [IsAddedMoney], 
+      [ViewAccountBalance].[AccountOf] AS [AccountOf], 
+      [ViewAccountBalance].[AddBy] AS [AddBy], 
+      [ViewAccountBalance].[Note] AS [Note], 
+      [ViewAccountBalance].[AccountBalanceID] AS [AccountBalanceID], 
+      [ViewAccountBalance].[Category] AS [Category], 
+      [ViewAccountBalance].[AmountAbs] AS [AmountAbs]
+      FROM [dbo].[ViewAccountBalance] AS [ViewAccountBalance]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ViewInventoryIn" EntityType="JustFoodDBModel.Store.ViewInventoryIn" store:Type="Views" store:Schema="dbo" store:Name="ViewInventoryIn">
+            <DefiningQuery>SELECT 
+      [ViewInventoryIn].[CategoryID] AS [CategoryID], 
+      [ViewInventoryIn].[InventoryInQuantity] AS [InventoryInQuantity], 
+      [ViewInventoryIn].[InventoryInUnitPrice] AS [InventoryInUnitPrice], 
+      [ViewInventoryIn].[Category] AS [Category]
+      FROM [dbo].[ViewInventoryIn] AS [ViewInventoryIn]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ViewInventoryInOutSummary" EntityType="JustFoodDBModel.Store.ViewInventoryInOutSummary" store:Type="Views" store:Schema="dbo" store:Name="ViewInventoryInOutSummary">
+            <DefiningQuery>SELECT 
+      [ViewInventoryInOutSummary].[CategoryID] AS [CategoryID], 
+      [ViewInventoryInOutSummary].[ProductIn] AS [ProductIn], 
+      [ViewInventoryInOutSummary].[DiscardedProduct] AS [DiscardedProduct], 
+      [ViewInventoryInOutSummary].[ProductLeft] AS [ProductLeft]
+      FROM [dbo].[ViewInventoryInOutSummary] AS [ViewInventoryInOutSummary]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ViewInventoryOut" EntityType="JustFoodDBModel.Store.ViewInventoryOut" store:Type="Views" store:Schema="dbo" store:Name="ViewInventoryOut">
+            <DefiningQuery>SELECT 
+      [ViewInventoryOut].[CategoryID] AS [CategoryID], 
+      [ViewInventoryOut].[InventoryOutQuantity] AS [InventoryOutQuantity], 
+      [ViewInventoryOut].[Category] AS [Category]
+      FROM [dbo].[ViewInventoryOut] AS [ViewInventoryOut]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ViewInventorySalables" EntityType="JustFoodDBModel.Store.ViewInventorySalables" store:Type="Views" store:Schema="dbo" store:Name="ViewInventorySalables">
+            <DefiningQuery>SELECT 
+      [ViewInventorySalables].[InventoryID] AS [InventoryID], 
+      [ViewInventorySalables].[CategoryID] AS [CategoryID], 
+      [ViewInventorySalables].[InventoryQuantity] AS [InventoryQuantity], 
+      [ViewInventorySalables].[SoldPrice] AS [SoldPrice], 
+      [ViewInventorySalables].[Category] AS [Category]
+      FROM [dbo].[ViewInventorySalables] AS [ViewInventorySalables]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ViewSummaryAccountBalance" EntityType="JustFoodDBModel.Store.ViewSummaryAccountBalance" store:Type="Views" store:Schema="dbo" store:Name="ViewSummaryAccountBalance">
+            <DefiningQuery>SELECT 
+      [ViewSummaryAccountBalance].[AccountOfLog] AS [AccountOfLog], 
+      [ViewSummaryAccountBalance].[AccountOfName] AS [AccountOfName], 
+      [ViewSummaryAccountBalance].[Balance] AS [Balance], 
+      [ViewSummaryAccountBalance].[AccountOf] AS [AccountOf]
+      FROM [dbo].[ViewSummaryAccountBalance] AS [ViewSummaryAccountBalance]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ViewSummarySales" EntityType="JustFoodDBModel.Store.ViewSummarySales" store:Type="Views" store:Schema="dbo" store:Name="ViewSummarySales">
+            <DefiningQuery>SELECT 
+      [ViewSummarySales].[SaleID] AS [SaleID], 
+      [ViewSummarySales].[CategoryID] AS [CategoryID], 
+      [ViewSummarySales].[Category] AS [Category], 
+      [ViewSummarySales].[SoldPrice] AS [SoldPrice], 
+      [ViewSummarySales].[InventoryQuantity] AS [InventoryQuantity], 
+      [ViewSummarySales].[SoldQuantity] AS [SoldQuantity], 
+      [ViewSummarySales].[Discounted] AS [Discounted], 
+      [ViewSummarySales].[CashInHand] AS [CashInHand]
+      FROM [dbo].[ViewSummarySales] AS [ViewSummarySales]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_AccountBalance_Category" Association="JustFoodDBModel.Store.FK_AccountBalance_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="AccountBalance" EntitySet="AccountBalance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountBalance_QuantityType" Association="JustFoodDBModel.Store.FK_AccountBalance_QuantityType">
+            <End Role="QuantityType" EntitySet="QuantityType" />
+            <End Role="AccountBalance" EntitySet="AccountBalance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountBalance_User" Association="JustFoodDBModel.Store.FK_AccountBalance_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="AccountBalance" EntitySet="AccountBalance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountBalance_User1" Association="JustFoodDBModel.Store.FK_AccountBalance_User1">
+            <End Role="User" EntitySet="User" />
+            <End Role="AccountBalance" EntitySet="AccountBalance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Category_QuantityType" Association="JustFoodDBModel.Store.FK_Category_QuantityType">
+            <End Role="QuantityType" EntitySet="QuantityType" />
+            <End Role="Category" EntitySet="Category" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CategoryWiseSold_Category" Association="JustFoodDBModel.Store.FK_CategoryWiseSold_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="CategoryWiseSold" EntitySet="CategoryWiseSold" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CategoryWiseSold_Sale" Association="JustFoodDBModel.Store.FK_CategoryWiseSold_Sale">
+            <End Role="Sale" EntitySet="Sale" />
+            <End Role="CategoryWiseSold" EntitySet="CategoryWiseSold" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Config_TimeZone" Association="JustFoodDBModel.Store.FK_Config_TimeZone">
+            <End Role="TimeZone" EntitySet="TimeZone" />
+            <End Role="Config" EntitySet="Config" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DailyStock_QuantityType" Association="JustFoodDBModel.Store.FK_DailyStock_QuantityType">
+            <End Role="QuantityType" EntitySet="QuantityType" />
+            <End Role="DailyStock" EntitySet="DailyStock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DailyStock_Sale" Association="JustFoodDBModel.Store.FK_DailyStock_Sale">
+            <End Role="Sale" EntitySet="Sale" />
+            <End Role="DailyStock" EntitySet="DailyStock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetailedSale_Category" Association="JustFoodDBModel.Store.FK_DetailedSale_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="DetailedSale" EntitySet="DetailedSale" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetailedSale_JustFood" Association="JustFoodDBModel.Store.FK_DetailedSale_JustFood">
+            <End Role="Sale" EntitySet="Sale" />
+            <End Role="DetailedSale" EntitySet="DetailedSale" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetailedSale_User" Association="JustFoodDBModel.Store.FK_DetailedSale_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="DetailedSale" EntitySet="DetailedSale" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inventory_Category" Association="JustFoodDBModel.Store.FK_Inventory_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Inventory" EntitySet="Inventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inventory_QuantityType" Association="JustFoodDBModel.Store.FK_Inventory_QuantityType">
+            <End Role="QuantityType" EntitySet="QuantityType" />
+            <End Role="Inventory" EntitySet="Inventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inventory_User" Association="JustFoodDBModel.Store.FK_Inventory_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Inventory" EntitySet="Inventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InventoryIn_Category" Association="JustFoodDBModel.Store.FK_InventoryIn_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="InventoryIn" EntitySet="InventoryIn" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InventoryIn_QuantityType" Association="JustFoodDBModel.Store.FK_InventoryIn_QuantityType">
+            <End Role="QuantityType" EntitySet="QuantityType" />
+            <End Role="InventoryIn" EntitySet="InventoryIn" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InventoryIn_User" Association="JustFoodDBModel.Store.FK_InventoryIn_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="InventoryIn" EntitySet="InventoryIn" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InventoryOut_Category" Association="JustFoodDBModel.Store.FK_InventoryOut_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="InventoryOut" EntitySet="InventoryOut" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InventoryOut_QuantityType" Association="JustFoodDBModel.Store.FK_InventoryOut_QuantityType">
+            <End Role="QuantityType" EntitySet="QuantityType" />
+            <End Role="InventoryOut" EntitySet="InventoryOut" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InventoryOutConfig_Category" Association="JustFoodDBModel.Store.FK_InventoryOutConfig_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="InventoryOutConfig" EntitySet="InventoryOutConfig" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InventoryOutConfig_Category1" Association="JustFoodDBModel.Store.FK_InventoryOutConfig_Category1">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="InventoryOutConfig" EntitySet="InventoryOutConfig" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InventoryOutConfig_QuantityType" Association="JustFoodDBModel.Store.FK_InventoryOutConfig_QuantityType">
+            <End Role="QuantityType" EntitySet="QuantityType" />
+            <End Role="InventoryOutConfig" EntitySet="InventoryOutConfig" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notification_User" Association="JustFoodDBModel.Store.FK_Notification_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Notification" EntitySet="Notification" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NotificationSeen_Notification" Association="JustFoodDBModel.Store.FK_NotificationSeen_Notification">
+            <End Role="Notification" EntitySet="Notification" />
+            <End Role="NotificationSeen" EntitySet="NotificationSeen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NotificationSeen_User" Association="JustFoodDBModel.Store.FK_NotificationSeen_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="NotificationSeen" EntitySet="NotificationSeen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuantityConversation_QuantityType" Association="JustFoodDBModel.Store.FK_QuantityConversation_QuantityType">
+            <End Role="QuantityType" EntitySet="QuantityType" />
+            <End Role="QuantityConversation" EntitySet="QuantityConversation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuantityConversation_QuantityType1" Association="JustFoodDBModel.Store.FK_QuantityConversation_QuantityType1">
+            <End Role="QuantityType" EntitySet="QuantityType" />
+            <End Role="QuantityConversation" EntitySet="QuantityConversation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requisition_QuantityType" Association="JustFoodDBModel.Store.FK_Requisition_QuantityType">
+            <End Role="QuantityType" EntitySet="QuantityType" />
+            <End Role="Requisition" EntitySet="Requisition" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requisition_User" Association="JustFoodDBModel.Store.FK_Requisition_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Requisition" EntitySet="Requisition" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requisition_User1" Association="JustFoodDBModel.Store.FK_Requisition_User1">
+            <End Role="User" EntitySet="User" />
+            <End Role="Requisition" EntitySet="Requisition" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SalaryPaid_User" Association="JustFoodDBModel.Store.FK_SalaryPaid_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="SalaryPaid" EntitySet="SalaryPaid" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_TimeZone" Association="JustFoodDBModel.Store.FK_User_TimeZone">
+            <End Role="TimeZone" EntitySet="TimeZone" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="AccountBalance">
+          <Key>
+            <PropertyRef Name="AccountBalanceID" />
+          </Key>
+          <Property Name="AccountBalanceID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Dated" Type="smalldatetime" Nullable="false" />
+          <Property Name="Amount" Type="float" Nullable="false" />
+          <Property Name="IsBoughtProduct" Type="bit" Nullable="false" />
+          <Property Name="CategoryProduct" Type="int" />
+          <Property Name="AddedQuantity" Type="decimal" Scale="12" />
+          <Property Name="IsExpense" Type="bit" Nullable="false" />
+          <Property Name="IsAddedMoney" Type="bit" Nullable="false" />
+          <Property Name="AccountOf" Type="int" />
+          <Property Name="AddBy" Type="int" Nullable="false" />
+          <Property Name="Note" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsVerified" Type="bit" Nullable="false" />
+          <Property Name="QtyType" Type="tinyint" />
+          <Property Name="IsDailyExpense" Type="bit" Nullable="false" />
+          <Property Name="IsRevenueOfDailySales" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Category" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="IsSalable" Type="bit" Nullable="false" />
+          <Property Name="IsExpense" Type="bit" Nullable="false" />
+          <Property Name="QtyType" Type="tinyint" Nullable="false" />
+          <Property Name="IsRelatedToSalary" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CategoryWiseSold">
+          <Key>
+            <PropertyRef Name="CategoryWiseSoldID" />
+          </Key>
+          <Property Name="CategoryWiseSoldID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SaleID" Type="int" Nullable="false" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Code">
+          <Key>
+            <PropertyRef Name="CodeID" />
+          </Key>
+          <Property Name="CodeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IsUsed" Type="bit" Nullable="false" />
+          <Property Name="GuidCode" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="10" StoreGeneratedPattern="Computed" />
+          <Property Name="IsOwner" Type="bit" Nullable="false" />
+          <Property Name="IsAccessToAdmin" Type="bit" Nullable="false" />
+          <Property Name="IsEmployee" Type="bit" Nullable="false" />
+          <Property Name="Salary" Type="decimal" />
+          <Property Name="Percentage" Type="decimal" />
+        </EntityType>
+        <EntityType Name="Config">
+          <Key>
+            <PropertyRef Name="ConfigID" />
+          </Key>
+          <Property Name="ConfigID" Type="bit" Nullable="false" />
+          <Property Name="IsNotifyDeveloperOnError" Type="bit" Nullable="false" />
+          <Property Name="IsNotifyAdminOnError" Type="bit" Nullable="false" />
+          <Property Name="GeneralNotificationMail" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="DeveloperEmail" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="AdminEmail" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="OnMistakeNotifyAllAdmins" Type="bit" Nullable="false" />
+          <Property Name="CompanyName" Type="varchar" Nullable="false" MaxLength="80" />
+          <Property Name="CompanyEmail" Type="varchar" MaxLength="255" />
+          <Property Name="CompanyContacts" Type="varchar" MaxLength="50" />
+          <Property Name="DefaultTimeZoneID" Type="smallint" Nullable="false" />
+          <Property Name="ApplicationName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="ApplicationSubtitle" Type="nchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="DailyStock">
+          <Key>
+            <PropertyRef Name="DailyStockID" />
+          </Key>
+          <Property Name="DailyStockID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SaleID" Type="int" Nullable="false" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="float" Nullable="false" />
+          <Property Name="QtyType" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DetailedSale">
+          <Key>
+            <PropertyRef Name="DetailedSaleID" />
+          </Key>
+          <Property Name="DetailedSaleID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SaleID" Type="int" Nullable="false" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="SellingPrice" Type="int" Nullable="false" />
+          <Property Name="Discount" Type="int" />
+          <Property Name="Note" Type="varchar" MaxLength="20" />
+          <Property Name="SoldAt" Type="int" Nullable="false" />
+          <Property Name="Time" Type="smalldatetime" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="IsDiscard" Type="bit" Nullable="false" />
+          <Property Name="IsMarkedDiscard" Type="bit" Nullable="false" />
+          <Property Name="DiscountPerson" Type="varchar" MaxLength="20" />
+          <Property Name="DiscountNumber" Type="varchar" MaxLength="30" />
+          <Property Name="Qty" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Inventory">
+          <Key>
+            <PropertyRef Name="InventoryID" />
+          </Key>
+          <Property Name="InventoryID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="float" Nullable="false" />
+          <Property Name="LastEditedby" Type="int" Nullable="false" />
+          <Property Name="SoldPrice" Type="float" Nullable="false" />
+          <Property Name="QtyType" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InventoryIn">
+          <Key>
+            <PropertyRef Name="InventoryInID" />
+          </Key>
+          <Property Name="InventoryInID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="decimal" Nullable="false" Scale="12" />
+          <Property Name="UnitPrice" Type="float" Nullable="false" />
+          <Property Name="AddedBy" Type="int" Nullable="false" />
+          <Property Name="IsAddedBySelling" Type="bit" Nullable="false" />
+          <Property Name="QtyType" Type="tinyint" Nullable="false" />
+          <Property Name="Dated" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InventoryOut">
+          <Key>
+            <PropertyRef Name="InventoryOutID" />
+          </Key>
+          <Property Name="InventoryOutID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="decimal" Nullable="false" Scale="12" />
+          <Property Name="Dated" Type="date" Nullable="false" />
+          <Property Name="IsWaste" Type="bit" Nullable="false" />
+          <Property Name="IsLoss" Type="bit" Nullable="false" />
+          <Property Name="Note" Type="varchar" MaxLength="30" />
+          <Property Name="IsChanged" Type="bit" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="SoldPrice" Type="float" Nullable="false" />
+          <Property Name="IsIncurBySelling" Type="bit" Nullable="false" />
+          <Property Name="QtyType" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InventoryOutConfig">
+          <Key>
+            <PropertyRef Name="InventoryOutConfigID" />
+          </Key>
+          <Property Name="InventoryOutConfigID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="DiscardItemCategory" Type="int" Nullable="false" />
+          <Property Name="PerSaleQuantity" Type="decimal" Nullable="false" Scale="12" />
+          <Property Name="QtyType" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Notification">
+          <Key>
+            <PropertyRef Name="NotificationID" />
+          </Key>
+          <Property Name="NotificationID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Note" Type="varchar" MaxLength="100" />
+          <Property Name="IsProductNeeded" Type="bit" Nullable="false" />
+          <Property Name="IsAdminOnly" Type="bit" Nullable="false" />
+          <Property Name="IsEmployeeOnly" Type="bit" Nullable="false" />
+          <Property Name="IsForAll" Type="bit" Nullable="false" />
+          <Property Name="IsUrgent" Type="bit" Nullable="false" />
+          <Property Name="IsAutogenerated" Type="bit" Nullable="false" />
+          <Property Name="GeneratedBy" Type="int" />
+          <Property Name="GeneratedDate" Type="smalldatetime" Nullable="false" />
+          <Property Name="IsForSpecificUsersOnly" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NotificationSeen">
+          <Key>
+            <PropertyRef Name="NotificationSeenID" />
+          </Key>
+          <Property Name="NotificationSeenID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="NotificationID" Type="bigint" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="SeenAt" Type="smalldatetime" Nullable="false" />
+          <Property Name="IsSeen" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QuantityConversation">
+          <Key>
+            <PropertyRef Name="QuantityConversationID" />
+          </Key>
+          <Property Name="QuantityConversationID" Type="tinyint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="QuantityTypeID" Type="tinyint" Nullable="false" />
+          <Property Name="ConvertedTypeID" Type="tinyint" Nullable="false" />
+          <Property Name="Difference" Type="decimal" Nullable="false" Scale="10" />
+        </EntityType>
+        <EntityType Name="QuantityType">
+          <Key>
+            <PropertyRef Name="QuantityTypeID" />
+          </Key>
+          <Property Name="QuantityTypeID" Type="tinyint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="QtyType" Type="varchar" Nullable="false" MaxLength="25" />
+        </EntityType>
+        <EntityType Name="Requisition">
+          <Key>
+            <PropertyRef Name="RequisitionID" />
+          </Key>
+          <Property Name="RequisitionID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="QtyType" Type="tinyint" Nullable="false" />
+          <Property Name="IsAutoAdded" Type="bit" Nullable="false" />
+          <Property Name="IsInProcess" Type="bit" Nullable="false" />
+          <Property Name="ByWhomUser" Type="int" />
+          <Property Name="IsDone" Type="bit" Nullable="false" />
+          <Property Name="AddedBy" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SalaryPaid">
+          <Key>
+            <PropertyRef Name="SalaryPaidID" />
+          </Key>
+          <Property Name="SalaryPaidID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="SalaryOfDated" Type="date" Nullable="false" />
+          <Property Name="Month" Type="int" StoreGeneratedPattern="Computed" />
+          <Property Name="Year" Type="int" StoreGeneratedPattern="Computed" />
+          <Property Name="Paid" Type="float" Nullable="false" />
+          <Property Name="Salary" Type="float" Nullable="false" />
+          <Property Name="PaidDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sale">
+          <Key>
+            <PropertyRef Name="SaleID" />
+          </Key>
+          <Property Name="SaleID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="Discount" Type="float" />
+          <Property Name="TotalSold" Type="int" Nullable="false" />
+          <Property Name="TotalLess" Type="float" />
+          <Property Name="TotalAcheived" Type="decimal" Nullable="false" />
+          <Property Name="OtherExpenses" Type="decimal" Nullable="false" />
+          <Property Name="IsDividedAmongPartners" Type="bit" Nullable="false" />
+          <Property Name="TotalWastages" Type="int" Nullable="false" />
+          <Property Name="TotalDiscountNumber" Type="int" Nullable="false" />
+          <Property Name="Noted" Type="nvarchar" MaxLength="50" />
+          <Property Name="AnyProblem" Type="bit" Nullable="false" />
+          <Property Name="DiscardSales" Type="int" Nullable="false" />
+          <Property Name="IsDiscardsChecked" Type="bit" Nullable="false" />
+          <Property Name="InHandCashChange" Type="float" Nullable="false" />
+          <Property Name="IsInventorySet" Type="bit" Nullable="false" />
+          <Property Name="ActualAcheivedFromEmployee" Type="decimal" Nullable="false" />
+          <Property Name="ActualLossProfitAfterCollection" Type="decimal" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TimeZone">
+          <Key>
+            <PropertyRef Name="TimeZoneID" />
+          </Key>
+          <Property Name="TimeZoneID" Type="smallint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TimeZoneInfoId" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="TimeZoneDisplay" Type="varchar" Nullable="false" MaxLength="80" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="LogName" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="40" />
+          <Property Name="LastLogIn" Type="date" Nullable="false" />
+          <Property Name="IsEmployee" Type="bit" Nullable="false" />
+          <Property Name="IsOwner" Type="bit" Nullable="false" />
+          <Property Name="Percentage" Type="float" Nullable="false" />
+          <Property Name="Salary" Type="float" Nullable="false" />
+          <Property Name="IsAccessToAdmin" Type="bit" Nullable="false" />
+          <Property Name="IsBlocked" Type="bit" Nullable="false" />
+          <Property Name="TimeZoneID" Type="smallint" Nullable="false" />
+          <Property Name="Email" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="IsValidEmail" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="UserRoleID" />
+          </Key>
+          <Property Name="UserRoleID" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="RolePriority" Type="tinyint" Nullable="false" />
+          <Property Name="Editable" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'E:\WORKING\DEVELOPERS ORGANISM\YEAR 2013\JUSTFOOD\JUSTFOOD\APP_DATA\JUSTFOODDB.MDF.dbo.ViewAccountBalance' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="ViewAccountBalance">
+          <Key>
+            <PropertyRef Name="Dated" />
+            <PropertyRef Name="Amount" />
+            <PropertyRef Name="IsBoughtProduct" />
+            <PropertyRef Name="IsExpense" />
+            <PropertyRef Name="IsAddedMoney" />
+            <PropertyRef Name="AddBy" />
+            <PropertyRef Name="AccountBalanceID" />
+            <PropertyRef Name="AmountAbs" />
+          </Key>
+          <Property Name="AccountOfLog" Type="varchar" MaxLength="30" />
+          <Property Name="AccountOfName" Type="varchar" MaxLength="40" />
+          <Property Name="AddedByLog" Type="varchar" MaxLength="30" />
+          <Property Name="Dated" Type="smalldatetime" Nullable="false" />
+          <Property Name="Amount" Type="float" Nullable="false" />
+          <Property Name="IsBoughtProduct" Type="bit" Nullable="false" />
+          <Property Name="CategoryProduct" Type="int" />
+          <Property Name="AddedQuantity" Type="decimal" Scale="12" />
+          <Property Name="IsExpense" Type="bit" Nullable="false" />
+          <Property Name="IsAddedMoney" Type="bit" Nullable="false" />
+          <Property Name="AccountOf" Type="int" />
+          <Property Name="AddBy" Type="int" Nullable="false" />
+          <Property Name="Note" Type="nvarchar" MaxLength="50" />
+          <Property Name="AccountBalanceID" Type="bigint" Nullable="false" />
+          <Property Name="Category" Type="varchar" MaxLength="30" />
+          <Property Name="AmountAbs" Type="float" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'E:\WORKING\DEVELOPERS ORGANISM\YEAR 2013\JUSTFOOD\JUSTFOOD\APP_DATA\JUSTFOODDB.MDF.dbo.ViewInventoryIn' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="ViewInventoryIn">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="InventoryInQuantity" Type="decimal" Precision="38" Scale="12" />
+          <Property Name="InventoryInUnitPrice" Type="float" />
+          <Property Name="Category" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'E:\WORKING\DEVELOPERS ORGANISM\YEAR 2013\JUSTFOOD\JUSTFOOD\APP_DATA\JUSTFOODDB.MDF.dbo.ViewInventoryInOutSummary' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="ViewInventoryInOutSummary">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="ProductIn" Type="decimal" Precision="38" Scale="12" />
+          <Property Name="DiscardedProduct" Type="decimal" Precision="38" Scale="10" />
+          <Property Name="ProductLeft" Type="decimal" Precision="38" Scale="10" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'E:\WORKING\DEVELOPERS ORGANISM\YEAR 2013\JUSTFOOD\JUSTFOOD\APP_DATA\JUSTFOODDB.MDF.dbo.ViewInventoryOut' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="ViewInventoryOut">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="InventoryOutQuantity" Type="decimal" Precision="38" Scale="12" />
+          <Property Name="Category" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'E:\WORKING\DEVELOPERS ORGANISM\YEAR 2013\JUSTFOOD\JUSTFOOD\APP_DATA\JUSTFOODDB.MDF.dbo.ViewInventorySalables' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="ViewInventorySalables">
+          <Key>
+            <PropertyRef Name="InventoryID" />
+            <PropertyRef Name="CategoryID" />
+            <PropertyRef Name="InventoryQuantity" />
+            <PropertyRef Name="SoldPrice" />
+          </Key>
+          <Property Name="InventoryID" Type="int" Nullable="false" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="InventoryQuantity" Type="float" Nullable="false" />
+          <Property Name="SoldPrice" Type="float" Nullable="false" />
+          <Property Name="Category" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'E:\WORKING\DEVELOPERS ORGANISM\YEAR 2013\JUSTFOOD\JUSTFOOD\APP_DATA\JUSTFOODDB.MDF.dbo.ViewSummaryAccountBalance' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="ViewSummaryAccountBalance">
+          <Key>
+            <PropertyRef Name="AccountOfLog" />
+            <PropertyRef Name="AccountOfName" />
+          </Key>
+          <Property Name="AccountOfLog" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="AccountOfName" Type="varchar" Nullable="false" MaxLength="40" />
+          <Property Name="Balance" Type="float" />
+          <Property Name="AccountOf" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'E:\WORKING\DEVELOPERS ORGANISM\YEAR 2013\JUSTFOOD\JUSTFOOD\APP_DATA\JUSTFOODDB.MDF.dbo.ViewSummarySales' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="ViewSummarySales">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+            <PropertyRef Name="SoldPrice" />
+            <PropertyRef Name="InventoryQuantity" />
+          </Key>
+          <Property Name="SaleID" Type="int" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="Category" Type="varchar" MaxLength="30" />
+          <Property Name="SoldPrice" Type="float" Nullable="false" />
+          <Property Name="InventoryQuantity" Type="float" Nullable="false" />
+          <Property Name="SoldQuantity" Type="int" />
+          <Property Name="Discounted" Type="int" />
+          <Property Name="CashInHand" Type="int" />
+        </EntityType>
+        <Association Name="FK_AccountBalance_Category">
+          <End Role="Category" Type="JustFoodDBModel.Store.Category" Multiplicity="0..1" />
+          <End Role="AccountBalance" Type="JustFoodDBModel.Store.AccountBalance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="AccountBalance">
+              <PropertyRef Name="CategoryProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountBalance_QuantityType">
+          <End Role="QuantityType" Type="JustFoodDBModel.Store.QuantityType" Multiplicity="0..1" />
+          <End Role="AccountBalance" Type="JustFoodDBModel.Store.AccountBalance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuantityType">
+              <PropertyRef Name="QuantityTypeID" />
+            </Principal>
+            <Dependent Role="AccountBalance">
+              <PropertyRef Name="QtyType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountBalance_User">
+          <End Role="User" Type="JustFoodDBModel.Store.User" Multiplicity="0..1" />
+          <End Role="AccountBalance" Type="JustFoodDBModel.Store.AccountBalance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="AccountBalance">
+              <PropertyRef Name="AccountOf" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountBalance_User1">
+          <End Role="User" Type="JustFoodDBModel.Store.User" Multiplicity="1" />
+          <End Role="AccountBalance" Type="JustFoodDBModel.Store.AccountBalance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="AccountBalance">
+              <PropertyRef Name="AddBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Category_QuantityType">
+          <End Role="QuantityType" Type="JustFoodDBModel.Store.QuantityType" Multiplicity="1" />
+          <End Role="Category" Type="JustFoodDBModel.Store.Category" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuantityType">
+              <PropertyRef Name="QuantityTypeID" />
+            </Principal>
+            <Dependent Role="Category">
+              <PropertyRef Name="QtyType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CategoryWiseSold_Category">
+          <End Role="Category" Type="JustFoodDBModel.Store.Category" Multiplicity="1" />
+          <End Role="CategoryWiseSold" Type="JustFoodDBModel.Store.CategoryWiseSold" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="CategoryWiseSold">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CategoryWiseSold_Sale">
+          <End Role="Sale" Type="JustFoodDBModel.Store.Sale" Multiplicity="1" />
+          <End Role="CategoryWiseSold" Type="JustFoodDBModel.Store.CategoryWiseSold" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sale">
+              <PropertyRef Name="SaleID" />
+            </Principal>
+            <Dependent Role="CategoryWiseSold">
+              <PropertyRef Name="SaleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Config_TimeZone">
+          <End Role="TimeZone" Type="JustFoodDBModel.Store.TimeZone" Multiplicity="1" />
+          <End Role="Config" Type="JustFoodDBModel.Store.Config" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TimeZone">
+              <PropertyRef Name="TimeZoneID" />
+            </Principal>
+            <Dependent Role="Config">
+              <PropertyRef Name="DefaultTimeZoneID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DailyStock_QuantityType">
+          <End Role="QuantityType" Type="JustFoodDBModel.Store.QuantityType" Multiplicity="1" />
+          <End Role="DailyStock" Type="JustFoodDBModel.Store.DailyStock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuantityType">
+              <PropertyRef Name="QuantityTypeID" />
+            </Principal>
+            <Dependent Role="DailyStock">
+              <PropertyRef Name="QtyType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DailyStock_Sale">
+          <End Role="Sale" Type="JustFoodDBModel.Store.Sale" Multiplicity="1" />
+          <End Role="DailyStock" Type="JustFoodDBModel.Store.DailyStock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sale">
+              <PropertyRef Name="SaleID" />
+            </Principal>
+            <Dependent Role="DailyStock">
+              <PropertyRef Name="SaleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetailedSale_Category">
+          <End Role="Category" Type="JustFoodDBModel.Store.Category" Multiplicity="1" />
+          <End Role="DetailedSale" Type="JustFoodDBModel.Store.DetailedSale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="DetailedSale">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetailedSale_JustFood">
+          <End Role="Sale" Type="JustFoodDBModel.Store.Sale" Multiplicity="1" />
+          <End Role="DetailedSale" Type="JustFoodDBModel.Store.DetailedSale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sale">
+              <PropertyRef Name="SaleID" />
+            </Principal>
+            <Dependent Role="DetailedSale">
+              <PropertyRef Name="SaleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetailedSale_User">
+          <End Role="User" Type="JustFoodDBModel.Store.User" Multiplicity="1" />
+          <End Role="DetailedSale" Type="JustFoodDBModel.Store.DetailedSale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="DetailedSale">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inventory_Category">
+          <End Role="Category" Type="JustFoodDBModel.Store.Category" Multiplicity="1" />
+          <End Role="Inventory" Type="JustFoodDBModel.Store.Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inventory_QuantityType">
+          <End Role="QuantityType" Type="JustFoodDBModel.Store.QuantityType" Multiplicity="1" />
+          <End Role="Inventory" Type="JustFoodDBModel.Store.Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuantityType">
+              <PropertyRef Name="QuantityTypeID" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="QtyType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inventory_User">
+          <End Role="User" Type="JustFoodDBModel.Store.User" Multiplicity="1" />
+          <End Role="Inventory" Type="JustFoodDBModel.Store.Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="LastEditedby" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InventoryIn_Category">
+          <End Role="Category" Type="JustFoodDBModel.Store.Category" Multiplicity="1" />
+          <End Role="InventoryIn" Type="JustFoodDBModel.Store.InventoryIn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="InventoryIn">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InventoryIn_QuantityType">
+          <End Role="QuantityType" Type="JustFoodDBModel.Store.QuantityType" Multiplicity="1" />
+          <End Role="InventoryIn" Type="JustFoodDBModel.Store.InventoryIn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuantityType">
+              <PropertyRef Name="QuantityTypeID" />
+            </Principal>
+            <Dependent Role="InventoryIn">
+              <PropertyRef Name="QtyType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InventoryIn_User">
+          <End Role="User" Type="JustFoodDBModel.Store.User" Multiplicity="1" />
+          <End Role="InventoryIn" Type="JustFoodDBModel.Store.InventoryIn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="InventoryIn">
+              <PropertyRef Name="AddedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InventoryOut_Category">
+          <End Role="Category" Type="JustFoodDBModel.Store.Category" Multiplicity="1" />
+          <End Role="InventoryOut" Type="JustFoodDBModel.Store.InventoryOut" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="InventoryOut">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InventoryOut_QuantityType">
+          <End Role="QuantityType" Type="JustFoodDBModel.Store.QuantityType" Multiplicity="1" />
+          <End Role="InventoryOut" Type="JustFoodDBModel.Store.InventoryOut" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuantityType">
+              <PropertyRef Name="QuantityTypeID" />
+            </Principal>
+            <Dependent Role="InventoryOut">
+              <PropertyRef Name="QtyType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InventoryOutConfig_Category">
+          <End Role="Category" Type="JustFoodDBModel.Store.Category" Multiplicity="1" />
+          <End Role="InventoryOutConfig" Type="JustFoodDBModel.Store.InventoryOutConfig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="InventoryOutConfig">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InventoryOutConfig_Category1">
+          <End Role="Category" Type="JustFoodDBModel.Store.Category" Multiplicity="1" />
+          <End Role="InventoryOutConfig" Type="JustFoodDBModel.Store.InventoryOutConfig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="InventoryOutConfig">
+              <PropertyRef Name="DiscardItemCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InventoryOutConfig_QuantityType">
+          <End Role="QuantityType" Type="JustFoodDBModel.Store.QuantityType" Multiplicity="1" />
+          <End Role="InventoryOutConfig" Type="JustFoodDBModel.Store.InventoryOutConfig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuantityType">
+              <PropertyRef Name="QuantityTypeID" />
+            </Principal>
+            <Dependent Role="InventoryOutConfig">
+              <PropertyRef Name="QtyType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notification_User">
+          <End Role="User" Type="JustFoodDBModel.Store.User" Multiplicity="0..1" />
+          <End Role="Notification" Type="JustFoodDBModel.Store.Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Notification">
+              <PropertyRef Name="GeneratedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NotificationSeen_Notification">
+          <End Role="Notification" Type="JustFoodDBModel.Store.Notification" Multiplicity="1" />
+          <End Role="NotificationSeen" Type="JustFoodDBModel.Store.NotificationSeen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Notification">
+              <PropertyRef Name="NotificationID" />
+            </Principal>
+            <Dependent Role="NotificationSeen">
+              <PropertyRef Name="NotificationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NotificationSeen_User">
+          <End Role="User" Type="JustFoodDBModel.Store.User" Multiplicity="1" />
+          <End Role="NotificationSeen" Type="JustFoodDBModel.Store.NotificationSeen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="NotificationSeen">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuantityConversation_QuantityType">
+          <End Role="QuantityType" Type="JustFoodDBModel.Store.QuantityType" Multiplicity="1" />
+          <End Role="QuantityConversation" Type="JustFoodDBModel.Store.QuantityConversation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuantityType">
+              <PropertyRef Name="QuantityTypeID" />
+            </Principal>
+            <Dependent Role="QuantityConversation">
+              <PropertyRef Name="QuantityTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuantityConversation_QuantityType1">
+          <End Role="QuantityType" Type="JustFoodDBModel.Store.QuantityType" Multiplicity="1" />
+          <End Role="QuantityConversation" Type="JustFoodDBModel.Store.QuantityConversation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuantityType">
+              <PropertyRef Name="QuantityTypeID" />
+            </Principal>
+            <Dependent Role="QuantityConversation">
+              <PropertyRef Name="ConvertedTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requisition_QuantityType">
+          <End Role="QuantityType" Type="JustFoodDBModel.Store.QuantityType" Multiplicity="1" />
+          <End Role="Requisition" Type="JustFoodDBModel.Store.Requisition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuantityType">
+              <PropertyRef Name="QuantityTypeID" />
+            </Principal>
+            <Dependent Role="Requisition">
+              <PropertyRef Name="QtyType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requisition_User">
+          <End Role="User" Type="JustFoodDBModel.Store.User" Multiplicity="0..1" />
+          <End Role="Requisition" Type="JustFoodDBModel.Store.Requisition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Requisition">
+              <PropertyRef Name="ByWhomUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requisition_User1">
+          <End Role="User" Type="JustFoodDBModel.Store.User" Multiplicity="1" />
+          <End Role="Requisition" Type="JustFoodDBModel.Store.Requisition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Requisition">
+              <PropertyRef Name="AddedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SalaryPaid_User">
+          <End Role="User" Type="JustFoodDBModel.Store.User" Multiplicity="1" />
+          <End Role="SalaryPaid" Type="JustFoodDBModel.Store.SalaryPaid" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="SalaryPaid">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_TimeZone">
+          <End Role="TimeZone" Type="JustFoodDBModel.Store.TimeZone" Multiplicity="1" />
+          <End Role="User" Type="JustFoodDBModel.Store.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TimeZone">
+              <PropertyRef Name="TimeZoneID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="TimeZoneID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="JustFoodDBModel" Alias="Self"
+              xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation"
+              xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="JustFoodDBEntities" annotation:LazyLoadingEnabled="false">
+          <EntitySet Name="AccountBalances" EntityType="JustFoodDBModel.AccountBalance" />
+          <EntitySet Name="Categories" EntityType="JustFoodDBModel.Category" />
+          <EntitySet Name="CategoryWiseSolds" EntityType="JustFoodDBModel.CategoryWiseSold" />
+          <EntitySet Name="Codes" EntityType="JustFoodDBModel.Code" />
+          <EntitySet Name="Configs" EntityType="JustFoodDBModel.Config" />
+          <EntitySet Name="DailyStocks" EntityType="JustFoodDBModel.DailyStock" />
+          <EntitySet Name="DetailedSales" EntityType="JustFoodDBModel.DetailedSale" />
+          <EntitySet Name="Inventories" EntityType="JustFoodDBModel.Inventory" />
+          <EntitySet Name="InventoryIns" EntityType="JustFoodDBModel.InventoryIn" />
+          <EntitySet Name="InventoryOuts" EntityType="JustFoodDBModel.InventoryOut" />
+          <EntitySet Name="InventoryOutConfigs" EntityType="JustFoodDBModel.InventoryOutConfig" />
+          <EntitySet Name="Notifications" EntityType="JustFoodDBModel.Notification" />
+          <EntitySet Name="NotificationSeens" EntityType="JustFoodDBModel.NotificationSeen" />
+          <EntitySet Name="QuantityConversations" EntityType="JustFoodDBModel.QuantityConversation" />
+          <EntitySet Name="QuantityTypes" EntityType="JustFoodDBModel.QuantityType" />
+          <EntitySet Name="Requisitions" EntityType="JustFoodDBModel.Requisition" />
+          <EntitySet Name="SalaryPaids" EntityType="JustFoodDBModel.SalaryPaid" />
+          <EntitySet Name="Sales" EntityType="JustFoodDBModel.Sale" />
+          <EntitySet Name="TimeZones" EntityType="JustFoodDBModel.TimeZone" />
+          <EntitySet Name="Users" EntityType="JustFoodDBModel.User" />
+          <EntitySet Name="UserRoles" EntityType="JustFoodDBModel.UserRole" />
+          <EntitySet Name="ViewAccountBalances" EntityType="JustFoodDBModel.ViewAccountBalance" />
+          <EntitySet Name="ViewInventoryIns" EntityType="JustFoodDBModel.ViewInventoryIn" />
+          <EntitySet Name="ViewInventoryInOutSummaries" EntityType="JustFoodDBModel.ViewInventoryInOutSummary" />
+          <EntitySet Name="ViewInventoryOuts" EntityType="JustFoodDBModel.ViewInventoryOut" />
+          <EntitySet Name="ViewInventorySalables" EntityType="JustFoodDBModel.ViewInventorySalable" />
+          <EntitySet Name="ViewSummaryAccountBalances" EntityType="JustFoodDBModel.ViewSummaryAccountBalance" />
+          <EntitySet Name="ViewSummarySales" EntityType="JustFoodDBModel.ViewSummarySale" />
+          <AssociationSet Name="FK_AccountBalance_Category" Association="JustFoodDBModel.FK_AccountBalance_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="AccountBalance" EntitySet="AccountBalances" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountBalance_QuantityType" Association="JustFoodDBModel.FK_AccountBalance_QuantityType">
+            <End Role="QuantityType" EntitySet="QuantityTypes" />
+            <End Role="AccountBalance" EntitySet="AccountBalances" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountBalance_User" Association="JustFoodDBModel.FK_AccountBalance_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="AccountBalance" EntitySet="AccountBalances" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountBalance_User1" Association="JustFoodDBModel.FK_AccountBalance_User1">
+            <End Role="User" EntitySet="Users" />
+            <End Role="AccountBalance" EntitySet="AccountBalances" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Category_QuantityType" Association="JustFoodDBModel.FK_Category_QuantityType">
+            <End Role="QuantityType" EntitySet="QuantityTypes" />
+            <End Role="Category" EntitySet="Categories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CategoryWiseSold_Category" Association="JustFoodDBModel.FK_CategoryWiseSold_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="CategoryWiseSold" EntitySet="CategoryWiseSolds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetailedSale_Category" Association="JustFoodDBModel.FK_DetailedSale_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="DetailedSale" EntitySet="DetailedSales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inventory_Category" Association="JustFoodDBModel.FK_Inventory_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Inventory" EntitySet="Inventories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InventoryIn_Category" Association="JustFoodDBModel.FK_InventoryIn_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="InventoryIn" EntitySet="InventoryIns" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InventoryOut_Category" Association="JustFoodDBModel.FK_InventoryOut_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="InventoryOut" EntitySet="InventoryOuts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InventoryOutConfig_Category" Association="JustFoodDBModel.FK_InventoryOutConfig_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="InventoryOutConfig" EntitySet="InventoryOutConfigs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InventoryOutConfig_Category1" Association="JustFoodDBModel.FK_InventoryOutConfig_Category1">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="InventoryOutConfig" EntitySet="InventoryOutConfigs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CategoryWiseSold_Sale" Association="JustFoodDBModel.FK_CategoryWiseSold_Sale">
+            <End Role="Sale" EntitySet="Sales" />
+            <End Role="CategoryWiseSold" EntitySet="CategoryWiseSolds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Config_TimeZone" Association="JustFoodDBModel.FK_Config_TimeZone">
+            <End Role="TimeZone" EntitySet="TimeZones" />
+            <End Role="Config" EntitySet="Configs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DailyStock_QuantityType" Association="JustFoodDBModel.FK_DailyStock_QuantityType">
+            <End Role="QuantityType" EntitySet="QuantityTypes" />
+            <End Role="DailyStock" EntitySet="DailyStocks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DailyStock_Sale" Association="JustFoodDBModel.FK_DailyStock_Sale">
+            <End Role="Sale" EntitySet="Sales" />
+            <End Role="DailyStock" EntitySet="DailyStocks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetailedSale_JustFood" Association="JustFoodDBModel.FK_DetailedSale_JustFood">
+            <End Role="Sale" EntitySet="Sales" />
+            <End Role="DetailedSale" EntitySet="DetailedSales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetailedSale_User" Association="JustFoodDBModel.FK_DetailedSale_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="DetailedSale" EntitySet="DetailedSales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inventory_QuantityType" Association="JustFoodDBModel.FK_Inventory_QuantityType">
+            <End Role="QuantityType" EntitySet="QuantityTypes" />
+            <End Role="Inventory" EntitySet="Inventories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inventory_User" Association="JustFoodDBModel.FK_Inventory_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Inventory" EntitySet="Inventories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InventoryIn_QuantityType" Association="JustFoodDBModel.FK_InventoryIn_QuantityType">
+            <End Role="QuantityType" EntitySet="QuantityTypes" />
+            <End Role="InventoryIn" EntitySet="InventoryIns" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InventoryIn_User" Association="JustFoodDBModel.FK_InventoryIn_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="InventoryIn" EntitySet="InventoryIns" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InventoryOut_QuantityType" Association="JustFoodDBModel.FK_InventoryOut_QuantityType">
+            <End Role="QuantityType" EntitySet="QuantityTypes" />
+            <End Role="InventoryOut" EntitySet="InventoryOuts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InventoryOutConfig_QuantityType" Association="JustFoodDBModel.FK_InventoryOutConfig_QuantityType">
+            <End Role="QuantityType" EntitySet="QuantityTypes" />
+            <End Role="InventoryOutConfig" EntitySet="InventoryOutConfigs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notification_User" Association="JustFoodDBModel.FK_Notification_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Notification" EntitySet="Notifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NotificationSeen_Notification" Association="JustFoodDBModel.FK_NotificationSeen_Notification">
+            <End Role="Notification" EntitySet="Notifications" />
+            <End Role="NotificationSeen" EntitySet="NotificationSeens" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NotificationSeen_User" Association="JustFoodDBModel.FK_NotificationSeen_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="NotificationSeen" EntitySet="NotificationSeens" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuantityConversation_QuantityType" Association="JustFoodDBModel.FK_QuantityConversation_QuantityType">
+            <End Role="QuantityType" EntitySet="QuantityTypes" />
+            <End Role="QuantityConversation" EntitySet="QuantityConversations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuantityConversation_QuantityType1" Association="JustFoodDBModel.FK_QuantityConversation_QuantityType1">
+            <End Role="QuantityType" EntitySet="QuantityTypes" />
+            <End Role="QuantityConversation" EntitySet="QuantityConversations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requisition_QuantityType" Association="JustFoodDBModel.FK_Requisition_QuantityType">
+            <End Role="QuantityType" EntitySet="QuantityTypes" />
+            <End Role="Requisition" EntitySet="Requisitions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requisition_User" Association="JustFoodDBModel.FK_Requisition_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Requisition" EntitySet="Requisitions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requisition_User1" Association="JustFoodDBModel.FK_Requisition_User1">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Requisition" EntitySet="Requisitions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SalaryPaid_User" Association="JustFoodDBModel.FK_SalaryPaid_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="SalaryPaid" EntitySet="SalaryPaids" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_TimeZone" Association="JustFoodDBModel.FK_User_TimeZone">
+            <End Role="TimeZone" EntitySet="TimeZones" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="AccountBalance">
+          <Key>
+            <PropertyRef Name="AccountBalanceID" />
+          </Key>
+          <Property Type="Int64" Name="AccountBalanceID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="Dated" Nullable="false" />
+          <Property Type="Double" Name="Amount" Nullable="false" />
+          <Property Type="Boolean" Name="IsBoughtProduct" Nullable="false" />
+          <Property Type="Int32" Name="CategoryProduct" />
+          <Property Type="Decimal" Name="AddedQuantity" Precision="18" Scale="12" />
+          <Property Type="Boolean" Name="IsExpense" Nullable="false" />
+          <Property Type="Boolean" Name="IsAddedMoney" Nullable="false" />
+          <Property Type="Int32" Name="AccountOf" />
+          <Property Type="Int32" Name="AddBy" Nullable="false" />
+          <Property Type="String" Name="Note" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsVerified" Nullable="false" />
+          <Property Type="Byte" Name="QtyType" />
+          <Property Type="Boolean" Name="IsDailyExpense" Nullable="false" />
+          <Property Type="Boolean" Name="IsRevenueOfDailySales" Nullable="false" />
+          <NavigationProperty Name="Category" Relationship="JustFoodDBModel.FK_AccountBalance_Category" FromRole="AccountBalance" ToRole="Category" />
+          <NavigationProperty Name="QuantityType" Relationship="JustFoodDBModel.FK_AccountBalance_QuantityType" FromRole="AccountBalance" ToRole="QuantityType" />
+          <NavigationProperty Name="User" Relationship="JustFoodDBModel.FK_AccountBalance_User" FromRole="AccountBalance" ToRole="User" />
+          <NavigationProperty Name="User1" Relationship="JustFoodDBModel.FK_AccountBalance_User1" FromRole="AccountBalance" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Type="Int32" Name="CategoryID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Category1" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="IsSalable" Nullable="false" />
+          <Property Type="Boolean" Name="IsExpense" Nullable="false" />
+          <Property Type="Byte" Name="QtyType" Nullable="false" />
+          <Property Type="Boolean" Name="IsRelatedToSalary" Nullable="false" />
+          <NavigationProperty Name="AccountBalances" Relationship="JustFoodDBModel.FK_AccountBalance_Category" FromRole="Category" ToRole="AccountBalance" />
+          <NavigationProperty Name="QuantityType" Relationship="JustFoodDBModel.FK_Category_QuantityType" FromRole="Category" ToRole="QuantityType" />
+          <NavigationProperty Name="CategoryWiseSolds" Relationship="JustFoodDBModel.FK_CategoryWiseSold_Category" FromRole="Category" ToRole="CategoryWiseSold" />
+          <NavigationProperty Name="DetailedSales" Relationship="JustFoodDBModel.FK_DetailedSale_Category" FromRole="Category" ToRole="DetailedSale" />
+          <NavigationProperty Name="Inventories" Relationship="JustFoodDBModel.FK_Inventory_Category" FromRole="Category" ToRole="Inventory" />
+          <NavigationProperty Name="InventoryIns" Relationship="JustFoodDBModel.FK_InventoryIn_Category" FromRole="Category" ToRole="InventoryIn" />
+          <NavigationProperty Name="InventoryOuts" Relationship="JustFoodDBModel.FK_InventoryOut_Category" FromRole="Category" ToRole="InventoryOut" />
+          <NavigationProperty Name="InventoryOutConfigs" Relationship="JustFoodDBModel.FK_InventoryOutConfig_Category" FromRole="Category" ToRole="InventoryOutConfig" />
+          <NavigationProperty Name="InventoryOutConfigs1" Relationship="JustFoodDBModel.FK_InventoryOutConfig_Category1" FromRole="Category" ToRole="InventoryOutConfig" />
+        </EntityType>
+        <EntityType Name="CategoryWiseSold">
+          <Key>
+            <PropertyRef Name="CategoryWiseSoldID" />
+          </Key>
+          <Property Type="Guid" Name="CategoryWiseSoldID" Nullable="false" />
+          <Property Type="Int32" Name="SaleID" Nullable="false" />
+          <Property Type="Int32" Name="CategoryID" Nullable="false" />
+          <Property Type="Int64" Name="Quantity" Nullable="false" />
+          <NavigationProperty Name="Category" Relationship="JustFoodDBModel.FK_CategoryWiseSold_Category" FromRole="CategoryWiseSold" ToRole="Category" />
+          <NavigationProperty Name="Sale" Relationship="JustFoodDBModel.FK_CategoryWiseSold_Sale" FromRole="CategoryWiseSold" ToRole="Sale" />
+        </EntityType>
+        <EntityType Name="Code">
+          <Key>
+            <PropertyRef Name="CodeID" />
+          </Key>
+          <Property Type="Int32" Name="CodeID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Boolean" Name="IsUsed" Nullable="false" />
+          <Property Type="Guid" Name="GuidCode" Nullable="false" />
+          <Property Type="String" Name="Code1" MaxLength="10" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Type="Boolean" Name="IsOwner" Nullable="false" />
+          <Property Type="Boolean" Name="IsAccessToAdmin" Nullable="false" />
+          <Property Type="Boolean" Name="IsEmployee" Nullable="false" />
+          <Property Type="Decimal" Name="Salary" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Percentage" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Config">
+          <Key>
+            <PropertyRef Name="ConfigID" />
+          </Key>
+          <Property Type="Boolean" Name="ConfigID" Nullable="false" />
+          <Property Type="Boolean" Name="IsNotifyDeveloperOnError" Nullable="false" />
+          <Property Type="Boolean" Name="IsNotifyAdminOnError" Nullable="false" />
+          <Property Type="String" Name="GeneralNotificationMail" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="DeveloperEmail" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="AdminEmail" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="OnMistakeNotifyAllAdmins" Nullable="false" />
+          <Property Type="String" Name="CompanyName" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CompanyEmail" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CompanyContacts" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int16" Name="DefaultTimeZoneID" Nullable="false" />
+          <Property Type="String" Name="ApplicationName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ApplicationSubtitle" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="TimeZone" Relationship="JustFoodDBModel.FK_Config_TimeZone" FromRole="Config" ToRole="TimeZone" />
+        </EntityType>
+        <EntityType Name="DailyStock">
+          <Key>
+            <PropertyRef Name="DailyStockID" />
+          </Key>
+          <Property Type="Int32" Name="DailyStockID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="SaleID" Nullable="false" />
+          <Property Type="Int32" Name="CategoryID" Nullable="false" />
+          <Property Type="Double" Name="Quantity" Nullable="false" />
+          <Property Type="Byte" Name="QtyType" Nullable="false" />
+          <NavigationProperty Name="QuantityType" Relationship="JustFoodDBModel.FK_DailyStock_QuantityType" FromRole="DailyStock" ToRole="QuantityType" />
+          <NavigationProperty Name="Sale" Relationship="JustFoodDBModel.FK_DailyStock_Sale" FromRole="DailyStock" ToRole="Sale" />
+        </EntityType>
+        <EntityType Name="DetailedSale">
+          <Key>
+            <PropertyRef Name="DetailedSaleID" />
+          </Key>
+          <Property Type="Int64" Name="DetailedSaleID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="SaleID" Nullable="false" />
+          <Property Type="Int32" Name="CategoryID" Nullable="false" />
+          <Property Type="Int32" Name="SellingPrice" Nullable="false" />
+          <Property Type="Int32" Name="Discount" />
+          <Property Type="String" Name="Note" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="SoldAt" Nullable="false" />
+          <Property Type="DateTime" Name="Time" Nullable="false" />
+          <Property Type="Int32" Name="UserID" Nullable="false" />
+          <Property Type="Boolean" Name="IsDiscard" Nullable="false" />
+          <Property Type="Boolean" Name="IsMarkedDiscard" Nullable="false" />
+          <Property Type="String" Name="DiscountPerson" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="DiscountNumber" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="Int16" Name="Qty" Nullable="false" />
+          <NavigationProperty Name="Category" Relationship="JustFoodDBModel.FK_DetailedSale_Category" FromRole="DetailedSale" ToRole="Category" />
+          <NavigationProperty Name="Sale" Relationship="JustFoodDBModel.FK_DetailedSale_JustFood" FromRole="DetailedSale" ToRole="Sale" />
+          <NavigationProperty Name="User" Relationship="JustFoodDBModel.FK_DetailedSale_User" FromRole="DetailedSale" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Inventory">
+          <Key>
+            <PropertyRef Name="InventoryID" />
+          </Key>
+          <Property Type="Int32" Name="InventoryID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="CategoryID" Nullable="false" />
+          <Property Type="Double" Name="Quantity" Nullable="false" />
+          <Property Type="Int32" Name="LastEditedby" Nullable="false" />
+          <Property Type="Double" Name="SoldPrice" Nullable="false" />
+          <Property Type="Byte" Name="QtyType" Nullable="false" />
+          <NavigationProperty Name="Category" Relationship="JustFoodDBModel.FK_Inventory_Category" FromRole="Inventory" ToRole="Category" />
+          <NavigationProperty Name="QuantityType" Relationship="JustFoodDBModel.FK_Inventory_QuantityType" FromRole="Inventory" ToRole="QuantityType" />
+          <NavigationProperty Name="User" Relationship="JustFoodDBModel.FK_Inventory_User" FromRole="Inventory" ToRole="User" />
+        </EntityType>
+        <EntityType Name="InventoryIn">
+          <Key>
+            <PropertyRef Name="InventoryInID" />
+          </Key>
+          <Property Type="Int64" Name="InventoryInID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="CategoryID" Nullable="false" />
+          <Property Type="Decimal" Name="Quantity" Nullable="false" Precision="18" Scale="12" />
+          <Property Type="Double" Name="UnitPrice" Nullable="false" />
+          <Property Type="Int32" Name="AddedBy" Nullable="false" />
+          <Property Type="Boolean" Name="IsAddedBySelling" Nullable="false" />
+          <Property Type="Byte" Name="QtyType" Nullable="false" />
+          <Property Type="DateTime" Name="Dated" Nullable="false" />
+          <NavigationProperty Name="Category" Relationship="JustFoodDBModel.FK_InventoryIn_Category" FromRole="InventoryIn" ToRole="Category" />
+          <NavigationProperty Name="QuantityType" Relationship="JustFoodDBModel.FK_InventoryIn_QuantityType" FromRole="InventoryIn" ToRole="QuantityType" />
+          <NavigationProperty Name="User" Relationship="JustFoodDBModel.FK_InventoryIn_User" FromRole="InventoryIn" ToRole="User" />
+        </EntityType>
+        <EntityType Name="InventoryOut">
+          <Key>
+            <PropertyRef Name="InventoryOutID" />
+          </Key>
+          <Property Type="Int64" Name="InventoryOutID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="CategoryID" Nullable="false" />
+          <Property Type="Decimal" Name="Quantity" Nullable="false" Precision="18" Scale="12" />
+          <Property Type="DateTime" Name="Dated" Nullable="false" />
+          <Property Type="Boolean" Name="IsWaste" Nullable="false" />
+          <Property Type="Boolean" Name="IsLoss" Nullable="false" />
+          <Property Type="String" Name="Note" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="IsChanged" Nullable="false" />
+          <Property Type="Int32" Name="UserID" Nullable="false" />
+          <Property Type="Double" Name="SoldPrice" Nullable="false" />
+          <Property Type="Boolean" Name="IsIncurBySelling" Nullable="false" />
+          <Property Type="Byte" Name="QtyType" Nullable="false" />
+          <NavigationProperty Name="Category" Relationship="JustFoodDBModel.FK_InventoryOut_Category" FromRole="InventoryOut" ToRole="Category" />
+          <NavigationProperty Name="QuantityType" Relationship="JustFoodDBModel.FK_InventoryOut_QuantityType" FromRole="InventoryOut" ToRole="QuantityType" />
+        </EntityType>
+        <EntityType Name="InventoryOutConfig">
+          <Key>
+            <PropertyRef Name="InventoryOutConfigID" />
+          </Key>
+          <Property Type="Int32" Name="InventoryOutConfigID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="CategoryID" Nullable="false" />
+          <Property Type="Int32" Name="DiscardItemCategory" Nullable="false" />
+          <Property Type="Decimal" Name="PerSaleQuantity" Nullable="false" Precision="18" Scale="12" />
+          <Property Type="Byte" Name="QtyType" Nullable="false" />
+          <NavigationProperty Name="Category" Relationship="JustFoodDBModel.FK_InventoryOutConfig_Category" FromRole="InventoryOutConfig" ToRole="Category" />
+          <NavigationProperty Name="Category1" Relationship="JustFoodDBModel.FK_InventoryOutConfig_Category1" FromRole="InventoryOutConfig" ToRole="Category" />
+          <NavigationProperty Name="QuantityType" Relationship="JustFoodDBModel.FK_InventoryOutConfig_QuantityType" FromRole="InventoryOutConfig" ToRole="QuantityType" />
+        </EntityType>
+        <EntityType Name="Notification">
+          <Key>
+            <PropertyRef Name="NotificationID" />
+          </Key>
+          <Property Type="Int64" Name="NotificationID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Note" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="IsProductNeeded" Nullable="false" />
+          <Property Type="Boolean" Name="IsAdminOnly" Nullable="false" />
+          <Property Type="Boolean" Name="IsEmployeeOnly" Nullable="false" />
+          <Property Type="Boolean" Name="IsForAll" Nullable="false" />
+          <Property Type="Boolean" Name="IsUrgent" Nullable="false" />
+          <Property Type="Boolean" Name="IsAutogenerated" Nullable="false" />
+          <Property Type="Int32" Name="GeneratedBy" />
+          <Property Type="DateTime" Name="GeneratedDate" Nullable="false" />
+          <Property Type="Boolean" Name="IsForSpecificUsersOnly" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="JustFoodDBModel.FK_Notification_User" FromRole="Notification" ToRole="User" />
+          <NavigationProperty Name="NotificationSeens" Relationship="JustFoodDBModel.FK_NotificationSeen_Notification" FromRole="Notification" ToRole="NotificationSeen" />
+        </EntityType>
+        <EntityType Name="NotificationSeen">
+          <Key>
+            <PropertyRef Name="NotificationSeenID" />
+          </Key>
+          <Property Type="Guid" Name="NotificationSeenID" Nullable="false" />
+          <Property Type="Int64" Name="NotificationID" Nullable="false" />
+          <Property Type="Int32" Name="UserID" Nullable="false" />
+          <Property Type="DateTime" Name="SeenAt" Nullable="false" />
+          <Property Type="Boolean" Name="IsSeen" Nullable="false" />
+          <NavigationProperty Name="Notification" Relationship="JustFoodDBModel.FK_NotificationSeen_Notification" FromRole="NotificationSeen" ToRole="Notification" />
+          <NavigationProperty Name="User" Relationship="JustFoodDBModel.FK_NotificationSeen_User" FromRole="NotificationSeen" ToRole="User" />
+        </EntityType>
+        <EntityType Name="QuantityConversation">
+          <Key>
+            <PropertyRef Name="QuantityConversationID" />
+          </Key>
+          <Property Type="Byte" Name="QuantityConversationID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Byte" Name="QuantityTypeID" Nullable="false" />
+          <Property Type="Byte" Name="ConvertedTypeID" Nullable="false" />
+          <Property Type="Decimal" Name="Difference" Nullable="false" Precision="18" Scale="10" />
+          <NavigationProperty Name="QuantityType" Relationship="JustFoodDBModel.FK_QuantityConversation_QuantityType" FromRole="QuantityConversation" ToRole="QuantityType" />
+          <NavigationProperty Name="QuantityType1" Relationship="JustFoodDBModel.FK_QuantityConversation_QuantityType1" FromRole="QuantityConversation" ToRole="QuantityType" />
+        </EntityType>
+        <EntityType Name="QuantityType">
+          <Key>
+            <PropertyRef Name="QuantityTypeID" />
+          </Key>
+          <Property Type="Byte" Name="QuantityTypeID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="QtyType" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AccountBalances" Relationship="JustFoodDBModel.FK_AccountBalance_QuantityType" FromRole="QuantityType" ToRole="AccountBalance" />
+          <NavigationProperty Name="Categories" Relationship="JustFoodDBModel.FK_Category_QuantityType" FromRole="QuantityType" ToRole="Category" />
+          <NavigationProperty Name="DailyStocks" Relationship="JustFoodDBModel.FK_DailyStock_QuantityType" FromRole="QuantityType" ToRole="DailyStock" />
+          <NavigationProperty Name="Inventories" Relationship="JustFoodDBModel.FK_Inventory_QuantityType" FromRole="QuantityType" ToRole="Inventory" />
+          <NavigationProperty Name="InventoryIns" Relationship="JustFoodDBModel.FK_InventoryIn_QuantityType" FromRole="QuantityType" ToRole="InventoryIn" />
+          <NavigationProperty Name="InventoryOuts" Relationship="JustFoodDBModel.FK_InventoryOut_QuantityType" FromRole="QuantityType" ToRole="InventoryOut" />
+          <NavigationProperty Name="InventoryOutConfigs" Relationship="JustFoodDBModel.FK_InventoryOutConfig_QuantityType" FromRole="QuantityType" ToRole="InventoryOutConfig" />
+          <NavigationProperty Name="QuantityConversations" Relationship="JustFoodDBModel.FK_QuantityConversation_QuantityType" FromRole="QuantityType" ToRole="QuantityConversation" />
+          <NavigationProperty Name="QuantityConversations1" Relationship="JustFoodDBModel.FK_QuantityConversation_QuantityType1" FromRole="QuantityType" ToRole="QuantityConversation" />
+          <NavigationProperty Name="Requisitions" Relationship="JustFoodDBModel.FK_Requisition_QuantityType" FromRole="QuantityType" ToRole="Requisition" />
+        </EntityType>
+        <EntityType Name="Requisition">
+          <Key>
+            <PropertyRef Name="RequisitionID" />
+          </Key>
+          <Property Type="Int32" Name="RequisitionID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="CategoryID" Nullable="false" />
+          <Property Type="Int32" Name="Quantity" Nullable="false" />
+          <Property Type="Byte" Name="QtyType" Nullable="false" />
+          <Property Type="Boolean" Name="IsAutoAdded" Nullable="false" />
+          <Property Type="Boolean" Name="IsInProcess" Nullable="false" />
+          <Property Type="Int32" Name="ByWhomUser" />
+          <Property Type="Boolean" Name="IsDone" Nullable="false" />
+          <Property Type="Int32" Name="AddedBy" Nullable="false" />
+          <NavigationProperty Name="QuantityType" Relationship="JustFoodDBModel.FK_Requisition_QuantityType" FromRole="Requisition" ToRole="QuantityType" />
+          <NavigationProperty Name="User" Relationship="JustFoodDBModel.FK_Requisition_User" FromRole="Requisition" ToRole="User" />
+          <NavigationProperty Name="User1" Relationship="JustFoodDBModel.FK_Requisition_User1" FromRole="Requisition" ToRole="User" />
+        </EntityType>
+        <EntityType Name="SalaryPaid">
+          <Key>
+            <PropertyRef Name="SalaryPaidID" />
+          </Key>
+          <Property Type="Int64" Name="SalaryPaidID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="UserID" Nullable="false" />
+          <Property Type="DateTime" Name="SalaryOfDated" Nullable="false" />
+          <Property Type="Int32" Name="Month" annotation:StoreGeneratedPattern="Computed" />
+          <Property Type="Int32" Name="Year" annotation:StoreGeneratedPattern="Computed" />
+          <Property Type="Double" Name="Paid" Nullable="false" />
+          <Property Type="Double" Name="Salary" Nullable="false" />
+          <Property Type="DateTime" Name="PaidDate" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="JustFoodDBModel.FK_SalaryPaid_User" FromRole="SalaryPaid" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Sale">
+          <Key>
+            <PropertyRef Name="SaleID" />
+          </Key>
+          <Property Type="Int32" Name="SaleID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="Date" Nullable="false" />
+          <Property Type="Double" Name="Discount" />
+          <Property Type="Int32" Name="TotalSold" Nullable="false" />
+          <Property Type="Double" Name="TotalLess" />
+          <Property Type="Decimal" Name="TotalAcheived" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="OtherExpenses" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="Boolean" Name="IsDividedAmongPartners" Nullable="false" />
+          <Property Type="Int32" Name="TotalWastages" Nullable="false" />
+          <Property Type="Int32" Name="TotalDiscountNumber" Nullable="false" />
+          <Property Type="String" Name="Noted" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="AnyProblem" Nullable="false" />
+          <Property Type="Int32" Name="DiscardSales" Nullable="false" />
+          <Property Type="Boolean" Name="IsDiscardsChecked" Nullable="false" />
+          <Property Type="Double" Name="InHandCashChange" Nullable="false" />
+          <Property Type="Boolean" Name="IsInventorySet" Nullable="false" />
+          <Property Type="Decimal" Name="ActualAcheivedFromEmployee" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="ActualLossProfitAfterCollection" Nullable="false" Precision="18" Scale="0" />
+          <NavigationProperty Name="CategoryWiseSolds" Relationship="JustFoodDBModel.FK_CategoryWiseSold_Sale" FromRole="Sale" ToRole="CategoryWiseSold" />
+          <NavigationProperty Name="DailyStocks" Relationship="JustFoodDBModel.FK_DailyStock_Sale" FromRole="Sale" ToRole="DailyStock" />
+          <NavigationProperty Name="DetailedSales" Relationship="JustFoodDBModel.FK_DetailedSale_JustFood" FromRole="Sale" ToRole="DetailedSale" />
+        </EntityType>
+        <EntityType Name="TimeZone">
+          <Key>
+            <PropertyRef Name="TimeZoneID" />
+          </Key>
+          <Property Type="Int16" Name="TimeZoneID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="TimeZoneInfoId" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="TimeZoneDisplay" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Configs" Relationship="JustFoodDBModel.FK_Config_TimeZone" FromRole="TimeZone" ToRole="Config" />
+          <NavigationProperty Name="Users" Relationship="JustFoodDBModel.FK_User_TimeZone" FromRole="TimeZone" ToRole="User" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Type="Int32" Name="UserID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="LogName" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="LastLogIn" Nullable="false" />
+          <Property Type="Boolean" Name="IsEmployee" Nullable="false" />
+          <Property Type="Boolean" Name="IsOwner" Nullable="false" />
+          <Property Type="Double" Name="Percentage" Nullable="false" />
+          <Property Type="Double" Name="Salary" Nullable="false" />
+          <Property Type="Boolean" Name="IsAccessToAdmin" Nullable="false" />
+          <Property Type="Boolean" Name="IsBlocked" Nullable="false" />
+          <Property Type="Int16" Name="TimeZoneID" Nullable="false" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="IsValidEmail" Nullable="false" />
+          <NavigationProperty Name="AccountBalances" Relationship="JustFoodDBModel.FK_AccountBalance_User" FromRole="User" ToRole="AccountBalance" />
+          <NavigationProperty Name="AccountBalances1" Relationship="JustFoodDBModel.FK_AccountBalance_User1" FromRole="User" ToRole="AccountBalance" />
+          <NavigationProperty Name="DetailedSales" Relationship="JustFoodDBModel.FK_DetailedSale_User" FromRole="User" ToRole="DetailedSale" />
+          <NavigationProperty Name="Inventories" Relationship="JustFoodDBModel.FK_Inventory_User" FromRole="User" ToRole="Inventory" />
+          <NavigationProperty Name="InventoryIns" Relationship="JustFoodDBModel.FK_InventoryIn_User" FromRole="User" ToRole="InventoryIn" />
+          <NavigationProperty Name="Notifications" Relationship="JustFoodDBModel.FK_Notification_User" FromRole="User" ToRole="Notification" />
+          <NavigationProperty Name="NotificationSeens" Relationship="JustFoodDBModel.FK_NotificationSeen_User" FromRole="User" ToRole="NotificationSeen" />
+          <NavigationProperty Name="Requisitions" Relationship="JustFoodDBModel.FK_Requisition_User" FromRole="User" ToRole="Requisition" />
+          <NavigationProperty Name="Requisitions1" Relationship="JustFoodDBModel.FK_Requisition_User1" FromRole="User" ToRole="Requisition" />
+          <NavigationProperty Name="SalaryPaids" Relationship="JustFoodDBModel.FK_SalaryPaid_User" FromRole="User" ToRole="SalaryPaid" />
+          <NavigationProperty Name="TimeZone" Relationship="JustFoodDBModel.FK_User_TimeZone" FromRole="User" ToRole="TimeZone" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="UserRoleID" />
+          </Key>
+          <Property Type="String" Name="UserRoleID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Byte" Name="RolePriority" Nullable="false" />
+          <Property Type="Boolean" Name="Editable" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ViewAccountBalance">
+          <Key>
+            <PropertyRef Name="Dated" />
+            <PropertyRef Name="Amount" />
+            <PropertyRef Name="IsBoughtProduct" />
+            <PropertyRef Name="IsExpense" />
+            <PropertyRef Name="IsAddedMoney" />
+            <PropertyRef Name="AddBy" />
+            <PropertyRef Name="AccountBalanceID" />
+            <PropertyRef Name="AmountAbs" />
+          </Key>
+          <Property Type="String" Name="AccountOfLog" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="AccountOfName" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="AddedByLog" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="Dated" Nullable="false" />
+          <Property Type="Double" Name="Amount" Nullable="false" />
+          <Property Type="Boolean" Name="IsBoughtProduct" Nullable="false" />
+          <Property Type="Int32" Name="CategoryProduct" />
+          <Property Type="Decimal" Name="AddedQuantity" Precision="18" Scale="12" />
+          <Property Type="Boolean" Name="IsExpense" Nullable="false" />
+          <Property Type="Boolean" Name="IsAddedMoney" Nullable="false" />
+          <Property Type="Int32" Name="AccountOf" />
+          <Property Type="Int32" Name="AddBy" Nullable="false" />
+          <Property Type="String" Name="Note" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int64" Name="AccountBalanceID" Nullable="false" />
+          <Property Type="String" Name="Category" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="AmountAbs" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ViewInventoryIn">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Type="Int32" Name="CategoryID" Nullable="false" />
+          <Property Type="Decimal" Name="InventoryInQuantity" Precision="38" Scale="12" />
+          <Property Type="Double" Name="InventoryInUnitPrice" />
+          <Property Type="String" Name="Category" MaxLength="30" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ViewInventoryInOutSummary">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Type="Int32" Name="CategoryID" Nullable="false" />
+          <Property Type="Decimal" Name="ProductIn" Precision="38" Scale="12" />
+          <Property Type="Decimal" Name="DiscardedProduct" Precision="38" Scale="10" />
+          <Property Type="Decimal" Name="ProductLeft" Precision="38" Scale="10" />
+        </EntityType>
+        <EntityType Name="ViewInventoryOut">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Type="Int32" Name="CategoryID" Nullable="false" />
+          <Property Type="Decimal" Name="InventoryOutQuantity" Precision="38" Scale="12" />
+          <Property Type="String" Name="Category" MaxLength="30" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ViewInventorySalable">
+          <Key>
+            <PropertyRef Name="InventoryID" />
+            <PropertyRef Name="CategoryID" />
+            <PropertyRef Name="InventoryQuantity" />
+            <PropertyRef Name="SoldPrice" />
+          </Key>
+          <Property Type="Int32" Name="InventoryID" Nullable="false" />
+          <Property Type="Int32" Name="CategoryID" Nullable="false" />
+          <Property Type="Double" Name="InventoryQuantity" Nullable="false" />
+          <Property Type="Double" Name="SoldPrice" Nullable="false" />
+          <Property Type="String" Name="Category" MaxLength="30" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ViewSummaryAccountBalance">
+          <Key>
+            <PropertyRef Name="AccountOfLog" />
+            <PropertyRef Name="AccountOfName" />
+          </Key>
+          <Property Type="String" Name="AccountOfLog" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="AccountOfName" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="Balance" />
+          <Property Type="Int32" Name="AccountOf" />
+        </EntityType>
+        <EntityType Name="ViewSummarySale">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+            <PropertyRef Name="SoldPrice" />
+            <PropertyRef Name="InventoryQuantity" />
+          </Key>
+          <Property Type="Int32" Name="SaleID" />
+          <Property Type="Int32" Name="CategoryID" Nullable="false" />
+          <Property Type="String" Name="Category" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="SoldPrice" Nullable="false" />
+          <Property Type="Double" Name="InventoryQuantity" Nullable="false" />
+          <Property Type="Int32" Name="SoldQuantity" />
+          <Property Type="Int32" Name="Discounted" />
+          <Property Type="Int32" Name="CashInHand" />
+        </EntityType>
+        <Association Name="FK_AccountBalance_Category">
+          <End Type="JustFoodDBModel.Category" Role="Category" Multiplicity="0..1" />
+          <End Type="JustFoodDBModel.AccountBalance" Role="AccountBalance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="AccountBalance">
+              <PropertyRef Name="CategoryProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountBalance_QuantityType">
+          <End Type="JustFoodDBModel.QuantityType" Role="QuantityType" Multiplicity="0..1" />
+          <End Type="JustFoodDBModel.AccountBalance" Role="AccountBalance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuantityType">
+              <PropertyRef Name="QuantityTypeID" />
+            </Principal>
+            <Dependent Role="AccountBalance">
+              <PropertyRef Name="QtyType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountBalance_User">
+          <End Type="JustFoodDBModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="JustFoodDBModel.AccountBalance" Role="AccountBalance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="AccountBalance">
+              <PropertyRef Name="AccountOf" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountBalance_User1">
+          <End Type="JustFoodDBModel.User" Role="User" Multiplicity="1" />
+          <End Type="JustFoodDBModel.AccountBalance" Role="AccountBalance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="AccountBalance">
+              <PropertyRef Name="AddBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Category_QuantityType">
+          <End Type="JustFoodDBModel.QuantityType" Role="QuantityType" Multiplicity="1" />
+          <End Type="JustFoodDBModel.Category" Role="Category" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuantityType">
+              <PropertyRef Name="QuantityTypeID" />
+            </Principal>
+            <Dependent Role="Category">
+              <PropertyRef Name="QtyType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CategoryWiseSold_Category">
+          <End Type="JustFoodDBModel.Category" Role="Category" Multiplicity="1" />
+          <End Type="JustFoodDBModel.CategoryWiseSold" Role="CategoryWiseSold" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="CategoryWiseSold">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetailedSale_Category">
+          <End Type="JustFoodDBModel.Category" Role="Category" Multiplicity="1" />
+          <End Type="JustFoodDBModel.DetailedSale" Role="DetailedSale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="DetailedSale">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inventory_Category">
+          <End Type="JustFoodDBModel.Category" Role="Category" Multiplicity="1" />
+          <End Type="JustFoodDBModel.Inventory" Role="Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InventoryIn_Category">
+          <End Type="JustFoodDBModel.Category" Role="Category" Multiplicity="1" />
+          <End Type="JustFoodDBModel.InventoryIn" Role="InventoryIn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="InventoryIn">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InventoryOut_Category">
+          <End Type="JustFoodDBModel.Category" Role="Category" Multiplicity="1" />
+          <End Type="JustFoodDBModel.InventoryOut" Role="InventoryOut" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="InventoryOut">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InventoryOutConfig_Category">
+          <End Type="JustFoodDBModel.Category" Role="Category" Multiplicity="1" />
+          <End Type="JustFoodDBModel.InventoryOutConfig" Role="InventoryOutConfig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="InventoryOutConfig">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InventoryOutConfig_Category1">
+          <End Type="JustFoodDBModel.Category" Role="Category" Multiplicity="1" />
+          <End Type="JustFoodDBModel.InventoryOutConfig" Role="InventoryOutConfig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="InventoryOutConfig">
+              <PropertyRef Name="DiscardItemCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CategoryWiseSold_Sale">
+          <End Type="JustFoodDBModel.Sale" Role="Sale" Multiplicity="1" />
+          <End Type="JustFoodDBModel.CategoryWiseSold" Role="CategoryWiseSold" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sale">
+              <PropertyRef Name="SaleID" />
+            </Principal>
+            <Dependent Role="CategoryWiseSold">
+              <PropertyRef Name="SaleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Config_TimeZone">
+          <End Type="JustFoodDBModel.TimeZone" Role="TimeZone" Multiplicity="1" />
+          <End Type="JustFoodDBModel.Config" Role="Config" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TimeZone">
+              <PropertyRef Name="TimeZoneID" />
+            </Principal>
+            <Dependent Role="Config">
+              <PropertyRef Name="DefaultTimeZoneID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DailyStock_QuantityType">
+          <End Type="JustFoodDBModel.QuantityType" Role="QuantityType" Multiplicity="1" />
+          <End Type="JustFoodDBModel.DailyStock" Role="DailyStock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuantityType">
+              <PropertyRef Name="QuantityTypeID" />
+            </Principal>
+            <Dependent Role="DailyStock">
+              <PropertyRef Name="QtyType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DailyStock_Sale">
+          <End Type="JustFoodDBModel.Sale" Role="Sale" Multiplicity="1" />
+          <End Type="JustFoodDBModel.DailyStock" Role="DailyStock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sale">
+              <PropertyRef Name="SaleID" />
+            </Principal>
+            <Dependent Role="DailyStock">
+              <PropertyRef Name="SaleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetailedSale_JustFood">
+          <End Type="JustFoodDBModel.Sale" Role="Sale" Multiplicity="1" />
+          <End Type="JustFoodDBModel.DetailedSale" Role="DetailedSale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sale">
+              <PropertyRef Name="SaleID" />
+            </Principal>
+            <Dependent Role="DetailedSale">
+              <PropertyRef Name="SaleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetailedSale_User">
+          <End Type="JustFoodDBModel.User" Role="User" Multiplicity="1" />
+          <End Type="JustFoodDBModel.DetailedSale" Role="DetailedSale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="DetailedSale">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inventory_QuantityType">
+          <End Type="JustFoodDBModel.QuantityType" Role="QuantityType" Multiplicity="1" />
+          <End Type="JustFoodDBModel.Inventory" Role="Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuantityType">
+              <PropertyRef Name="QuantityTypeID" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="QtyType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inventory_User">
+          <End Type="JustFoodDBModel.User" Role="User" Multiplicity="1" />
+          <End Type="JustFoodDBModel.Inventory" Role="Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="LastEditedby" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InventoryIn_QuantityType">
+          <End Type="JustFoodDBModel.QuantityType" Role="QuantityType" Multiplicity="1" />
+          <End Type="JustFoodDBModel.InventoryIn" Role="InventoryIn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuantityType">
+              <PropertyRef Name="QuantityTypeID" />
+            </Principal>
+            <Dependent Role="InventoryIn">
+              <PropertyRef Name="QtyType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InventoryIn_User">
+          <End Type="JustFoodDBModel.User" Role="User" Multiplicity="1" />
+          <End Type="JustFoodDBModel.InventoryIn" Role="InventoryIn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="InventoryIn">
+              <PropertyRef Name="AddedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InventoryOut_QuantityType">
+          <End Type="JustFoodDBModel.QuantityType" Role="QuantityType" Multiplicity="1" />
+          <End Type="JustFoodDBModel.InventoryOut" Role="InventoryOut" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuantityType">
+              <PropertyRef Name="QuantityTypeID" />
+            </Principal>
+            <Dependent Role="InventoryOut">
+              <PropertyRef Name="QtyType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InventoryOutConfig_QuantityType">
+          <End Type="JustFoodDBModel.QuantityType" Role="QuantityType" Multiplicity="1" />
+          <End Type="JustFoodDBModel.InventoryOutConfig" Role="InventoryOutConfig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuantityType">
+              <PropertyRef Name="QuantityTypeID" />
+            </Principal>
+            <Dependent Role="InventoryOutConfig">
+              <PropertyRef Name="QtyType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notification_User">
+          <End Type="JustFoodDBModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="JustFoodDBModel.Notification" Role="Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Notification">
+              <PropertyRef Name="GeneratedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NotificationSeen_Notification">
+          <End Type="JustFoodDBModel.Notification" Role="Notification" Multiplicity="1" />
+          <End Type="JustFoodDBModel.NotificationSeen" Role="NotificationSeen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Notification">
+              <PropertyRef Name="NotificationID" />
+            </Principal>
+            <Dependent Role="NotificationSeen">
+              <PropertyRef Name="NotificationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NotificationSeen_User">
+          <End Type="JustFoodDBModel.User" Role="User" Multiplicity="1" />
+          <End Type="JustFoodDBModel.NotificationSeen" Role="NotificationSeen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="NotificationSeen">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuantityConversation_QuantityType">
+          <End Type="JustFoodDBModel.QuantityType" Role="QuantityType" Multiplicity="1" />
+          <End Type="JustFoodDBModel.QuantityConversation" Role="QuantityConversation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuantityType">
+              <PropertyRef Name="QuantityTypeID" />
+            </Principal>
+            <Dependent Role="QuantityConversation">
+              <PropertyRef Name="QuantityTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuantityConversation_QuantityType1">
+          <End Type="JustFoodDBModel.QuantityType" Role="QuantityType" Multiplicity="1" />
+          <End Type="JustFoodDBModel.QuantityConversation" Role="QuantityConversation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuantityType">
+              <PropertyRef Name="QuantityTypeID" />
+            </Principal>
+            <Dependent Role="QuantityConversation">
+              <PropertyRef Name="ConvertedTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requisition_QuantityType">
+          <End Type="JustFoodDBModel.QuantityType" Role="QuantityType" Multiplicity="1" />
+          <End Type="JustFoodDBModel.Requisition" Role="Requisition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuantityType">
+              <PropertyRef Name="QuantityTypeID" />
+            </Principal>
+            <Dependent Role="Requisition">
+              <PropertyRef Name="QtyType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requisition_User">
+          <End Type="JustFoodDBModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="JustFoodDBModel.Requisition" Role="Requisition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Requisition">
+              <PropertyRef Name="ByWhomUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requisition_User1">
+          <End Type="JustFoodDBModel.User" Role="User" Multiplicity="1" />
+          <End Type="JustFoodDBModel.Requisition" Role="Requisition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Requisition">
+              <PropertyRef Name="AddedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SalaryPaid_User">
+          <End Type="JustFoodDBModel.User" Role="User" Multiplicity="1" />
+          <End Type="JustFoodDBModel.SalaryPaid" Role="SalaryPaid" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="SalaryPaid">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_TimeZone">
+          <End Type="JustFoodDBModel.TimeZone" Role="TimeZone" Multiplicity="1" />
+          <End Type="JustFoodDBModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TimeZone">
+              <PropertyRef Name="TimeZoneID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="TimeZoneID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="JustFoodDBModelStoreContainer"
+                                CdmEntityContainer="JustFoodDBEntities">
+          <EntitySetMapping Name="AccountBalances">
+            <EntityTypeMapping TypeName="JustFoodDBModel.AccountBalance">
+              <MappingFragment StoreEntitySet="AccountBalance">
+                <ScalarProperty Name="IsRevenueOfDailySales" ColumnName="IsRevenueOfDailySales" />
+                <ScalarProperty Name="IsDailyExpense" ColumnName="IsDailyExpense" />
+                <ScalarProperty Name="QtyType" ColumnName="QtyType" />
+                <ScalarProperty Name="IsVerified" ColumnName="IsVerified" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="AddBy" ColumnName="AddBy" />
+                <ScalarProperty Name="AccountOf" ColumnName="AccountOf" />
+                <ScalarProperty Name="IsAddedMoney" ColumnName="IsAddedMoney" />
+                <ScalarProperty Name="IsExpense" ColumnName="IsExpense" />
+                <ScalarProperty Name="AddedQuantity" ColumnName="AddedQuantity" />
+                <ScalarProperty Name="CategoryProduct" ColumnName="CategoryProduct" />
+                <ScalarProperty Name="IsBoughtProduct" ColumnName="IsBoughtProduct" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Dated" ColumnName="Dated" />
+                <ScalarProperty Name="AccountBalanceID" ColumnName="AccountBalanceID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="JustFoodDBModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="IsRelatedToSalary" ColumnName="IsRelatedToSalary" />
+                <ScalarProperty Name="QtyType" ColumnName="QtyType" />
+                <ScalarProperty Name="IsExpense" ColumnName="IsExpense" />
+                <ScalarProperty Name="IsSalable" ColumnName="IsSalable" />
+                <ScalarProperty Name="Category1" ColumnName="Category" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CategoryWiseSolds">
+            <EntityTypeMapping TypeName="JustFoodDBModel.CategoryWiseSold">
+              <MappingFragment StoreEntitySet="CategoryWiseSold">
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="SaleID" ColumnName="SaleID" />
+                <ScalarProperty Name="CategoryWiseSoldID" ColumnName="CategoryWiseSoldID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Codes">
+            <EntityTypeMapping TypeName="JustFoodDBModel.Code">
+              <MappingFragment StoreEntitySet="Code">
+                <ScalarProperty Name="Percentage" ColumnName="Percentage" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="IsEmployee" ColumnName="IsEmployee" />
+                <ScalarProperty Name="IsAccessToAdmin" ColumnName="IsAccessToAdmin" />
+                <ScalarProperty Name="IsOwner" ColumnName="IsOwner" />
+                <ScalarProperty Name="Code1" ColumnName="Code" />
+                <ScalarProperty Name="GuidCode" ColumnName="GuidCode" />
+                <ScalarProperty Name="IsUsed" ColumnName="IsUsed" />
+                <ScalarProperty Name="CodeID" ColumnName="CodeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Configs">
+            <EntityTypeMapping TypeName="JustFoodDBModel.Config">
+              <MappingFragment StoreEntitySet="Config">
+                <ScalarProperty Name="ApplicationSubtitle" ColumnName="ApplicationSubtitle" />
+                <ScalarProperty Name="ApplicationName" ColumnName="ApplicationName" />
+                <ScalarProperty Name="DefaultTimeZoneID" ColumnName="DefaultTimeZoneID" />
+                <ScalarProperty Name="CompanyContacts" ColumnName="CompanyContacts" />
+                <ScalarProperty Name="CompanyEmail" ColumnName="CompanyEmail" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="OnMistakeNotifyAllAdmins" ColumnName="OnMistakeNotifyAllAdmins" />
+                <ScalarProperty Name="AdminEmail" ColumnName="AdminEmail" />
+                <ScalarProperty Name="DeveloperEmail" ColumnName="DeveloperEmail" />
+                <ScalarProperty Name="GeneralNotificationMail" ColumnName="GeneralNotificationMail" />
+                <ScalarProperty Name="IsNotifyAdminOnError" ColumnName="IsNotifyAdminOnError" />
+                <ScalarProperty Name="IsNotifyDeveloperOnError" ColumnName="IsNotifyDeveloperOnError" />
+                <ScalarProperty Name="ConfigID" ColumnName="ConfigID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DailyStocks">
+            <EntityTypeMapping TypeName="JustFoodDBModel.DailyStock">
+              <MappingFragment StoreEntitySet="DailyStock">
+                <ScalarProperty Name="QtyType" ColumnName="QtyType" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="SaleID" ColumnName="SaleID" />
+                <ScalarProperty Name="DailyStockID" ColumnName="DailyStockID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DetailedSales">
+            <EntityTypeMapping TypeName="JustFoodDBModel.DetailedSale">
+              <MappingFragment StoreEntitySet="DetailedSale">
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="DiscountNumber" ColumnName="DiscountNumber" />
+                <ScalarProperty Name="DiscountPerson" ColumnName="DiscountPerson" />
+                <ScalarProperty Name="IsMarkedDiscard" ColumnName="IsMarkedDiscard" />
+                <ScalarProperty Name="IsDiscard" ColumnName="IsDiscard" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="SoldAt" ColumnName="SoldAt" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="SellingPrice" ColumnName="SellingPrice" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="SaleID" ColumnName="SaleID" />
+                <ScalarProperty Name="DetailedSaleID" ColumnName="DetailedSaleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Inventories">
+            <EntityTypeMapping TypeName="JustFoodDBModel.Inventory">
+              <MappingFragment StoreEntitySet="Inventory">
+                <ScalarProperty Name="QtyType" ColumnName="QtyType" />
+                <ScalarProperty Name="SoldPrice" ColumnName="SoldPrice" />
+                <ScalarProperty Name="LastEditedby" ColumnName="LastEditedby" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="InventoryID" ColumnName="InventoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InventoryIns">
+            <EntityTypeMapping TypeName="JustFoodDBModel.InventoryIn">
+              <MappingFragment StoreEntitySet="InventoryIn">
+                <ScalarProperty Name="Dated" ColumnName="Dated" />
+                <ScalarProperty Name="QtyType" ColumnName="QtyType" />
+                <ScalarProperty Name="IsAddedBySelling" ColumnName="IsAddedBySelling" />
+                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="InventoryInID" ColumnName="InventoryInID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InventoryOuts">
+            <EntityTypeMapping TypeName="JustFoodDBModel.InventoryOut">
+              <MappingFragment StoreEntitySet="InventoryOut">
+                <ScalarProperty Name="QtyType" ColumnName="QtyType" />
+                <ScalarProperty Name="IsIncurBySelling" ColumnName="IsIncurBySelling" />
+                <ScalarProperty Name="SoldPrice" ColumnName="SoldPrice" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="IsChanged" ColumnName="IsChanged" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="IsLoss" ColumnName="IsLoss" />
+                <ScalarProperty Name="IsWaste" ColumnName="IsWaste" />
+                <ScalarProperty Name="Dated" ColumnName="Dated" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="InventoryOutID" ColumnName="InventoryOutID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InventoryOutConfigs">
+            <EntityTypeMapping TypeName="JustFoodDBModel.InventoryOutConfig">
+              <MappingFragment StoreEntitySet="InventoryOutConfig">
+                <ScalarProperty Name="QtyType" ColumnName="QtyType" />
+                <ScalarProperty Name="PerSaleQuantity" ColumnName="PerSaleQuantity" />
+                <ScalarProperty Name="DiscardItemCategory" ColumnName="DiscardItemCategory" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="InventoryOutConfigID" ColumnName="InventoryOutConfigID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Notifications">
+            <EntityTypeMapping TypeName="JustFoodDBModel.Notification">
+              <MappingFragment StoreEntitySet="Notification">
+                <ScalarProperty Name="IsForSpecificUsersOnly" ColumnName="IsForSpecificUsersOnly" />
+                <ScalarProperty Name="GeneratedDate" ColumnName="GeneratedDate" />
+                <ScalarProperty Name="GeneratedBy" ColumnName="GeneratedBy" />
+                <ScalarProperty Name="IsAutogenerated" ColumnName="IsAutogenerated" />
+                <ScalarProperty Name="IsUrgent" ColumnName="IsUrgent" />
+                <ScalarProperty Name="IsForAll" ColumnName="IsForAll" />
+                <ScalarProperty Name="IsEmployeeOnly" ColumnName="IsEmployeeOnly" />
+                <ScalarProperty Name="IsAdminOnly" ColumnName="IsAdminOnly" />
+                <ScalarProperty Name="IsProductNeeded" ColumnName="IsProductNeeded" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="NotificationID" ColumnName="NotificationID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NotificationSeens">
+            <EntityTypeMapping TypeName="JustFoodDBModel.NotificationSeen">
+              <MappingFragment StoreEntitySet="NotificationSeen">
+                <ScalarProperty Name="IsSeen" ColumnName="IsSeen" />
+                <ScalarProperty Name="SeenAt" ColumnName="SeenAt" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="NotificationID" ColumnName="NotificationID" />
+                <ScalarProperty Name="NotificationSeenID" ColumnName="NotificationSeenID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuantityConversations">
+            <EntityTypeMapping TypeName="JustFoodDBModel.QuantityConversation">
+              <MappingFragment StoreEntitySet="QuantityConversation">
+                <ScalarProperty Name="Difference" ColumnName="Difference" />
+                <ScalarProperty Name="ConvertedTypeID" ColumnName="ConvertedTypeID" />
+                <ScalarProperty Name="QuantityTypeID" ColumnName="QuantityTypeID" />
+                <ScalarProperty Name="QuantityConversationID" ColumnName="QuantityConversationID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuantityTypes">
+            <EntityTypeMapping TypeName="JustFoodDBModel.QuantityType">
+              <MappingFragment StoreEntitySet="QuantityType">
+                <ScalarProperty Name="QtyType" ColumnName="QtyType" />
+                <ScalarProperty Name="QuantityTypeID" ColumnName="QuantityTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Requisitions">
+            <EntityTypeMapping TypeName="JustFoodDBModel.Requisition">
+              <MappingFragment StoreEntitySet="Requisition">
+                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+                <ScalarProperty Name="IsDone" ColumnName="IsDone" />
+                <ScalarProperty Name="ByWhomUser" ColumnName="ByWhomUser" />
+                <ScalarProperty Name="IsInProcess" ColumnName="IsInProcess" />
+                <ScalarProperty Name="IsAutoAdded" ColumnName="IsAutoAdded" />
+                <ScalarProperty Name="QtyType" ColumnName="QtyType" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="RequisitionID" ColumnName="RequisitionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SalaryPaids">
+            <EntityTypeMapping TypeName="JustFoodDBModel.SalaryPaid">
+              <MappingFragment StoreEntitySet="SalaryPaid">
+                <ScalarProperty Name="PaidDate" ColumnName="PaidDate" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="Paid" ColumnName="Paid" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="SalaryOfDated" ColumnName="SalaryOfDated" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="SalaryPaidID" ColumnName="SalaryPaidID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sales">
+            <EntityTypeMapping TypeName="JustFoodDBModel.Sale">
+              <MappingFragment StoreEntitySet="Sale">
+                <ScalarProperty Name="ActualLossProfitAfterCollection" ColumnName="ActualLossProfitAfterCollection" />
+                <ScalarProperty Name="ActualAcheivedFromEmployee" ColumnName="ActualAcheivedFromEmployee" />
+                <ScalarProperty Name="IsInventorySet" ColumnName="IsInventorySet" />
+                <ScalarProperty Name="InHandCashChange" ColumnName="InHandCashChange" />
+                <ScalarProperty Name="IsDiscardsChecked" ColumnName="IsDiscardsChecked" />
+                <ScalarProperty Name="DiscardSales" ColumnName="DiscardSales" />
+                <ScalarProperty Name="AnyProblem" ColumnName="AnyProblem" />
+                <ScalarProperty Name="Noted" ColumnName="Noted" />
+                <ScalarProperty Name="TotalDiscountNumber" ColumnName="TotalDiscountNumber" />
+                <ScalarProperty Name="TotalWastages" ColumnName="TotalWastages" />
+                <ScalarProperty Name="IsDividedAmongPartners" ColumnName="IsDividedAmongPartners" />
+                <ScalarProperty Name="OtherExpenses" ColumnName="OtherExpenses" />
+                <ScalarProperty Name="TotalAcheived" ColumnName="TotalAcheived" />
+                <ScalarProperty Name="TotalLess" ColumnName="TotalLess" />
+                <ScalarProperty Name="TotalSold" ColumnName="TotalSold" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="SaleID" ColumnName="SaleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TimeZones">
+            <EntityTypeMapping TypeName="JustFoodDBModel.TimeZone">
+              <MappingFragment StoreEntitySet="TimeZone">
+                <ScalarProperty Name="TimeZoneDisplay" ColumnName="TimeZoneDisplay" />
+                <ScalarProperty Name="TimeZoneInfoId" ColumnName="TimeZoneInfoId" />
+                <ScalarProperty Name="TimeZoneID" ColumnName="TimeZoneID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="JustFoodDBModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="IsValidEmail" ColumnName="IsValidEmail" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="TimeZoneID" ColumnName="TimeZoneID" />
+                <ScalarProperty Name="IsBlocked" ColumnName="IsBlocked" />
+                <ScalarProperty Name="IsAccessToAdmin" ColumnName="IsAccessToAdmin" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="Percentage" ColumnName="Percentage" />
+                <ScalarProperty Name="IsOwner" ColumnName="IsOwner" />
+                <ScalarProperty Name="IsEmployee" ColumnName="IsEmployee" />
+                <ScalarProperty Name="LastLogIn" ColumnName="LastLogIn" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LogName" ColumnName="LogName" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserRoles">
+            <EntityTypeMapping TypeName="JustFoodDBModel.UserRole">
+              <MappingFragment StoreEntitySet="UserRole">
+                <ScalarProperty Name="Editable" ColumnName="Editable" />
+                <ScalarProperty Name="RolePriority" ColumnName="RolePriority" />
+                <ScalarProperty Name="UserRoleID" ColumnName="UserRoleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewAccountBalances">
+            <EntityTypeMapping TypeName="JustFoodDBModel.ViewAccountBalance">
+              <MappingFragment StoreEntitySet="ViewAccountBalance">
+                <ScalarProperty Name="AmountAbs" ColumnName="AmountAbs" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="AccountBalanceID" ColumnName="AccountBalanceID" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="AddBy" ColumnName="AddBy" />
+                <ScalarProperty Name="AccountOf" ColumnName="AccountOf" />
+                <ScalarProperty Name="IsAddedMoney" ColumnName="IsAddedMoney" />
+                <ScalarProperty Name="IsExpense" ColumnName="IsExpense" />
+                <ScalarProperty Name="AddedQuantity" ColumnName="AddedQuantity" />
+                <ScalarProperty Name="CategoryProduct" ColumnName="CategoryProduct" />
+                <ScalarProperty Name="IsBoughtProduct" ColumnName="IsBoughtProduct" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Dated" ColumnName="Dated" />
+                <ScalarProperty Name="AddedByLog" ColumnName="AddedByLog" />
+                <ScalarProperty Name="AccountOfName" ColumnName="AccountOfName" />
+                <ScalarProperty Name="AccountOfLog" ColumnName="AccountOfLog" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewInventoryIns">
+            <EntityTypeMapping TypeName="JustFoodDBModel.ViewInventoryIn">
+              <MappingFragment StoreEntitySet="ViewInventoryIn">
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="InventoryInUnitPrice" ColumnName="InventoryInUnitPrice" />
+                <ScalarProperty Name="InventoryInQuantity" ColumnName="InventoryInQuantity" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewInventoryInOutSummaries">
+            <EntityTypeMapping TypeName="JustFoodDBModel.ViewInventoryInOutSummary">
+              <MappingFragment StoreEntitySet="ViewInventoryInOutSummary">
+                <ScalarProperty Name="ProductLeft" ColumnName="ProductLeft" />
+                <ScalarProperty Name="DiscardedProduct" ColumnName="DiscardedProduct" />
+                <ScalarProperty Name="ProductIn" ColumnName="ProductIn" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewInventoryOuts">
+            <EntityTypeMapping TypeName="JustFoodDBModel.ViewInventoryOut">
+              <MappingFragment StoreEntitySet="ViewInventoryOut">
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="InventoryOutQuantity" ColumnName="InventoryOutQuantity" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewInventorySalables">
+            <EntityTypeMapping TypeName="JustFoodDBModel.ViewInventorySalable">
+              <MappingFragment StoreEntitySet="ViewInventorySalables">
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="SoldPrice" ColumnName="SoldPrice" />
+                <ScalarProperty Name="InventoryQuantity" ColumnName="InventoryQuantity" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="InventoryID" ColumnName="InventoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewSummaryAccountBalances">
+            <EntityTypeMapping TypeName="JustFoodDBModel.ViewSummaryAccountBalance">
+              <MappingFragment StoreEntitySet="ViewSummaryAccountBalance">
+                <ScalarProperty Name="AccountOf" ColumnName="AccountOf" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="AccountOfName" ColumnName="AccountOfName" />
+                <ScalarProperty Name="AccountOfLog" ColumnName="AccountOfLog" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewSummarySales">
+            <EntityTypeMapping TypeName="JustFoodDBModel.ViewSummarySale">
+              <MappingFragment StoreEntitySet="ViewSummarySales">
+                <ScalarProperty Name="CashInHand" ColumnName="CashInHand" />
+                <ScalarProperty Name="Discounted" ColumnName="Discounted" />
+                <ScalarProperty Name="SoldQuantity" ColumnName="SoldQuantity" />
+                <ScalarProperty Name="InventoryQuantity" ColumnName="InventoryQuantity" />
+                <ScalarProperty Name="SoldPrice" ColumnName="SoldPrice" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="SaleID" ColumnName="SaleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="JustFoodModel" ZoomLevel="92">
+        <EntityTypeShape EntityType="JustFoodDBModel.AccountBalance" Width="1.5" PointX="5.25" PointY="19.125" Height="4.6725065104166674" />
+        <EntityTypeShape EntityType="JustFoodDBModel.Category" Width="1.5" PointX="3" PointY="8.5" Height="3.9033007812500102" />
+        <EntityTypeShape EntityType="JustFoodDBModel.CategoryWiseSold" Width="1.5" PointX="8.25" PointY="10.125" Height="2.1725878906250102" />
+        <EntityTypeShape EntityType="JustFoodDBModel.Code" Width="1.5" PointX="0.75" PointY="0.75" Height="2.7494921875000102" />
+        <EntityTypeShape EntityType="JustFoodDBModel.Config" Width="1.5" PointX="3" PointY="13.5" Height="3.7109993489583246" />
+        <EntityTypeShape EntityType="JustFoodDBModel.DailyStock" Width="1.5" PointX="11.25" PointY="10.125" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="JustFoodDBModel.DetailedSale" Width="1.5" PointX="8.25" PointY="19.25" Height="4.2879036458333246" />
+        <EntityTypeShape EntityType="JustFoodDBModel.Inventory" Width="1.5" PointX="5.25" PointY="15" Height="2.7494921875000102" />
+        <EntityTypeShape EntityType="JustFoodDBModel.InventoryIn" Width="1.5" PointX="5.25" PointY="24.875" Height="3.1340950520833246" />
+        <EntityTypeShape EntityType="JustFoodDBModel.InventoryOut" Width="1.5" PointX="8.25" PointY="5.625" Height="3.7109993489583388" />
+        <EntityTypeShape EntityType="JustFoodDBModel.InventoryOutConfig" Width="1.5" PointX="5.25" PointY="5.125" Height="2.5571907552083246" />
+        <EntityTypeShape EntityType="JustFoodDBModel.Notification" Width="1.5" PointX="5.25" PointY="35.75" Height="3.5186979166666674" />
+        <EntityTypeShape EntityType="JustFoodDBModel.NotificationSeen" Width="1.5" PointX="7.5" PointY="27.75" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="JustFoodDBModel.QuantityConversation" Width="1.5" PointX="3" PointY="5.5" Height="2.1725878906250102" />
+        <EntityTypeShape EntityType="JustFoodDBModel.QuantityType" Width="1.5" PointX="0.75" PointY="8.75" Height="3.3263964843750102" />
+        <EntityTypeShape EntityType="JustFoodDBModel.Requisition" Width="1.5" PointX="8.25" PointY="14.75" Height="3.3263964843750102" />
+        <EntityTypeShape EntityType="JustFoodDBModel.SalaryPaid" Width="1.5" PointX="5.25" PointY="44.125" Height="2.7494921874999818" />
+        <EntityTypeShape EntityType="JustFoodDBModel.Sale" Width="1.5" PointX="6" PointY="8.875" Height="5.0571093749999818" />
+        <EntityTypeShape EntityType="JustFoodDBModel.TimeZone" Width="1.5" PointX="0.75" PointY="18.25" Height="1.9802864583333246" />
+        <EntityTypeShape EntityType="JustFoodDBModel.User" Width="1.5" PointX="3" PointY="18.625" Height="5.6340136718749818" />
+        <EntityTypeShape EntityType="JustFoodDBModel.UserRole" Width="1.5" PointX="2.75" PointY="0.75" Height="1.5956835937499818" />
+        <EntityTypeShape EntityType="JustFoodDBModel.ViewAccountBalance" Width="1.5" PointX="10.75" PointY="0.75" Height="4.0956022135416674" />
+        <EntityTypeShape EntityType="JustFoodDBModel.ViewInventoryIn" Width="1.5" PointX="4.75" PointY="0.75" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="JustFoodDBModel.ViewInventoryInOutSummary" Width="1.5" PointX="6.75" PointY="0.75" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="JustFoodDBModel.ViewInventoryOut" Width="1.5" PointX="10.75" PointY="5.75" Height="1.5956835937499818" />
+        <EntityTypeShape EntityType="JustFoodDBModel.ViewInventorySalable" Width="1.5" PointX="12.75" PointY="0.75" Height="1.9802864583333246" />
+        <EntityTypeShape EntityType="JustFoodDBModel.ViewSummaryAccountBalance" Width="1.5" PointX="12.75" PointY="3.75" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="JustFoodDBModel.ViewSummarySale" Width="1.5" PointX="12.75" PointY="6.75" Height="2.5571907552083246" />
+        <AssociationConnector Association="JustFoodDBModel.FK_AccountBalance_Category" >
+          <ConnectorPoint PointX="4.5" PointY="12.346761319711549" />
+          <ConnectorPoint PointX="4.9410744349011217" PointY="12.787835754612669" />
+          <ConnectorPoint PointX="5.0589255650988791" PointY="12.905686884810427" />
+          <ConnectorPoint PointX="5.09375" PointY="12.940511319711549" />
+          <ConnectorPoint PointX="5.09375" PointY="21.461253255208334" />
+          <ConnectorPoint PointX="5.25" PointY="21.461253255208334" />
+        </AssociationConnector>
+        <AssociationConnector Association="JustFoodDBModel.FK_AccountBalance_QuantityType" >
+          <ConnectorPoint PointX="2.25" PointY="10.413198242187505" />
+          <ConnectorPoint PointX="2.4166666666666665" PointY="10.413198242187505" />
+          <ConnectorPoint PointX="2.5833333333333335" PointY="10.413198242187505" />
+          <ConnectorPoint PointX="2.75" PointY="10.413198242187505" />
+          <ConnectorPoint PointX="2.75" PointY="12.65330078125001" />
+          <ConnectorPoint PointX="4.6424358974358979" PointY="12.65330078125001" />
+          <ConnectorPoint PointX="4.8898727948717946" PointY="12.65330078125001" />
+          <ConnectorPoint PointX="5" PointY="12.65330078125001" />
+          <ConnectorPoint PointX="5" PointY="18.75" />
+          <ConnectorPoint PointX="5.010416666666667" PointY="18.75" />
+          <ConnectorPoint PointX="5.177083333333333" PointY="18.75" />
+          <ConnectorPoint PointX="6" PointY="18.75" />
+          <ConnectorPoint PointX="6" PointY="19.125" />
+        </AssociationConnector>
+        <AssociationConnector Association="JustFoodDBModel.FK_AccountBalance_User" >
+          <ConnectorPoint PointX="4.5" PointY="20.230626627604167" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="20.230626627604167" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="20.230626627604167" />
+          <ConnectorPoint PointX="5.010416666666667" PointY="20.230626627604167" />
+          <ConnectorPoint PointX="5.177083333333333" PointY="20.230626627604167" />
+          <ConnectorPoint PointX="5.25" PointY="20.230626627604167" />
+        </AssociationConnector>
+        <AssociationConnector Association="JustFoodDBModel.FK_AccountBalance_User1" >
+          <ConnectorPoint PointX="4.5" PointY="22.6918798828125" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="22.6918798828125" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="22.6918798828125" />
+          <ConnectorPoint PointX="5.25" PointY="22.6918798828125" />
+        </AssociationConnector>
+        <AssociationConnector Association="JustFoodDBModel.FK_Category_QuantityType" >
+          <ConnectorPoint PointX="2.25" PointY="9.5190991210937526" />
+          <ConnectorPoint PointX="2.4166666666666665" PointY="9.5190991210937526" />
+          <ConnectorPoint PointX="2.5833333333333335" PointY="9.5190991210937526" />
+          <ConnectorPoint PointX="3" PointY="9.5190991210937526" />
+        </AssociationConnector>
+        <AssociationConnector Association="JustFoodDBModel.FK_CategoryWiseSold_Category" >
+          <ConnectorPoint PointX="3.75" PointY="8.5" />
+          <ConnectorPoint PointX="3.75" PointY="8.25" />
+          <ConnectorPoint PointX="5.291666666666667" PointY="8.25" />
+          <ConnectorPoint PointX="5.458333333333333" PointY="8.25" />
+          <ConnectorPoint PointX="5.541666666666667" PointY="8.25" />
+          <ConnectorPoint PointX="5.708333333333333" PointY="8.25" />
+          <ConnectorPoint PointX="7.875" PointY="8.25" />
+          <ConnectorPoint PointX="7.875" PointY="11.211293945312505" />
+          <ConnectorPoint PointX="8.25" PointY="11.211293945312505" />
+        </AssociationConnector>
+        <AssociationConnector Association="JustFoodDBModel.FK_DetailedSale_Category" >
+          <ConnectorPoint PointX="4.5" PointY="10.42039839062501" />
+          <ConnectorPoint PointX="5.416666666666667" PointY="10.42039839062501" />
+          <ConnectorPoint PointX="5.583333333333333" PointY="10.42039839062501" />
+          <ConnectorPoint PointX="5.75" PointY="10.42039839062501" />
+          <ConnectorPoint PointX="5.75" PointY="14.5" />
+          <ConnectorPoint PointX="7.791666666666667" PointY="14.5" />
+          <ConnectorPoint PointX="7.958333333333333" PointY="14.5" />
+          <ConnectorPoint PointX="8" PointY="14.5" />
+          <ConnectorPoint PointX="8" PointY="18.875" />
+          <ConnectorPoint PointX="9" PointY="18.875" />
+          <ConnectorPoint PointX="9" PointY="19.25" />
+        </AssociationConnector>
+        <AssociationConnector Association="JustFoodDBModel.FK_Inventory_Category" >
+          <ConnectorPoint PointX="4.5" PointY="8.65625" />
+          <ConnectorPoint PointX="5.5" PointY="8.65625" />
+          <ConnectorPoint PointX="5.5" PointY="15" />
+        </AssociationConnector>
+        <AssociationConnector Association="JustFoodDBModel.FK_InventoryIn_Category" >
+          <ConnectorPoint PointX="4.47576923076923" PointY="12.40330078125001" />
+          <ConnectorPoint PointX="4.875" PointY="12.802531550480779" />
+          <ConnectorPoint PointX="4.875" PointY="26.442047526041662" />
+          <ConnectorPoint PointX="5.25" PointY="26.442047526041662" />
+        </AssociationConnector>
+        <AssociationConnector Association="JustFoodDBModel.FK_InventoryOut_Category" >
+          <ConnectorPoint PointX="4.5" PointY="8.796875" />
+          <ConnectorPoint PointX="5.416666666666667" PointY="8.796875" />
+          <ConnectorPoint PointX="5.583333333333333" PointY="8.796875" />
+          <ConnectorPoint PointX="7.791666666666667" PointY="8.7968749999999982" />
+          <ConnectorPoint PointX="8.0833333333333339" PointY="8.796875" />
+          <ConnectorPoint PointX="8.25" PointY="8.796875" />
+        </AssociationConnector>
+        <AssociationConnector Association="JustFoodDBModel.FK_InventoryOutConfig_Category" >
+          <ConnectorPoint PointX="4.5" PointY="8.5468725000000063" />
+          <ConnectorPoint PointX="5.375" PointY="8.5468725000000063" />
+          <ConnectorPoint PointX="5.375" PointY="7.6821907552083246" />
+        </AssociationConnector>
+        <AssociationConnector Association="JustFoodDBModel.FK_InventoryOutConfig_Category1" >
+          <ConnectorPoint PointX="4.5" PointY="8.6875024999999937" />
+          <ConnectorPoint PointX="5.625" PointY="8.6875024999999937" />
+          <ConnectorPoint PointX="5.625" PointY="7.6821907552083246" />
+        </AssociationConnector>
+        <AssociationConnector Association="JustFoodDBModel.FK_CategoryWiseSold_Sale" >
+          <ConnectorPoint PointX="7.5" PointY="10.605646972656253" />
+          <ConnectorPoint PointX="7.791666666666667" PointY="10.605646972656253" />
+          <ConnectorPoint PointX="7.958333333333333" PointY="10.605646972656253" />
+          <ConnectorPoint PointX="8.25" PointY="10.605646972656253" />
+        </AssociationConnector>
+        <AssociationConnector Association="JustFoodDBModel.FK_Config_TimeZone" >
+          <ConnectorPoint PointX="1.5" PointY="18.25" />
+          <ConnectorPoint PointX="1.5" PointY="15.355499674479162" />
+          <ConnectorPoint PointX="1.7916666666666667" PointY="15.355499674479162" />
+          <ConnectorPoint PointX="1.9583333333333333" PointY="15.355499674479162" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="15.355499674479162" />
+          <ConnectorPoint PointX="2.7083333333333335" PointY="15.355499674479162" />
+          <ConnectorPoint PointX="3" PointY="15.355499674479162" />
+        </AssociationConnector>
+        <AssociationConnector Association="JustFoodDBModel.FK_DailyStock_QuantityType" >
+          <ConnectorPoint PointX="2.25" PointY="11.276049363281253" />
+          <ConnectorPoint PointX="2.5" PointY="11.276049363281253" />
+          <ConnectorPoint PointX="2.5" PointY="8" />
+          <ConnectorPoint PointX="5.291666666666667" PointY="7.9999999999999991" />
+          <ConnectorPoint PointX="5.458333333333333" PointY="8" />
+          <ConnectorPoint PointX="5.541666666666667" PointY="7.9999999999999991" />
+          <ConnectorPoint PointX="5.708333333333333" PointY="8" />
+          <ConnectorPoint PointX="8" PointY="8" />
+          <ConnectorPoint PointX="8" PointY="9.5859993489583388" />
+          <ConnectorPoint PointX="12" PointY="9.5859993489583388" />
+          <ConnectorPoint PointX="12" PointY="10.125" />
+        </AssociationConnector>
+        <AssociationConnector Association="JustFoodDBModel.FK_DailyStock_Sale" >
+          <ConnectorPoint PointX="7.5" PointY="12.424988606770839" />
+          <ConnectorPoint PointX="11.25" PointY="12.424988606770839" />
+        </AssociationConnector>
+        <AssociationConnector Association="JustFoodDBModel.FK_DetailedSale_JustFood" >
+          <ConnectorPoint PointX="7.5" PointY="13.932109374999982" />
+          <ConnectorPoint PointX="7.875" PointY="14.307109374999982" />
+          <ConnectorPoint PointX="7.875" PointY="21.393951822916662" />
+          <ConnectorPoint PointX="8.25" PointY="21.393951822916662" />
+        </AssociationConnector>
+        <AssociationConnector Association="JustFoodDBModel.FK_DetailedSale_User" >
+          <ConnectorPoint PointX="4.5" PointY="24.059510091145825" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="24.059510091145825" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="24.059510091145825" />
+          <ConnectorPoint PointX="9" PointY="24.059510091145825" />
+          <ConnectorPoint PointX="9" PointY="23.537903645833325" />
+        </AssociationConnector>
+        <AssociationConnector Association="JustFoodDBModel.FK_Inventory_QuantityType" >
+          <ConnectorPoint PointX="1.875" PointY="12.07639648437501" />
+          <ConnectorPoint PointX="1.875" PointY="17.511495768229167" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="17.511495768229167" />
+          <ConnectorPoint PointX="2.7083333333333335" PointY="17.511495768229167" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="17.511495768229167" />
+          <ConnectorPoint PointX="5.177083333333333" PointY="17.511495768229167" />
+          <ConnectorPoint PointX="5.25" PointY="17.511495768229167" />
+        </AssociationConnector>
+        <AssociationConnector Association="JustFoodDBModel.FK_Inventory_User" >
+          <ConnectorPoint PointX="4.4630769230769225" PointY="18.625" />
+          <ConnectorPoint PointX="4.4841609240238656" PointY="18.603915999053054" />
+          <ConnectorPoint PointX="4.6020120542216238" PointY="18.486064868855298" />
+          <ConnectorPoint PointX="4.8160744349011209" PointY="18.2720024881758" />
+          <ConnectorPoint PointX="4.9339255650988791" PointY="18.154151357978044" />
+          <ConnectorPoint PointX="4.9375" PointY="18.150576923076922" />
+          <ConnectorPoint PointX="4.9375" PointY="16.224495884114589" />
+          <ConnectorPoint PointX="5.010416666666667" PointY="16.224495884114589" />
+          <ConnectorPoint PointX="5.177083333333333" PointY="16.224495884114589" />
+          <ConnectorPoint PointX="5.25" PointY="16.224495884114589" />
+        </AssociationConnector>
+        <AssociationConnector Association="JustFoodDBModel.FK_InventoryIn_QuantityType" >
+          <ConnectorPoint PointX="2.2499999999999996" PointY="12.07639648437501" />
+          <ConnectorPoint PointX="2.625" PointY="12.45139648437501" />
+          <ConnectorPoint PointX="2.625" PointY="25.627271763020836" />
+          <ConnectorPoint PointX="3.2604141666666666" PointY="25.627271763020836" />
+          <ConnectorPoint PointX="3.4270808333333336" PointY="25.627271763020836" />
+          <ConnectorPoint PointX="3.6666666666666665" PointY="25.627271763020836" />
+          <ConnectorPoint PointX="3.8333333333333335" PointY="25.627271763020836" />
+          <ConnectorPoint PointX="4.0729191666666669" PointY="25.627271763020836" />
+          <ConnectorPoint PointX="4.2395858333333329" PointY="25.627271763020836" />
+          <ConnectorPoint PointX="4.2760454166666664" PointY="25.627271763020836" />
+          <ConnectorPoint PointX="4.4427120833333325" PointY="25.627271763020836" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="25.627271763020836" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="25.627271763020836" />
+          <ConnectorPoint PointX="5.25" PointY="25.627271763020836" />
+        </AssociationConnector>
+        <AssociationConnector Association="JustFoodDBModel.FK_InventoryIn_User" >
+          <ConnectorPoint PointX="3.75" PointY="24.259013671874982" />
+          <ConnectorPoint PointX="3.75" PointY="27.256823789062487" />
+          <ConnectorPoint PointX="4.0729191666666669" PointY="27.256823789062487" />
+          <ConnectorPoint PointX="4.2395858333333329" PointY="27.256823789062487" />
+          <ConnectorPoint PointX="4.2760454166666664" PointY="27.256823789062487" />
+          <ConnectorPoint PointX="4.4427120833333325" PointY="27.256823789062487" />
+          <ConnectorPoint PointX="5.25" PointY="27.256823789062487" />
+        </AssociationConnector>
+        <AssociationConnector Association="JustFoodDBModel.FK_InventoryOut_QuantityType" >
+          <ConnectorPoint PointX="1.5" PointY="8.75" />
+          <ConnectorPoint PointX="1.5" PointY="7.8723453776041623" />
+          <ConnectorPoint PointX="1.8229191666666667" PointY="7.8723453776041614" />
+          <ConnectorPoint PointX="1.9895858333333332" PointY="7.8723453776041623" />
+          <ConnectorPoint PointX="2.0260454166666664" PointY="7.8723453776041614" />
+          <ConnectorPoint PointX="2.1927120833333333" PointY="7.8723453776041623" />
+          <ConnectorPoint PointX="5.291666666666667" PointY="7.8723453776041614" />
+          <ConnectorPoint PointX="5.458333333333333" PointY="7.8723453776041623" />
+          <ConnectorPoint PointX="5.541666666666667" PointY="7.8723453776041614" />
+          <ConnectorPoint PointX="5.708333333333333" PointY="7.8723453776041623" />
+          <ConnectorPoint PointX="8.25" PointY="7.8723453776041623" />
+        </AssociationConnector>
+        <AssociationConnector Association="JustFoodDBModel.FK_InventoryOutConfig_QuantityType" >
+          <ConnectorPoint PointX="1.9062525" PointY="8.75" />
+          <ConnectorPoint PointX="1.9062525" PointY="5.28125" />
+          <ConnectorPoint PointX="5.25" PointY="5.28125" />
+        </AssociationConnector>
+        <AssociationConnector Association="JustFoodDBModel.FK_Notification_User" >
+          <ConnectorPoint PointX="4.1562525" PointY="24.259013671874982" />
+          <ConnectorPoint PointX="4.1562525" PointY="37.509348958333334" />
+          <ConnectorPoint PointX="4.2760454166666664" PointY="37.509348958333334" />
+          <ConnectorPoint PointX="4.4427120833333325" PointY="37.509348958333334" />
+          <ConnectorPoint PointX="5.25" PointY="37.509348958333334" />
+        </AssociationConnector>
+        <AssociationConnector Association="JustFoodDBModel.FK_NotificationSeen_Notification" >
+          <ConnectorPoint PointX="6.75" PointY="37.509348958333334" />
+          <ConnectorPoint PointX="8.25" PointY="37.509348958333334" />
+          <ConnectorPoint PointX="8.25" PointY="30.114889322916667" />
+        </AssociationConnector>
+        <AssociationConnector Association="JustFoodDBModel.FK_NotificationSeen_User" >
+          <ConnectorPoint PointX="3.3437475" PointY="24.259013671874982" />
+          <ConnectorPoint PointX="3.3437475" PointY="29.093242187499996" />
+          <ConnectorPoint PointX="4.0729191666666669" PointY="29.093242187499996" />
+          <ConnectorPoint PointX="4.2395858333333329" PointY="29.093242187499996" />
+          <ConnectorPoint PointX="4.2760454166666664" PointY="29.093242187499996" />
+          <ConnectorPoint PointX="4.4427120833333325" PointY="29.093242187499996" />
+          <ConnectorPoint PointX="7.5" PointY="29.093242187499996" />
+        </AssociationConnector>
+        <AssociationConnector Association="JustFoodDBModel.FK_QuantityConversation_QuantityType" >
+          <ConnectorPoint PointX="1.0937475" PointY="8.75" />
+          <ConnectorPoint PointX="1.0937475" PointY="6.5862939453125051" />
+          <ConnectorPoint PointX="1.8229191666666667" PointY="6.5862939453125042" />
+          <ConnectorPoint PointX="1.9895858333333332" PointY="6.5862939453125051" />
+          <ConnectorPoint PointX="3" PointY="6.5862939453125051" />
+        </AssociationConnector>
+        <AssociationConnector Association="JustFoodDBModel.FK_QuantityConversation_QuantityType1" >
+          <ConnectorPoint PointX="2.10937875" PointY="8.75" />
+          <ConnectorPoint PointX="2.10937875" PointY="7.1606934179687514" />
+          <ConnectorPoint PointX="3" PointY="7.1606934179687514" />
+        </AssociationConnector>
+        <AssociationConnector Association="JustFoodDBModel.FK_Requisition_QuantityType" >
+          <ConnectorPoint PointX="1.125" PointY="12.07639648437501" />
+          <ConnectorPoint PointX="1.125" PointY="17.94419433593751" />
+          <ConnectorPoint PointX="1.4166666666666667" PointY="17.94419433593751" />
+          <ConnectorPoint PointX="1.5833333333333333" PointY="17.94419433593751" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="17.94419433593751" />
+          <ConnectorPoint PointX="2.7083333333333335" PointY="17.94419433593751" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="17.94419433593751" />
+          <ConnectorPoint PointX="5.177083333333333" PointY="17.94419433593751" />
+          <ConnectorPoint PointX="7.791666666666667" PointY="17.94419433593751" />
+          <ConnectorPoint PointX="8.0833333333333339" PointY="17.94419433593751" />
+          <ConnectorPoint PointX="8.25" PointY="17.94419433593751" />
+        </AssociationConnector>
+        <AssociationConnector Association="JustFoodDBModel.FK_Requisition_User" >
+          <ConnectorPoint PointX="4.5" PointY="18.663075923076921" />
+          <ConnectorPoint PointX="4.71875" PointY="18.444325923076921" />
+          <ConnectorPoint PointX="4.71875" PointY="18.51389648437501" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="18.51389648437501" />
+          <ConnectorPoint PointX="5.177083333333333" PointY="18.51389648437501" />
+          <ConnectorPoint PointX="7.8378836153846159" PointY="18.51389648437501" />
+          <ConnectorPoint PointX="7.9410744349011209" PointY="18.410705664858504" />
+          <ConnectorPoint PointX="8.0589255650988783" PointY="18.292854534660748" />
+          <ConnectorPoint PointX="8.2753836153846159" PointY="18.07639648437501" />
+        </AssociationConnector>
+        <AssociationConnector Association="JustFoodDBModel.FK_Requisition_User1" >
+          <ConnectorPoint PointX="4.5" PointY="18.657306692307689" />
+          <ConnectorPoint PointX="4.65625" PointY="18.25" />
+          <ConnectorPoint PointX="4.65625" PointY="18.45139648437501" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="18.45139648437501" />
+          <ConnectorPoint PointX="5.177083333333333" PointY="18.45139648437501" />
+          <ConnectorPoint PointX="7.8507692307692309" PointY="18.45139648437501" />
+          <ConnectorPoint PointX="7.9410744349011209" PointY="18.361091280243119" />
+          <ConnectorPoint PointX="8.0589255650988783" PointY="18.243240150045363" />
+          <ConnectorPoint PointX="8.25" PointY="18.052165715144241" />
+        </AssociationConnector>
+        <AssociationConnector Association="JustFoodDBModel.FK_SalaryPaid_User" >
+          <ConnectorPoint PointX="4.3593787499999994" PointY="24.259013671874982" />
+          <ConnectorPoint PointX="4.3593787499999994" PointY="45.499746093749991" />
+          <ConnectorPoint PointX="5.25" PointY="45.499746093749991" />
+        </AssociationConnector>
+        <AssociationConnector Association="JustFoodDBModel.FK_User_TimeZone" >
+          <ConnectorPoint PointX="2.25" PointY="19.427643229166662" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="19.427643229166662" />
+          <ConnectorPoint PointX="2.7083333333333335" PointY="19.427643229166662" />
+          <ConnectorPoint PointX="3" PointY="19.427643229166662" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

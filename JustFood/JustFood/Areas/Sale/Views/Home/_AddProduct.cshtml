@@ -1,0 +1,35 @@
+﻿@using System.Collections
+@using JustFood.Modules.TimeZone
+@model SaleDayView
+@{
+    var quantityTypes = (IEnumerable<SelectListItem>) ViewBag.QuantityCategories;
+    var categories = (IEnumerable<SelectListItem>) ViewBag.CategoryID;
+}
+@using (Html.BeginForm("AddProduct","Home")) {
+    <fieldset data-role="collapsible" data-theme="a" data-content-theme="c" data-collapsed="true">
+        <legend>Add Product</legend>
+        @Html.Hidden("time", @Zone.GetTimeDynamic())
+        @Html.Hidden("SaleID", Model.DiscountView.SaleID)
+        
+
+        @Html.LabelFor(m => m.AddProductView.CategoryID)
+        @Html.DropDownList("CategoryID", categories)
+        @Html.ValidationMessageFor(m => m.AddProductView.CategoryID)
+        
+
+        @Html.LabelFor(m => m.AddProductView.Quantity)
+        @Html.TextBox("Quantity", 0 , new {type = "number"})
+        @Html.ValidationMessageFor(m => m.AddProductView.Quantity)
+
+        @Html.LabelFor(m => m.AddProductView.QuantityType)
+        @Html.DropDownList("QuantityType", quantityTypes)
+        @Html.ValidationMessageFor(m => m.AddProductView.CategoryID)
+
+        @Html.LabelFor(m => m.AddProductView.Cost)
+        @Html.TextBox("Cost", 0 , new {type = "number"})
+        @Html.ValidationMessageFor(m => m.AddProductView.Cost)
+        <p>
+            <input type="submit" value="Add Product" data-role="button" />
+        </p>
+    </fieldset>
+}

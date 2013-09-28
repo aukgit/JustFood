@@ -1,0 +1,42 @@
+﻿@model LoginModel
+
+@{
+    ViewBag.Title = "Log in";
+}
+
+@section Header {
+    @Html.ActionLink("Cancel", "Index", "Home", null, new {data_icon = "arrow-l", data_rel = "back"})
+    <h1>@ViewBag.Title</h1>
+}
+
+<p>
+    Please enter your user name and password. @Html.ActionLink("Register", "Register") if you don't have an account. <br/>
+    @Html.ActionLink("Retrieve", "ForgotPassword") password incase you @Html.ActionLink("forgot", "ForgotPassword") your password.
+</p>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary()
+
+    <ul data-role="listview" data-inset="true">
+        <li data-role="list-divider">Details</li>
+
+        <li>
+            @Html.LabelFor(m => m.UserName)
+            @Html.TextBoxFor(m => m.UserName)            
+       
+            @Html.LabelFor(m => m.Password)
+            @Html.PasswordFor(m => m.Password)            
+  
+            @Html.LabelFor(m => m.RememberMe)
+            @Html.CheckBoxFor(m => m.RememberMe)
+        </li>
+
+        <li>
+            <input type="submit" value="Login" data-role="button" />
+        </li>
+    </ul>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

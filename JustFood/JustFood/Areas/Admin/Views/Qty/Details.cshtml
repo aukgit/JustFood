@@ -1,0 +1,22 @@
+﻿@model JustFood.Models.QuantityType
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>QuantityType</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.QtyType)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.QtyType)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.QuantityTypeID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

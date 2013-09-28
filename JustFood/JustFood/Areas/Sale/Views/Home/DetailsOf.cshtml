@@ -1,0 +1,53 @@
+﻿
+@model IList<JustFood.Models.DetailedSale>
+@{
+    ViewBag.Title = "Detailed Sale";
+    var timeZone = (TimeZoneInfo)ViewBag.TimeZone;
+}
+<h2>@ViewBag.Title</h2>
+<h2>@Model.FirstOrDefault().Category.Category1</h2>
+@{
+    Html.RenderPartial("_Back_Button");
+}
+<div  data-role="collapsible-set">
+    @foreach (var item in Model) {
+        string theme = "c";
+        bool isDiscount = item.Discount != null && item.Discount > 0;
+        //string collapsible = "";
+        if (item.IsDiscard) {
+            theme = "g";
+        } else if (isDiscount) {
+            theme = "h";
+        }
+        <div data-theme="@theme"  data-role="collapsible" data-collapsed="true" data-mini="true">
+            <h3>
+                @if (item.IsDiscard) {
+                    <text>@Html.DisplayFor(modelItem => item.SoldAt) [Discarded]</text>
+                } else if (item.Discount != null && item.Discount > 0) {
+                    <text>@Html.DisplayFor(modelItem => item.SoldAt) [Discount : @item.Discount]</text>
+                } else {
+                    @Html.DisplayFor(modelItem => item.SoldAt)
+                } | at @Html.DisplayTime(timeZone, item.Time)
+            </h3>
+            <div>
+                <div>Processed by : @item.User.Name</div>
+                @if (isDiscount) {
+                    <div>Person : @item.DiscountPerson</div>
+                    <div>Contact : @item.DiscountNumber</div>
+                    <div>Discounted at : @item.Discount</div>
+                }
+                @if (item.Note != null) {
+                    <div><strong>Notes : </strong>@item.Note</div>
+                }
+            </div>
+        </div>
+    }
+</div>
+<div data-role="footer" data-position="fixed" class="center" data-mini="true">
+    <span>
+        Cash: BDT. @ViewBag.Cash | Sold: @ViewBag.Items (PC) | Discount: BDT. @ViewBag.Discounts | Discards: @ViewBag.Discards
+    </span>
+</div>
+@{
+    Html.RenderPartial("_Back_Button");
+}

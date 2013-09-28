@@ -1,0 +1,4 @@
+problem :
+discard when taking lastProduct item.
+
+Discount is fine.

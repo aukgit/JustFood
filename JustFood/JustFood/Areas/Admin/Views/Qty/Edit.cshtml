@@ -1,0 +1,37 @@
+﻿@model JustFood.Models.QuantityType
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>QuantityType</legend>
+
+        @Html.HiddenFor(model => model.QuantityTypeID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.QtyType)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.QtyType)
+            @Html.ValidationMessageFor(model => model.QtyType)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

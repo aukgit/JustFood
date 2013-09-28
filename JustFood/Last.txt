@@ -1,0 +1,5 @@
+quantity missmatch not solved + product add organize + error details organize.
+invetory in
+intory out
+inventory config
+fix email and send it to the owners

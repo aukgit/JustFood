@@ -1,0 +1,37 @@
+﻿@using JustFood.Modules.TimeZone
+@model SaleDayView
+@{
+    var discountCategories = (IEnumerable<SelectListItem>)ViewBag.DiscountCategoryID;
+}
+@using (Html.BeginForm("Discount","Home")) {
+    <fieldset data-role="collapsible" data-theme="a" data-content-theme="c" data-collapsed="true">
+        <legend>Discount</legend>
+        @Html.Hidden("time", @Zone.GetTimeDynamic())
+
+        @Html.HiddenFor(m => m.DiscountView.SaleID)
+        @Html.LabelFor(m => m.DiscountView.DiscountCategoryID)
+        @Html.DropDownList("DiscountView.DiscountCategoryID", discountCategories)
+        @Html.ValidationMessageFor(m => m.DiscountView.DiscountCategoryID)
+        
+
+        @Html.LabelFor(m => m.DiscountView.Name)
+        @Html.EditorFor(m => m.DiscountView.Name)
+        @Html.ValidationMessageFor(m => m.DiscountView.Name)
+
+        @Html.LabelFor(m => m.DiscountView.Phone)
+        @Html.EditorFor(m => m.DiscountView.Phone)
+        @Html.ValidationMessageFor(m => m.DiscountView.Phone)
+
+        @Html.LabelFor(m => m.DiscountView.Amount)
+        @Html.EditorFor(m => m.DiscountView.Amount)
+        @Html.ValidationMessageFor(m => m.DiscountView.Amount)
+        
+        @Html.LabelFor(m => m.DiscountView.Notes)
+        @Html.EditorFor(m => m.DiscountView.Notes)
+        @Html.ValidationMessageFor(m => m.DiscountView.Notes)
+        <p>
+            <input type="submit" value="Discounted" data-role="button" />
+        </p>
+    </fieldset>
+        
+}

@@ -1,0 +1,38 @@
+﻿@model JustFood.Models.Inventory
+
+@{
+    ViewBag.Title = "Inventory - " + Model.Category.Category1;
+}
+
+<h2>@ViewBag.Title</h2>
+
+
+
+<div>
+    @Html.ActionLink("Back", "", null , new { @Class = "back-button", data_icon="arrow-l", data_rel="back" , data_role="button"} )
+</div>
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset class="edit-form" data-role="collapsible"  data-role="controlgroup" data-theme="c" data-content-theme="c" data-collapsed="false">
+        <legend>Editing @Model.Category.Category1</legend>
+		@Html.HiddenFor(model => model.InventoryID)
+
+		<span class = "editor-fields">
+			@Html.LabelFor(model => model.SoldPrice)
+			@Html.EditorFor(model => model.SoldPrice)
+		</span>
+
+        <p>
+            <input type="submit" value="Save Changes" data-role="button" title="Save Changes" data-icon="check" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back", "", null , new { @Class = "back-button", data_icon="arrow-l", data_rel="back" , data_role="button"} )
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

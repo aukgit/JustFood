@@ -1,0 +1,76 @@
+﻿@model AccountBalance
+
+@{
+    ViewBag.Title = "Add Product";
+}
+<h2>Add Product</h2>
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend></legend>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AccountOf, "Account Of")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("AccountOf", String.Empty)
+            @Html.ValidationMessageFor(model => model.AccountOf)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CategoryProduct, "Category")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("CategoryProduct", String.Empty)
+            @Html.ValidationMessageFor(model => model.CategoryProduct)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AddedQuantity)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AddedQuantity)
+            @Html.ValidationMessageFor(model => model.AddedQuantity)
+        </div>
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.QtyType)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("QtyType", String.Empty)
+            @Html.ValidationMessageFor(model => model.QtyType)
+        </div>
+        
+
+        <div class="editor-label">
+            <label for="Amount">Cost</label>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Amount)
+            @Html.ValidationMessageFor(model => model.Amount)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Note)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Note)
+            @Html.ValidationMessageFor(model => model.Note)
+        </div>
+        
+        <div>
+            <label>Added by @@@User.Identity.Name.</label>
+
+        </div>
+
+        <p>
+            <input type="submit" value="Add" data-role="button" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back", "Index", "Home", null, new {data_role = "button"})
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

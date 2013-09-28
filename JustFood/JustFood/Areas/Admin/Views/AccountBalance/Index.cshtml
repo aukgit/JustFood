@@ -1,0 +1,13 @@
+﻿@{
+    ViewBag.Title = "Account Balance";
+}
+<ul data-role="listview" data-inset="true">
+    <li data-role="list-divider">Account Balance</li>
+    <li>@Html.ActionLink("Add Balance", "Create")</li>
+    <li>@Html.ActionLink("Add Expense", "Create", "Expense")</li>
+    <li>@Html.ActionLink("Balance", "List")</li>
+    <li>@Html.ActionLink("Search", "Search", null, new {data_rel = "dialog", data_transition = "pop"})
+        <li data-role="list-divider">Navigation</li>
+        <li>@Html.ActionLink("Back", "Index", "Home")</li>
+    </li>
+</ul>

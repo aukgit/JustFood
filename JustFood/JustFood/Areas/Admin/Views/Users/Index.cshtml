@@ -1,0 +1,38 @@
+﻿@model IEnumerable<User>
+
+@{
+    ViewBag.Title = "Users List";
+}
+
+<p>Users List</p>
+
+
+<ul data-role="listview" data-filter="true">
+    @foreach (User item in Model) {
+        <li  data-role="collapsible"data-mini="true">
+            <h3>@item.Name |
+                @if (item.IsEmployee) {
+                    <text>Employee at BDT. @item.Salary</text>
+                } else if (item.IsOwner) {
+                    <text>Owner at %@item.Percentage</text>
+                } 
+            </h3>
+            <div>
+                Log : @item.LogName
+            </div>
+            <div>
+                Name : @item.Name
+            </div>
+            <div>
+                Last Log : @item.LastLogIn
+            </div>
+            <div>
+            
+                @Html.ActionLink("Edit", "Edit", new {Controller = "Users", id = @item.UserID}, new {data_role = "button", data_inline = "true"})
+            </div>
+        </li>
+    }
+</ul>
+<p>
+    @Html.ActionLink("Back", "Index", new {Controller = "Home"}, new {data_role = "button"})
+</p>

@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Inventory>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Inventory</h2>
+<p>
+    @Html.ActionLink("Add Product", "Add", new {Controller = "Products"}, new {data_role = "button"})
+    @Html.ActionLink("Back", "Index", new {Controller = "Home"}, new {data_role = "button"})
+</p>
+
+<ul data-role="listview" data-filter="true">
+    @foreach (Inventory item in Model) {
+        <li  data-role="collapsible"data-mini="true">
+            <h3>@item.Category.Category1 @@@item.Quantity @item.QuantityType.QtyType @if(item.Category.IsSalable) { <text>| Selling Price : @item.SoldPrice </text>}</h3>
+            <div>
+                @Html.ActionLink("Add", "Add", new {Controller = "Products"}, new {data_icon="plus" , data_role = "button", data_inline = "true"})
+                 @if (item.Category.IsSalable) {
+                     @Html.ActionLink("Edit", "Edit", new {id = @item.InventoryID, Controller = "Inventory"}, new {data_icon = "edit", data_role = "button", data_inline = "true"})
+                 }
+                @Html.ActionLink("Details", "Details", new { Controller = "Inventory", id = @item.CategoryID }, new { data_icon = "bars", data_role = "button", data_inline = "true" })
+            </div>
+        </li>
+    }
+
+</ul>
+<p>
+    @Html.ActionLink("Back", "Index", new {Controller = "Home"}, new {data_role = "button"})
+</p>

@@ -1,0 +1,29 @@
+﻿@using JustFood.Modules.TimeZone
+@model SaleDayView
+@{
+    var quantityTypes = (IEnumerable<SelectListItem>) ViewBag.QuantityCategories;
+    var categories = (IEnumerable<SelectListItem>) ViewBag.CategoryID;
+}
+@using (Html.BeginForm("Requisition","Home")) {
+    <fieldset data-role="collapsible" data-theme="a" data-content-theme="c" data-collapsed="true">
+        <legend>Requisition</legend>
+        @Html.Hidden("time", @Zone.GetTimeDynamic())
+        @Html.Hidden("SaleIDReq", Model.DiscountView.SaleID)
+        @Html.LabelFor(m => m.Requisition.CategoryID)
+        @Html.DropDownList("Requisition.CategoryID", categories)
+        @Html.ValidationMessageFor(m => m.Requisition.CategoryID)
+       
+        @Html.LabelFor(m => m.Requisition.Quantity)
+        @Html.EditorFor(m => m.Requisition.Quantity)
+        @Html.ValidationMessageFor(m => m.Requisition.Quantity)
+
+        
+        @Html.LabelFor(m => m.Requisition.QuantityType)
+        @Html.DropDownList("Requisition.QtyType", quantityTypes)
+        @Html.ValidationMessageFor(m => m.Requisition.QuantityType)
+        <p>
+            <input type="submit" value="Add Requsition" data-role="button" />
+        </p>
+    </fieldset>
+        
+}

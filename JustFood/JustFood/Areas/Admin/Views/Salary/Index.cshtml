@@ -1,0 +1,62 @@
+﻿@model IEnumerable<SalaryPaid>
+@{
+    ViewBag.Title = "Index";
+    IEnumerable<IGrouping<int, SalaryPaid>> SalariesByPerson = Model.GroupBy(n => n.UserID);
+}
+<h2>
+    Index</h2>
+<p>
+    @Html.ActionLink("Pay", "Pay", new { Controller = "Salary" }, new { data_role = "button" })
+    @Html.ActionLink("Back", "Index", new { Controller = "Home" }, new { data_role = "button" })
+</p>
+<ul data-role="listview" data-filter="true">
+    @foreach (var SalaryByPerson in SalariesByPerson) {
+@*  @{
+            SalaryPaid single = SalaryByPerson.FirstOrDefault();
+        }
+        if (single != null) {*@
+        <li data-role="collapsible" data-mini="true">
+            <h3>@SalaryByPerson.FirstOrDefault().User.Name | Current Salary : @SalaryByPerson.FirstOrDefault().User.Salary</h3>
+            <table>
+                <thead>
+                    <th>
+                        Month
+                    </th>
+                    <th>
+                        Year
+                    </th>
+                    <th>
+                        Paid
+                    </th>
+                    <th>
+                        Actual
+                    </th>
+                    <th>
+                        Dated
+                    </th>
+                </thead>
+                <tbody>
+                    @foreach (SalaryPaid Salary in SalaryByPerson) {
+                        <tr>
+                            <td>@Salary.Month
+                            </td>
+                            <td>@Salary.Year
+                            </td>
+                            <td>@Salary.Paid
+                            </td>
+                            <td>@Salary.Salary
+                            </td>
+                            <td>@Salary.PaidDate.ToShortDateString()
+                            </td>
+                        </tr>
+
+                        //}
+                    }
+                </tbody>
+            </table>
+        </li>
+    }
+</ul>
+<p>
+    @Html.ActionLink("Back", "Index", new { Controller = "Home" }, new { data_role = "button" })
+</p>

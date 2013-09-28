@@ -1,0 +1,98 @@
+﻿<#@ template language="C#" HostSpecific="True" #>
+<#@ output extension=".cshtml" #>
+<#
+MvcTextTemplateHost mvcHost = (MvcTextTemplateHost)(Host);
+var modelName = mvcHost.ViewDataTypeName;
+var modelGentelName = "";
+int startingIndex = 0;
+for (int i = modelName.Length -1 ; i >= 0 ; i--)
+{
+	char c =  modelName[i];
+	if (c == '.') {
+		startingIndex = i;
+		break;		
+    }
+}
+for (int i = startingIndex + 1 ; i < modelName.Length ; i++)
+{
+	char c =  modelName[i];
+	bool IscLower = ((int)c >= (int)'a' && (int)c <= (int)'z') ? true : false;
+	
+	char cU = (IscLower) ? (char)((int)c - (int)'a' + (int)'A') : c; 
+	if(i == startingIndex + 1){
+		modelGentelName += modelName[i]; 		
+	} else {
+		if(i > 1 && IscLower == false){
+			modelGentelName += " " + cU;
+        } else {
+			modelGentelName += c;				
+		} 
+    }
+}
+
+
+if(!String.IsNullOrEmpty(mvcHost.ViewDataTypeName)) {
+#>
+@model <#= mvcHost.ViewDataTypeName #>
+
+<#
+}
+
+// The following chained if-statement outputs the file header code and markup for a partial view, a content page, or a regular view.
+if(mvcHost.IsPartialView) {
+#>
+<#
+} else if(mvcHost.IsContentPage) {
+#>
+
+@{
+    ViewBag.Title = "<#= modelGentelName #> - ";
+<#
+if (!String.IsNullOrEmpty(mvcHost.MasterPageFile)) {
+#>
+    Layout = "<#= mvcHost.MasterPageFile#>";
+<#
+}
+#>
+}
+
+<h2>@ViewBag.Title</h2>
+
+<h2><#= mvcHost.ViewName#></h2>
+<#
+} else {
+#>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title><#= mvcHost.ViewName #></title>
+</head>
+<body>
+<#
+    PushIndent("    ");
+}
+#>
+<#
+if(!mvcHost.IsPartialView && !mvcHost.IsContentPage) {
+#>
+<div>
+    
+</div>
+<#
+}
+#>
+<#
+if(!mvcHost.IsPartialView && !mvcHost.IsContentPage) {
+    ClearIndent();
+#>
+</body>
+</html>
+<#
+}
+#>

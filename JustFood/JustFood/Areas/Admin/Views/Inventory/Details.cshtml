@@ -1,0 +1,47 @@
+﻿@model InventoryDetailsView
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+
+
+<p>Stocks:</p>
+<ul data-role="listview" data-filter="true" data-theme="c">
+    @foreach (InventoryIn item in Model.InventoryStrock) {
+        <div  data-role="collapsible"data-mini="true">
+            <h3>@item.Category.Category1 | @item.Quantity.ToString("##.##") at price @item.UnitPrice</h3>
+            <div>
+                <div>Category: @item.Category.Category1</div>
+                <div>Quantity: @item.Quantity.ToString("##.##") @item.QuantityType.QtyType</div>
+                <div>Price: @item.UnitPrice</div>
+                <div>Added by: @item.User.Name</div>
+            </div>
+        </div>
+    }
+
+
+</ul>
+
+<hr />
+<p>Discards:</p>
+<p>  </p>
+<ul data-role="listview" data-filter="true" data-theme="a">
+    @foreach (InventoryOut item in Model.InventoryDiscards) {
+        <div data-role="collapsible"data-mini="true">
+            <h3>@item.Category | @item.Quantity.ToString("##.##") @item.QtyType</h3>
+            <div>
+                <div>Category: @item.Category</div>
+                <div>Quantity: @item.Quantity.ToString("##.##") @item.QtyType</div>
+            </div>
+        </div>
+    }
+
+
+</ul>
+
+<p>
+    @Html.ActionLink("Back", "Index", null, new {data_role = "button"})
+</p>

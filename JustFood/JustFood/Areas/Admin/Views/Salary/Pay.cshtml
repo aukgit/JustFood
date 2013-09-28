@@ -1,0 +1,54 @@
+﻿@model SalaryPaid
+
+@{
+    ViewBag.Title = "Pay Salary";
+}
+
+<h2>Pay Salary</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>SalaryPaid</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.UserID, "User")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("UserID", String.Empty)
+            @Html.ValidationMessageFor(model => model.UserID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SalaryOfDated)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.SalaryOfDated)
+            @Html.ValidationMessageFor(model => model.SalaryOfDated)
+        </div>
+
+       
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Paid)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Paid)
+            @Html.ValidationMessageFor(model => model.Paid)
+        </div>
+
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

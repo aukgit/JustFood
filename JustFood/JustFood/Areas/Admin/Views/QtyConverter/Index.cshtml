@@ -1,0 +1,45 @@
+﻿@model IEnumerable<JustFood.Models.QuantityConversation>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.QuantityType.QtyType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ConvertedTypeID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Difference)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.QuantityType.QtyType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QuantityType1.QtyType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Difference)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.QuantityConversationID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.QuantityConversationID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.QuantityConversationID })
+        </td>
+    </tr>
+}
+
+</table>

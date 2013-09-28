@@ -1,0 +1,266 @@
+﻿<#@ template language="C#" HostSpecific="True" #>
+<#
+var Model = (MvcTextTemplateHost)Host;
+var routePrefix = String.Empty;
+if (!String.IsNullOrWhiteSpace(Model.AreaName)) {
+	routePrefix = "/" + Model.AreaName;
+}
+routePrefix += "/" + Model.ControllerRootName + "/";
+#>
+<#@ import namespace="System.Collections" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Data.Objects" #>
+<#@ import namespace="System.Linq" #>
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+<# if(MvcTextTemplateHost.NamespaceNeeded(Model.Namespace, Model.ModelType.Namespace)) { #>
+using <#= Model.ModelType.Namespace #>;
+<# } #>
+<# if(Model.ContextType.Namespace != Model.ModelType.Namespace && MvcTextTemplateHost.NamespaceNeeded(Model.Namespace, Model.ContextType.Namespace)) { #>
+using <#= Model.ContextType.Namespace #>;
+<# } #>
+
+namespace <#= Model.Namespace #>
+{
+<#
+	var modelName = Model.ModelType.Name;
+	var entitySetName = Model.EntitySetName;
+	var modelVariable = modelName.ToLower();
+	var entitySetVariable = entitySetName.ToLower();
+	var primaryKey = Model.PrimaryKeys[0];
+	var lambdaVar = modelVariable[0];
+	var isObjectContext = typeof(ObjectContext).IsAssignableFrom(Model.ContextType);
+#>
+	public class <#= Model.ControllerName #> : Controller
+	{
+		readonly JustFoodDBEntities db = new <#= Model.ContextType.Name #>();
+<#
+var includeExpressions = "";
+if(isObjectContext) {
+	includeExpressions = String.Join("", Model.RelatedProperties.Values.Select(property => String.Format(".Include(\"{0}\")", property.PropertyName)));
+} else  {
+	includeExpressions = String.Join("", Model.RelatedProperties.Values.Select(property => String.Format(".Include({0} => {0}.{1})", lambdaVar, property.PropertyName)));
+}
+#>		
+		void GenerateDropdowns(<#= modelName #> <#= modelVariable #> = null){
+<# 
+List<string> entityList = new List<string>(20);
+List<string> entityList2 = new List<string>(20);
+#>
+<# 
+foreach (var property in Model.RelatedProperties.Values) { 
+	//checking if property exist on the list
+	if(entityList.IndexOf(property.EntitySetName) == -1){
+		entityList.Add(property.EntitySetName);		
+	}  
+}
+#>
+<# 
+string primary = "", display = "";
+foreach (var entityName in entityList) { 
+	var entity = entityName.ToLower();
+	entityList2.Add(entity);
+	
+	foreach (var property in Model.RelatedProperties.Values) { 
+		if(property.EntitySetName == entityName){
+			primary = property.PrimaryKey;
+			display = property.DisplayPropertyName;
+			break;
+		}
+	}
+#>
+			var <#= entity #> = db.<#= entityName #>.Select(<#= lambdaVar #> => new { <#= primary #> = <#= lambdaVar #>.<#= primary #> , <#= display #> = <#= lambdaVar #>.<#= display #>} ).ToList();
+<# } #>
+
+			if(<#= modelVariable #> == null) {	
+<# foreach (var property in Model.RelatedProperties.Values) { 
+var index = entityList.IndexOf(property.EntitySetName);#>
+				ViewBag.<#= property.ForeignKeyPropertyName #> = new SelectList(<#= entityList2[index] #>, "<#= property.PrimaryKey #>", "<#= property.DisplayPropertyName #>");
+<# } #>
+			} else {
+<# foreach (var property in Model.RelatedProperties.Values) { 
+var index = entityList.IndexOf(property.EntitySetName);#>
+				ViewBag.<#= property.ForeignKeyPropertyName #> = new SelectList(<#= entityList2[index] #>, "<#= property.PrimaryKey #>", "<#= property.DisplayPropertyName #>", <#= modelVariable #>.<#= property.ForeignKeyPropertyName #>);
+<# } #>
+			} 
+		}
+
+		
+		public ActionResult Index() {
+			bool result = ViewTapping(ViewStates.Index);
+
+<# if(!String.IsNullOrEmpty(includeExpressions)) { #>
+			var <#= entitySetVariable #> = db.<#= entitySetName #><#= includeExpressions #>.ToList();
+			return View(<#= entitySetVariable #>);
+<# } else { #>
+			return View(db.<#= entitySetName #><#= includeExpressions #>.ToList());
+<# } #>
+		}
+
+		public ActionResult Create() {
+			GenerateDropdowns();
+			bool result = ViewTapping(ViewStates.Create);
+			return View();
+		}
+
+		[HttpPost]
+		public ActionResult Create(<#= modelName #> <#= modelVariable #>)
+		{
+			bool result = ViewTapping(ViewStates.CreatePost,<#= modelVariable #>);
+			
+			if (ModelState.IsValid)
+			{
+<# if(primaryKey.Type == typeof(Guid)) { #>
+				<#= modelVariable #>.<#= primaryKey.Name #> = Guid.NewGuid();
+<# } #>
+<# if(isObjectContext) { #>
+				db.<#= entitySetName #>.AddObject(<#= modelVariable #>);
+<# } else { #>
+				db.<#= entitySetName #>.Add(<#= modelVariable #>);
+<# } #>
+				bool state = SaveDatabase(ViewStates.Create, <#= modelVariable #>);
+				return RedirectToActionPermanent("Index");
+			}
+
+			GenerateDropdowns(<#= modelVariable #>);
+			return View(<#= modelVariable #>);
+		}
+
+		public ActionResult Edit(<#= primaryKey.ShortTypeName #> id = <#= primaryKey.DefaultValue #>)
+		{
+<# if(isObjectContext) { #>
+			var <#= modelVariable #> = db.<#= entitySetName #>.Single(<#= lambdaVar #> => <#= lambdaVar #>.<#= primaryKey.Name #> == id);
+<# } else { #>
+			var <#= modelVariable #> = db.<#= entitySetName #>.Find(id);
+<# } #>
+			if (<#= modelVariable #> == null)
+			{
+				return HttpNotFound();
+			}
+			GenerateDropdowns(<#= modelVariable #>);
+			bool result = ViewTapping(ViewStates.Edit,<#= modelVariable #>);
+			return View(<#= modelVariable #>);
+		}
+
+		[HttpPost]
+		public ActionResult Edit(<#= modelName #> <#= modelVariable #>)
+		{
+			bool result = ViewTapping(ViewStates.EditPost,<#= modelVariable #>);
+
+			if (ModelState.IsValid)
+			{
+<# if(isObjectContext) { #>
+				db.<#= entitySetName #>.Attach(<#= modelVariable #>);
+				db.ObjectStateManager.ChangeObjectState(<#= modelVariable #>, EntityState.Modified);
+<# } else { #>
+				db.Entry(<#= modelVariable #>).State = EntityState.Modified;
+<# } #>
+				bool state = SaveDatabase(ViewStates.Edit, <#= modelVariable #>);
+				return RedirectToActionPermanent("Index");
+			}
+			GenerateDropdowns(<#= modelVariable #>);
+			return View(<#= modelVariable #>);
+		}
+
+		[ActionName("Delete")]
+		public ActionResult DeleteConfirmed(<#= primaryKey.ShortTypeName #> id)
+		{
+<# if(isObjectContext) { #>
+			var <#= modelVariable #> = db.<#= entitySetName #>.FirstOrDefault(<#= lambdaVar #> => <#= lambdaVar #>.<#= primaryKey.Name #> == id);
+			bool result = ViewTapping(ViewStates.DeletePost,<#= modelVariable #>);
+			if(<#= modelVariable #> != null){
+				db.<#= entitySetName #>.DeleteObject(<#= modelVariable #>);
+			}
+<# } else { #>
+			var <#= modelVariable #> = db.<#= entitySetName #>.Find(id);
+			if(<#= modelVariable #> != null){
+				bool result = ViewTapping(ViewStates.DeletePost,<#= modelVariable #>);
+				db.<#= entitySetName #>.Remove(<#= modelVariable #>);
+			}
+<# } #>
+			
+			bool state = SaveDatabase(ViewStates.Delete, <#= modelVariable #>);
+			return RedirectToActionPermanent("Index");
+		}		
+		
+		public ActionResult Details(<#= primaryKey.ShortTypeName #> id = <#= primaryKey.DefaultValue #>)
+		{
+
+<# if(isObjectContext) { #>
+			var <#= modelVariable #> = db.<#= entitySetName #>.Single(<#= lambdaVar #> => <#= lambdaVar #>.<#= primaryKey.Name #> == id);
+<# } else { #>
+			var <#= modelVariable #> = db.<#= entitySetName #>.Find(id);
+<# } #>	
+			if (<#= modelVariable #> == null)
+			{
+				return HttpNotFound();
+			}
+			GenerateDropdowns(<#= modelVariable #>);
+			bool result = ViewTapping(ViewStates.Details, <#= modelVariable #>);
+			return View(<#= modelVariable #>);
+		}
+
+		bool ViewTapping(ViewStates view, <#= modelName #> <#= modelVariable #> = null){
+			switch (view){
+				case ViewStates.Index:
+					break;
+				case ViewStates.Create:
+					break;
+				case ViewStates.CreatePost:
+					break;
+				case ViewStates.Edit:
+					break;
+				case ViewStates.EditPost:
+					break;
+				case ViewStates.Delete:
+					break;
+			}
+			return true;
+		}
+
+		enum ViewStates{
+			Index,
+			Create,
+			CreatePost,
+			Edit,
+			EditPost,
+			Details,
+			Delete,
+			DeletePost
+		}
+
+		bool SaveDatabase(ViewStates view, <#= modelName #> <#= modelVariable #> = null){
+			// working those at HttpPost time.
+			switch (view){
+				case ViewStates.Create:
+					break;
+				case ViewStates.Edit:
+					break;
+				case ViewStates.Delete:
+					break;
+			}
+
+			try	{
+				var changes = db.SaveChanges();
+				if(changes > 0){
+					return true;
+				}
+			} catch (Exception ex){
+				 throw new Exception("Message : " + ex.Message.ToString() + " Inner Message : " + ex.InnerException.Message.ToString());
+			}
+			return false;
+		}
+
+
+		protected override void Dispose(bool disposing)
+		{
+			db.Dispose();
+			base.Dispose(disposing);
+		}
+	}
+}

@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Admin";
+}
+
+<ul data-role="listview" data-inset="true">
+    <li data-role="list-divider">Reports</li>
+    <li>@Html.ActionLink("Today's Report", "Index", "Account")</li>
+    <li>@Html.ActionLink("Reports", "LogOff", "Reports")</li>
+    <li data-role="list-divider">Accounts</li>
+    <li>@Html.ActionLink("Accounts", "List", "AccountBalance")</li>
+    <li>@Html.ActionLink("Add Balance", "Create", "AccountBalance")</li>
+    <li>@Html.ActionLink("Add Expense", "Create", "Expense")</li>
+    <li>@Html.ActionLink("Search", "Search", new {Controller = "AccountBalance"}, new {data_rel = "dialog", data_transition = "pop"})
+    <li data-role="list-divider">Inventory</li>
+    <li>@Html.ActionLink("Category", "Index", "Category")</li>
+    <li>@Html.ActionLink("Add Products", "Add", "Products")</li>
+    <li>@Html.ActionLink("Inventory", "Index", "Inventory")</li>
+    <li>@Html.ActionLink("Inventory Out Configuration", "Index", "InventoryConfig")</li>
+    <li>@Html.ActionLink("Quantity Manager", "Index", "Qty")</li>
+    <li>@Html.ActionLink("Quantity Converter", "Index", "QtyConverter")</li>
+    <li data-role="list-divider">Employee &amp; Owner</li>
+    <li>@Html.ActionLink("New Employee", "Create", "AdminCode")</li>
+    <li>@Html.ActionLink("List of Codes", "Index", "AdminCode")</li>
+    <li>@Html.ActionLink("List of Employees", "Index", "Users")</li>
+    <li>@Html.ActionLink("Salary", "Index", "Salary")</li>
+    <li>@Html.ActionLink("Percentages", "Index", "AdminCode")</li>
+</ul>

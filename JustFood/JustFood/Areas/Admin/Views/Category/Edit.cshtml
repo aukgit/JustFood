@@ -1,0 +1,59 @@
+﻿@model Category
+@{
+    ViewBag.Title = "Edit";
+}
+<h2>
+    Edit - @Model.Category1</h2>
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        @Html.HiddenFor(model => model.CategoryID)
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Category1)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Category1)
+            @Html.ValidationMessageFor(model => model.Category1)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.QtyType)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("QtyType")
+            @Html.ValidationMessageFor(model => model.QtyType)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IsSalable)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IsSalable)
+            @Html.ValidationMessageFor(model => model.IsSalable)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IsExpense)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IsExpense)
+            @Html.ValidationMessageFor(model => model.IsExpense)
+        </div>
+        
+         <div class="editor-label">
+            @Html.LabelFor(model => model.IsRelatedToSalary)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IsRelatedToSalary)
+            @Html.ValidationMessageFor(model => model.IsRelatedToSalary)
+        </div>
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+<div>
+    @Html.ActionLink("Back", "Index", null, new {data_role = "button"})
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

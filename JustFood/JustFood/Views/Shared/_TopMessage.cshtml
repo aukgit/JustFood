@@ -1,0 +1,42 @@
+﻿@using  JustFood.Modules.StaticContents
+@{
+    ViewBag.Message = Statics.Cookies.Get(JustFood.Modules.Cookie.CookiesNames.MessageSetterMsg);
+    ViewBag.TypeMsg = Statics.Cookies.Get(JustFood.Modules.Cookie.CookiesNames.MessageSetterType);
+    Statics.Cookies.Remove(JustFood.Modules.Cookie.CookiesNames.MessageSetterMsg);
+    Statics.Cookies.Remove(JustFood.Modules.Cookie.CookiesNames.MessageSetterType);
+}  
+@if (ViewBag.Message != null && ViewBag.Message != "") {
+    // message exist
+    string icon = "";
+    string custom_message_theme = "c";
+    if (ViewBag.TypeMsg != null) {
+        icon = (ViewBag.TypeMsg == MessageTypes.Information)
+            ? "info" : icon;
+        icon = (ViewBag.TypeMsg == MessageTypes.Error)
+            ? "minus" : icon;
+        icon = (ViewBag.TypeMsg == MessageTypes.Warning)
+            ? "alert" : icon;
+
+        icon = (ViewBag.TypeMsg == MessageTypes.Positive)
+            ? "check" : icon;
+    }
+    //J green
+    if (ViewBag.MessageTheme != null) {
+        custom_message_theme = ViewBag.MessageTheme;
+    } else {
+        custom_message_theme = (ViewBag.TypeMsg == MessageTypes.Information)
+        ? "h" : custom_message_theme;
+        custom_message_theme = (ViewBag.TypeMsg == MessageTypes.Error)
+            ? "g" : custom_message_theme;
+        custom_message_theme = (ViewBag.TypeMsg == MessageTypes.Warning)
+            ? "e" : custom_message_theme;
+
+        custom_message_theme = (ViewBag.TypeMsg == MessageTypes.Positive)
+            ? "j" : custom_message_theme;
+    }
+    
+    <button data-icon="@icon" data-theme="@custom_message_theme" title="@ViewBag.MessageDescription">
+        <span class="top-message @ViewBag.TypeMsg">@ViewBag.Message</span>
+    </button>
+  
+}

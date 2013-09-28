@@ -1,0 +1,113 @@
+﻿@using System.Collections
+@using System.Web.Mvc.Html
+@using JustFood.Models;
+@using JustFood.Modules.Extensions;
+@using Microsoft.Web.Mvc.Html
+@model IList<JustFood.Models.ViewInventorySalable>
+@{
+    ViewBag.Title = "Inventory Out Config";
+    var inventoryOuts = (List<InventoryOutConfig>)ViewBag.InventoryOut;
+    bool inventoryOutExist = inventoryOuts != null && inventoryOuts.Count > 0;
+    var inventoryOutExt = new InventoryOutExtension();
+    var categories = (List<Category>)ViewBag.Categories;
+    var quantityTypes = (List<QuantityType>)ViewBag.QuantityTypes;
+    List<InventoryOutConfig> inventoryoutForCategory;
+    IEnumerable<Category> categoriesSelector;
+}
+<h2>@ViewBag.Title</h2>
+<div data-inset="true" data-role="collapsible-set" data-collapsed="true">
+    @foreach (var item in Model) {
+        <div data-role="collapsible">
+            <h2 class="display-field">
+                @item.Category : @item.InventoryQuantity
+            </h2>
+            @{
+                //categoriesSelector = new SelectList(inventoryOutExt.GetCategoriesExceptCurrent(categories, item.CategoryID), "CategoryID", "Category1");
+                categoriesSelector = inventoryOutExt.GetCategoriesExceptCurrent(categories, item.CategoryID);
+                var quantityTypesList2 = new SelectList(quantityTypes, "QuantityTypeID", "QtyType");
+            }
+            @using (Html.BeginForm("Add", "InventoryConfig", FormMethod.Post, new { @class = "leftover inventoryid-" + item.InventoryID, data_inventory = @item.InventoryID, @title = "Add this inventory out configuration." })) {
+                <hr />
+                <span class="Hidden-Inputs-Creator">
+                    @Html.Hidden("CategoryID", item.CategoryID)
+                    @Html.Hidden("InventoryOutConfigID", "")
+                </span>
+                <div class="ui-grid-d">
+                    <div class="ui-block-a">
+                        <select name="DiscardCategoryID" data-mini="true" data-inventory="@item.InventoryID" class="execute_dropdown DiscardCategoryID leftover" data-inventory-type="leftover" >
+                            @foreach (var discardCategory in categoriesSelector) {
+                                <option value="@discardCategory.CategoryID">@discardCategory.Category1</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="ui-block-b">
+                        <input  title="Please click on the check button to save." data-mini="true" class="leftover" name="Quantity" value="1" type="text" @*min="0.00" max="5000000"*@ data-inventory-type="leftover" />
+                    </div>
+                    <div class="ui-block-c">@Html.DropDownList("QuantityTypeID", quantityTypesList2, new { data_mini = "true", data_inventory = @item.InventoryID, @class = "execute_dropdown leftover", data_inventory_type = "leftover" })</div>
+                    <div class="ui-block-d">
+                        <div data-role="controlgroup" data-type="horizontal" data-mini="true" class="buttonCreatingPlace inventoryid-@item.InventoryID">
+                           
+                        </div>
+                    </div>
+                </div>
+                <!-- /grid-c -->
+            }
+            <div class="starting-point inventoryid-@item.InventoryID">
+                <div class="structure hide">
+                    <hr />
+                    <span class="Hidden-Inputs-Creator">
+                        
+                    </span>
+                    <div class="ui-grid-d">
+                        <div class="ui-block-a discardSelection">
+                            
+                        </div>
+                        <div class="ui-block-b quantityValue">
+                            
+                        </div>
+                        <div class="ui-block-c quantityType">
+                            
+                        </div>
+                        <div class="ui-block-d">
+                            <div data-role="controlgroup" data-type="horizontal" data-mini="true" class="buttonCreatingPlace inventoryid-@item.InventoryID">
+                           
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @if (inventoryOutExist) {
+                inventoryoutForCategory = inventoryOutExt.GetInvenoryOutByCategory(inventoryOuts, item.CategoryID);
+                foreach (var inventoryOutbyCategory in inventoryoutForCategory) {
+                    var quantityTypesList = new SelectList(quantityTypes, "QuantityTypeID", "QtyType", inventoryOutbyCategory.QtyType);
+
+                    using (Html.BeginForm("Save", "InventoryConfig", FormMethod.Post, new { @class = "saved inventoryid-" + item.InventoryID, data_inventory = @item.InventoryID })) {
+                    <hr />
+                    @Html.Hidden("CategoryID", inventoryOutbyCategory.CategoryID)
+                    @Html.Hidden("InventoryOutConfigID", inventoryOutbyCategory.InventoryOutConfigID)
+                    <div class="ui-grid-d">
+                        <div class="ui-block-a">
+                            <select name="DiscardCategoryID" data-mini="true" data-inventory="@item.InventoryID" class="execute_dropdown DiscardCategoryID" data-inventory-type="saved" >
+                                @foreach (var discardCategory in categoriesSelector) {
+                                    <option value="@discardCategory.CategoryID" @if (discardCategory.CategoryID == inventoryOutbyCategory.DiscardItemCategory) {<text>selected="selected"</text>}>@discardCategory.Category1</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="ui-block-b">
+                            <input title="Please click on the check button to save." data-mini="true" class="Quantity" name="Quantity" type="text" @*min="0.0000001" max="5000000"*@ data-inventory-type="saved" value="@inventoryOutbyCategory.PerSaleQuantity.ToString("########.##")" />
+                        </div>
+                        <div class="ui-block-c">@Html.DropDownList("QuantityTypeID", quantityTypesList, new { data_mini = "true", data_inventory = @item.InventoryID, @class = "execute_dropdown QuantityTypeID", data_inventory_type = "saved", value = inventoryOutbyCategory.QtyType })</div>
+                        <div class="ui-block-d">
+                            <div data-role="controlgroup" data-type="horizontal" data-mini="true">
+                                <input type="submit" class="clickedButtonOnInventoryOut save" data-role="button" data-icon="check" data-iconpos="notext" data-theme="j" />
+                                <input type="submit" class="clickedButtonOnInventoryOut remove" data-role="button" data-icon="delete" data-iconpos="notext" data-theme="g" />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /grid-c -->
+                    }
+                }
+            }
+        </div>
+    }
+</div>

@@ -1,0 +1,25 @@
+﻿@using JustFood.Modules.TimeZone
+@model SaleDayView
+@using (Html.BeginForm("Expense","Home")) {
+    <fieldset data-role="collapsible" data-theme="a" data-content-theme="c" data-collapsed="true">
+        <legend>Expense</legend>
+        @Html.Hidden("time", @Zone.GetTimeDynamic())
+        @Html.Hidden("SaleID", @Model.SaleID)
+
+        @Html.LabelFor(n => n.ExpenseSalesView.ExpenseCategoryID)
+        @Html.DropDownList("ExpenseCategoryID")
+        @Html.ValidationMessageFor(n => n.ExpenseSalesView.ExpenseCategoryID)
+       
+        @Html.LabelFor(n => n.ExpenseSalesView.Amount)
+        @Html.TextBox("Amount")
+        @Html.ValidationMessageFor(n => n.ExpenseSalesView.Amount)
+        
+        @Html.LabelFor(m => m.ExpenseSalesView.Note)
+        @Html.TextBox("Note")
+        @Html.ValidationMessageFor(m => m.ExpenseSalesView.Note)
+        <p>
+            <input type="submit" value="Expense" data-role="button" />
+        </p>
+    </fieldset>
+        
+}

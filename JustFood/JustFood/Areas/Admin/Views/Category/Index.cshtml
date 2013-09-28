@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Category>
+@{
+    ViewBag.Title = "Index";
+}
+<h2>
+    Index</h2>
+<p>
+    @Html.ActionLink("Create", "Create", "Category", null, new { data_role = "button" })
+</p>
+<table data-role="table" data-mode="columntoggle">
+    <thead>
+        <tr>
+            <th>
+                Category
+            </th>
+            <th>
+                Salable
+            </th>
+            <th>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Category item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category1)
+                </td>
+                <td>
+                    @Html.CheckBoxFor(modelItem => item.IsSalable)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.CategoryID })
+                    @if (User.Identity.IsAuthenticated) {
+                        <text>|</text>
+                        @Html.ActionLink("Delete", "Delete", new { id = item.CategoryID })
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+    @Html.ActionLink("Back", "Index", new { Controller = "Home" }, new { data_role = "button" })
+</div>

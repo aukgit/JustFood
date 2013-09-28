@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Code>
+@{
+    ViewBag.Title = "Index";
+}
+<h2>
+    Employee Codes</h2>
+<p>
+    @Html.ActionLink("Create New", "Create", null, new {data_role = "button"})
+</p>
+<ul data-role="listview" data-filter="true">
+    @foreach (Code item in Model) {
+        <li>
+            <div>
+                
+                <span>Code : @item.Code1</span> <br />
+           
+                <span>Is Owner : @item.IsOwner</span>  <br />
+        
+                <span>Is Admin : @item.IsAccessToAdmin</span>  <br />
+           
+                <span>Is Employee: @item.IsEmployee</span>  <br />
+           
+                <span>Salary: @item.Salary</span>  <br />
+          
+                <span>Percentage : @item.Percentage</span>
+                <div>
+                    @Html.ActionLink("Edit", "Edit", new {id = item.CodeID}, new {data_role = "button", data_inline = "true", data_mini = "true", data_corners = "false"})
+                    @Html.ActionLink("Delete", "Delete", new {id = item.CodeID}, new {data_role = "button", data_inline = "true", data_mini = "true", data_corners = "false"})
+                </div>
+            </div>
+        </li>
+    }
+</ul>
+@Html.ActionLink("Back", "Index", new {Controller = "Home"}, new {data_role = "button"})

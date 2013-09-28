@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Sale";
+}
+
+<h2>Sale</h2>
+
+
+<ul data-role="listview" data-inset="true">
+    <li data-role="list-divider">Reports</li>
+    <li>@Html.ActionLink("Today's Report", "Index", "Account")</li>
+    <li>@Html.ActionLink("Reports", "LogOff", "Reports")</li>
+    <li data-role="list-divider">Sale</li>
+    <li>@Html.ActionLink("Today's", "Today", "Home")</li>
+    <li>@Html.ActionLink("Yesterday's", "Create", "AccountBalance")</li>
+    <li>@Html.ActionLink("Day Before Yesterday", "Create", "Expense")</li>
+    <li>@Html.ActionLink("Week", "Create", "Expense")</li>
+    <li>@Html.ActionLink("All", "Create", "Expense")</li>
+    <li>@Html.ActionLink("Search", "Search", new {Controller = "AccountBalance"}, new {data_rel = "dialog", data_transition = "pop"})
+
+</ul>

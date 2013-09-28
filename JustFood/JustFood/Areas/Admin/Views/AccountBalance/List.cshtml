@@ -1,0 +1,107 @@
+﻿@model AccountBalanceMultiple
+@{
+    ViewBag.Title = "Balance List";
+    bool isSummary = false;
+    var summary = (IEnumerable<ViewSummaryAccountBalance>)ViewBag.Summary;
+    if (summary != null) {
+        isSummary = true;
+    }
+    string userName = ViewBag.Name;
+}
+@if (userName != null) {
+    <h2>
+        Filtered for @@@userName
+    </h2>
+} else {
+    <h2>
+        Account Balance
+    </h2>
+}
+<div data-role="content">
+    @Html.ActionLink("Add Balance", "Create", null, new { data_role = "button", data_mini = "true" })
+    @Html.ActionLink("Add Expense", "Create", "Expense", null, new { data_role = "button", data_mini = "true" })
+    @Html.ActionLink("Add Product", "Add", "Products", null, new { data_role = "button", data_mini = "true" })
+    @Html.ActionLink("Search", "Search", null, new { data_role = "button", data_rel = "dialog", data_transition = "pop", data_mini = "true" })
+    @if (@isSummary) {
+        <h2>
+            Summary
+        </h2>
+
+        <div data-role="collapsible-set" data-theme="a">
+            @foreach (ViewSummaryAccountBalance item in summary) {
+                if (item != null) {
+                    string theme = "a",
+                        cssStyle = "color:white;";
+                    if (item.Balance <= 0) {
+                        theme = "c";
+                        cssStyle = "color:rgb(112, 111, 111);";
+                    }
+
+                    <div data-role="collapsible" data-collapsed="true" data-theme="@theme" data-content-theme="@theme"> <h3> <span class="">@@@Html.ActionLink(@item.AccountOfLog, "FilterBy", new { id = @item.AccountOf }, new { style = cssStyle })
+                    <strong>@item.Balance</strong> </span> </h3> <span class="">Amount</span> <span class="">:</span> <span>@item.Balance</span> </div>
+                }
+            }
+        </div>
+    } else {
+        @Html.ActionLink("Back", "List", null, new { data_role = "button" })
+    }
+    <div data-role="collapsible-set">
+        @foreach (ViewAccountBalance item in Model.ViewAccountBalance) {
+            string theme = "c";
+            if (item.IsBoughtProduct) {
+                theme = "e";
+            }
+
+            <div data-role="collapsible" data-collapsed="true" data-mini="true" data-theme="@theme">
+                <h3>
+                    @if (!item.IsExpense) {
+                        @item.Amount
+                    } else {
+                        <span class="red">@item.Amount</span>
+                    }
+                    @@<span>@Html.ActionLink(@item.AccountOfLog, "FilterBy", new { id = @item.AccountOf })</span>
+                </h3>
+                <div>
+                    <div>
+                        <span class="">Amount</span> <span class="">:</span> <span class="bold">@item.AmountAbs</span>
+                    </div>
+                    <div>
+                        <span class="">Account Of</span> <span class="">:</span> <span>@Html.ActionLink(@item.AccountOfName, "FilterBy", new { user = @item.AccountOf })</span>
+                    </div>
+                    <div>
+                        <span class="">Added by</span> <span class="">:</span> <span>@Html.ActionLink(@item.AddedByLog, "FilterBy", new { user = @item.AddBy })</span>
+                    </div>
+                    <div>
+                        <span class="">Dated</span> <span class="">:</span> <span>@item.Dated.ToShortDateString()</span>
+                    </div>
+                    @if (item.IsBoughtProduct) {
+                        <div>
+                            <span class="">Product </span><span class="">:</span> <span class="bold red">@item.Category</span>
+                        </div>
+                        <div>
+                            <span class="">Product Quantity</span> <span class="">:</span> <span class="bold">@item.AddedQuantity</span>
+                        </div>
+                        <div>
+                            @Html.ActionLink("Details", "Details", new { Controller = "Inventory", id = @item.CategoryProduct }, new { data_role = "button", data_inline = "true" })
+                        </div>
+                    }
+                    @if (!String.IsNullOrWhiteSpace(item.Note)) {
+                        <div>
+                            <span class="">Notes</span> <span class="">:</span> <span>@item.Note</span>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+    @if (isSummary) {
+        <div data-role="footer" data-position="fixed" class="center">
+            <h2>
+                Total Balance: @ViewBag.Sum
+            </h2>
+        </div>
+        @Html.ActionLink("Back", "Index", null, new { data_role = "button" })
+    } else {
+        @Html.ActionLink("Back", "List", null, new { data_role = "button" })
+    }
+</div>

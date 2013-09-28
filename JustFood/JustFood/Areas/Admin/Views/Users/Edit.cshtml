@@ -1,0 +1,77 @@
+﻿@model User
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit @@ @Model.Name</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>User</legend>
+
+        @Html.HiddenFor(model => model.UserID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LogName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LogName)
+            @Html.ValidationMessageFor(model => model.LogName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+    
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Percentage)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Percentage)
+            @Html.ValidationMessageFor(model => model.Percentage)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Salary)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Salary)
+            @Html.ValidationMessageFor(model => model.Salary)
+        </div>
+
+        <div class="editor-field"  data-role="controlgroup">
+            @Html.LabelFor(model => model.IsEmployee)
+            @Html.EditorFor(model => model.IsEmployee)
+            @Html.ValidationMessageFor(model => model.IsEmployee)
+       
+            @Html.LabelFor(model => model.IsAccessToAdmin)
+            @Html.EditorFor(model => model.IsAccessToAdmin)
+            @Html.ValidationMessageFor(model => model.IsAccessToAdmin)
+            @Html.LabelFor(model => model.IsOwner)
+            @Html.EditorFor(model => model.IsOwner)
+            @Html.ValidationMessageFor(model => model.IsOwner)
+     
+        </div>
+
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

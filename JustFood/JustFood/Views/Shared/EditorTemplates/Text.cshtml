@@ -1,0 +1,7 @@
+﻿<span>
+@Html.TextBox("", ViewData.TemplateInfo.FormattedModelValue, new {@class = "text-box single-line", type = "text", data_inline="true"}) 
+<a data-inline="true" href="#popupInfo" data-rel="popup" data-role="button" class="ui-icon-alt" data-inline="true" data-transition="pop" data-icon="info" data-theme="e" data-iconpos="notext">Learn more</a>
+</span>
+<div data-role="popup" id="popupInfo" class="ui-content" data-theme="e" style="max-width:350px;">
+  <p>Here is a <strong>tiny popup</strong> being used like a tooltip. The text will wrap to multiple lines as needed.</p>
+</div>

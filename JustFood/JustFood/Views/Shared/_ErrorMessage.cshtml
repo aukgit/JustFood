@@ -1,0 +1,16 @@
+﻿@using JustFood.Modules.StaticContents
+@{
+    
+    
+    if (Statics.ErrorCollection.IsExist()) { 
+        <div class="Error-List">
+        <p>Please solve the following problems:</p>
+        <ul>
+            @foreach (var error in Statics.ErrorCollection.GetMessages()) {
+                <li>@error</li>
+            }
+        </ul>
+        </div>
+    }
+    Statics.ErrorCollection.Clear();
+}

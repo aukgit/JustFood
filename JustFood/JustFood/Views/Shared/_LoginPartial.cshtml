@@ -1,0 +1,8 @@
+﻿@if (Request.IsAuthenticated) {
+    @Html.ActionLink(User.Identity.Name, "Index", "Account", routeValues: new {Area = ""}, htmlAttributes: new {data_icon = "gear"})
+} else {
+    @Html.ActionLink("Log in", "Login", "Account", routeValues: new { Area = "" }, htmlAttributes: new { data_icon = "gear" })
+}
+
+
+@Html.ActionLink("Home", "Index", "Home", routeValues: new {Area = ""}, htmlAttributes: new {data_icon = "home", data_iconpos = "notext"})

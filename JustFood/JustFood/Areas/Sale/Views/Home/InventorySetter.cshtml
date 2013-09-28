@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Inventory>
+@{
+    ViewBag.Title = "Create";
+    var SaleID =  ViewBag.SaleID;
+}
+<h2>
+    Current Stock Amount</h2>
+@using (Html.BeginForm("InventorySetter", "Home", FormMethod.Post, new { id = "InventoryBox" })) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <hr />
+        <input type="hidden" value="@SaleID" name="SaleID"/>
+        @foreach (Inventory item in Model) {
+            string category = item.Category.Category1;
+            string fieldName = item.CategoryID.ToString();
+
+            if (item.Quantity > 0) { 
+            <div data-role="fieldcontain" class="@fieldName">
+                <label for="@fieldName">@category</label>
+                <input class="categoryInputs" type="range" name="@fieldName" placeholder="@category"
+                           data-highlight="true" value="@item.Quantity" min="0" max="@item.Quantity" step="1" data-rel=".@fieldName" />
+            </div>
+            }
+        }
+        <p>
+            <a href="javascript:void(0)" data-role="button" onclick="evaluateForm()" data-icon="check">
+                Check</a>
+            @Html.ActionLink("Back", "Index", new { Controller = "Home" }, new { data_role = "button",data_icon="arrow-l" })
+        </p>
+    </fieldset>
+}
+<script>
+    function evaluateForm() {
+        $(".categoryInputs").each(function () {
+            if ($(this).val() === $(this).attr("max")) {
+                var remove = $(this).attr("data-rel");
+                $(remove).remove();
+
+            }
+        });
+        $("#InventoryBox").submit();
+
+    }
+</script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

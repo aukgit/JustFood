@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    @Styles.Render("~/Content/mobileCss", "~/Content/css")
+    @Scripts.Render("~/bundles/jquery", "~/bundles/jquerymobile")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div data-role="page" data-theme="a" data-dom-cache="false">
+        <div data-role="header">
+            @if (IsSectionDefined("Header")) {
+                @RenderSection("Header")
+            } else {
+                <h1 title="Just Food">@ViewBag.Title</h1>
+                @Html.Partial("_LoginPartial")
+            }
+        </div>
+        <div data-role="content">
+            @Html.Partial("_TopMessage")
+            @Html.Partial("_ErrorMessage")
+            @RenderBody()
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).on("pagehide", function(e) {
+            $(e.target).remove();
+        });
+      
+    </script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

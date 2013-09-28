@@ -1,0 +1,35 @@
+﻿@model AccountBalanceSearch
+<div >
+    @using (Html.BeginForm()) {
+        @Html.ValidationSummary(true)
+
+        <fieldset>
+            <legend></legend>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Month)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Month)
+                @Html.ValidationMessageFor(model => model.Month)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Year)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Year)
+                @Html.ValidationMessageFor(model => model.Year)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.ByUser)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.ByUser)
+                @Html.ValidationMessageFor(model => model.ByUser)
+            </div>
+            <p>
+                <input type="submit" value="Search" data-role="button"  />
+                @Html.ActionLink("Current Month", "CurrentMonth", null, new {data_role = "button"})
+            </p>
+        </fieldset>
+    }
+</div>

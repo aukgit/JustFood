@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Inventory>
+@{
+    ViewBag.Title = "Start Business " + JustFood.Modules.TimeZone.Zone.GetCurrentDate();
+}
+<h2>
+    @ViewBag.Title
+</h2>
+@using (Html.BeginForm("Create", "Home", FormMethod.Post, new { id = "InventoryBox" })) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <hr />
+        <label for="Cash">
+            Cash:
+        </label>
+        <input name="Cash" value="" placeholder="Cash Changes In Hand" />
+        @Html.ValidationMessage("Cash")
+        <hr />
+        <p>
+            <input data-role="button" data-icon="save" type="submit" value="Start Business" />
+            @Html.ActionLink("Back", "Index", new { Controller = "Home" }, new { data_role = "button", data_icon="arrow-l"})
+        </p>
+    </fieldset>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
