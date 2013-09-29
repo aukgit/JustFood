@@ -21,15 +21,23 @@ namespace JustFood.Areas.Admin.Controllers {
             return View(inventorySalables);
         }
 
-        public void Add(int CategoryID, int DiscardCategoryID, decimal Quantity, byte QuantityTypeID) {
-            var inventoryOutConfig = new InventoryOutConfig() {
-                CategoryID = CategoryID,
-                DiscardItemCategory = DiscardCategoryID,
-                QtyType = QuantityTypeID,
-                PerSaleQuantity = Quantity
-            };
-            db.InventoryOutConfigs.Add(inventoryOutConfig);
-            db.SaveChanges();
+        public void Add(int inventoryId) {
+            var inventory = db.Inventories.Find(inventoryId);
+            if(inventory!=null){
+                var deductCategory = db.Categories.FirstOrDefault(n=> n.CategoryID != inventory.CategoryID);
+                var inventoryOutConfig = new InventoryOutConfig() {
+                    CategoryID = inventory.CategoryID, //category of that inventory
+                    DiscardItemCategory = deductCategory.CategoryID, //discarding category when item is sold. For say burguer category needs to deduct from breads.
+                    QtyType = deductCategory.QtyType,
+                    PerSaleQuantity = 0
+                };
+                db.InventoryOutConfigs.Add(inventoryOutConfig);
+                db.SaveChanges();
+
+            }
+
+
+           
 
         }
 

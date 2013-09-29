@@ -41,7 +41,7 @@
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="DevMVCComponent">
-      <HintPath>..\..\..\Year 2011\developers-organism\DevMVCComponent\bin\DevMVCComponent.dll</HintPath>
+      <HintPath>ExtraLibraries\DevMVCComponent.dll</HintPath>
     </Reference>
     <Reference Include="Elmah">
       <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
