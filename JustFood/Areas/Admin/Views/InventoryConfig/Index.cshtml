@@ -16,6 +16,17 @@
 }
 <h2>@ViewBag.Title</h2>
 <div data-inset="true" data-role="collapsible-set" data-collapsed="true" class="Inventory-Out-Config-Page">
+    <!-- Message to Display -->
+    <div id="message">
+        <div>
+            <strong>Note:</strong> There is no need to add config on items like Pepsi or Coca Cola.
+        </div>
+        <div>
+            This type of items will be deduct automatically.
+        </div>
+        Don't add recursive deduction config. It will force irrelevent result in your business.
+    </div>
+
     @foreach (var salableItems in Model) {
         categoriesSelector = inventoryOutExt.GetCategoriesExceptCurrent(categories, salableItems.CategoryID);
         var inventoryId = salableItems.InventoryID;
@@ -29,9 +40,10 @@
             
             <div class="starting-point inventoryid-@inventoryId">
                 <div class="structure">
-                    @using (Html.BeginForm("Save", "InventoryConfig", FormMethod.Post, new { data_inventory_id = @inventoryId, data_inventory_out_id = -1 })) {
+                    @using (Html.BeginForm("Save", "InventoryConfig", FormMethod.Post, new { data_inventory_id = @inventoryId,data_config_id=-1 })) {
                         <hr />
                         <span class="Hidden-Inputs-Creator">
+                            @Html.Hidden("InventoryId", @inventoryId)
                             @Html.Hidden("CategoryID", @salableItems.CategoryID)
                             @Html.Hidden("InventoryOutConfigID", -1)
                         </span>
@@ -58,8 +70,8 @@
                             </div>
                             <div class="ui-block-d buttonPlaces">
                                 <div data-role="controlgroup" data-type="horizontal" data-mini="true" class="buttonCreatingPlace inventoryid-@inventoryId">
-                                    <a href="@Url.Action("Save")" title="Save config." class="clickedButtonOnInventoryOut save needsChange" data-role="none"  data-new-role="button" data-icon="check" data-iconpos="notext" data-theme="j" data-inventory-id="@inventoryId">
-                                    </a><a href="@Url.Action("Remove")" title="Remove config." class="clickedButtonOnInventoryOut remove needsChange" data-role="none" data-new-role="button" data-icon="delete" data-iconpos="notext" data-theme="g" data-inventory-id="@inventoryId">
+                                    <a href="#" title="Save config." class="clickedButtonOnInventoryOut save needsChange" data-role="none"  data-new-role="button" data-icon="check" data-iconpos="notext" data-theme="j" data-inventory-id="@inventoryId" data-config-id="-1">
+                                    </a><a href="#" title="Remove config." class="clickedButtonOnInventoryOut remove needsChange" data-role="none" data-new-role="button" data-icon="delete" data-iconpos="notext" data-theme="g" data-inventory-id="@inventoryId" data-config-id="-1">
                                     </a>
                                 </div>
                             </div>
@@ -71,20 +83,24 @@
                 <!-- Inventory out config by salableItems.Category -->
                 inventoryOutListByCategory = inventoryOutExt.GetInvenoryOutByCategory(inventoryOuts, salableItems.CategoryID);
                 foreach (var inventoryOutConfigSingle in inventoryOutListByCategory) {
-                    using (Html.BeginForm("Save", "InventoryConfig", FormMethod.Post, new { data_inventory_id = @inventoryId, data_inventory_out_id = @inventoryOutConfigSingle.InventoryOutConfigID })) {
+                    var configId = inventoryOutConfigSingle.InventoryOutConfigID;
+                    using (Html.BeginForm("Save", "InventoryConfig", FormMethod.Post, new { data_inventory_id = @inventoryId,  data_config_id = configId })) {
                         <hr />
-                        @Html.Hidden("CategoryID", inventoryOutConfigSingle.CategoryID)
-                        @Html.Hidden("InventoryOutConfigID", inventoryOutConfigSingle.InventoryOutConfigID)
+                        <span class="Hidden-Inputs-Creator">        
+                            @Html.Hidden("InventoryId", @inventoryId)
+                            @Html.Hidden("CategoryID", inventoryOutConfigSingle.CategoryID)
+                            @Html.Hidden("InventoryOutConfigID", configId)
+                        </span>
                         <div class="ui-grid-d">
                             <div class="ui-block-a">
                                 <select name="DiscardCategoryID" data-mini="true" >
                                     @foreach (var discardCategory in categoriesSelector) {
-                                        <option value="@discardCategory.CategoryID" @if (discardCategory.CategoryID == inventoryOutConfigSingle.DiscardItemCategory) {<text>selected="selected"</text>}>@discardCategory.Category1</option>
+                                        <option  value="@discardCategory.CategoryID" @if (discardCategory.CategoryID == inventoryOutConfigSingle.DiscardItemCategory) {<text>selected="selected"</text>}>@discardCategory.Category1</option>
                                     }
                                 </select>
                             </div>
                             <div class="ui-block-b">
-                                <input title="Please click on the check button to save." data-mini="true" value="@inventoryOutConfigSingle.PerSaleQuantity.ToString("########.##")" />
+                                <input name="Quantity" title="Please click on the check button to save." data-mini="true" value="@inventoryOutConfigSingle.PerSaleQuantity.ToString("########.##")" />
                             </div>
                             <div class="ui-block-c">
                                 <select name="QuantityTypeID" data-mini="true"  >
@@ -95,8 +111,8 @@
                             </div>
                             <div class="ui-block-d">
                                 <div data-role="controlgroup" data-type="horizontal" data-mini="true">
-                                    <a data-inventory-id="@inventoryId" href="@Url.Action("Save")" title="Save config." class="clickedButtonOnInventoryOut save" data-role="button"  data-icon="check" data-iconpos="notext" data-theme="j" >
-                                    </a><a data-inventory-id="@inventoryId" href="@Url.Action("Remove", new { Controller = "InventoryConfig", InventoryOutConfigID = @inventoryOutConfigSingle.InventoryOutConfigID })" title="Remove config." class="clickedButtonOnInventoryOut remove" data-role="button" data-icon="delete" data-iconpos="notext" data-theme="g" >
+                                    <a data-inventory-id="@inventoryId" data-config-id="@configId" href="#" title="Save config." class="clickedButtonOnInventoryOut save" data-role="button"  data-icon="check" data-iconpos="notext" data-theme="j" ></a>
+                                    <a data-inventory-id="@inventoryId" data-config-id="@configId" href="#" title="Remove config." class="clickedButtonOnInventoryOut remove" data-role="button" data-icon="delete" data-iconpos="notext" data-theme="g" >
                                     </a>
                                 </div>
                             </div>

@@ -201,6 +201,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Controllers\TestingController.cs" />
+    <Compile Include="Models\Custom\InventoryOutConfigViewDisplay.cs" />
     <Compile Include="Modules\AppConfig.cs" />
     <Compile Include="Modules\Extensions\InventoryExtension.cs" />
     <Compile Include="Modules\Extensions\InventoryOutExtension.cs" />

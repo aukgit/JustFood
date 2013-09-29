@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using JustFood.Models;
+using JustFood.Models.Custom;
 
 namespace JustFood.Areas.Admin.Controllers {
     public class InventoryConfigController : Controller {
@@ -21,8 +22,8 @@ namespace JustFood.Areas.Admin.Controllers {
             return View(inventorySalables);
         }
 
-        public void Add(int inventoryId) {
-            var inventory = db.Inventories.Find(inventoryId);
+        public JsonResult Add(InventoryOutConfigViewDisplay inventoryDisplay) {
+            var inventory = db.Inventories.Find(inventoryDisplay.InventoryID);
             if(inventory!=null){
                 var deductCategory = db.Categories.FirstOrDefault(n=> n.CategoryID != inventory.CategoryID);
                 var inventoryOutConfig = new InventoryOutConfig() {
@@ -33,28 +34,18 @@ namespace JustFood.Areas.Admin.Controllers {
                 };
                 db.InventoryOutConfigs.Add(inventoryOutConfig);
                 db.SaveChanges();
-
-            }
-
-
-           
+            }           
 
         }
 
-        public void Save(int? InventoryOutConfigID, int? CategoryID, int? DiscardCategoryID, decimal? Quantity, byte ?QuantityTypeID) {
-            //var inventoryOutConfig = db.InventoryOutConfigs.Find(InventoryOutConfigID);
+        public JsonResult Save(InventoryOutConfigViewDisplay inventoryDisplay) {
+            if (inventoryDisplay.IsDatabaseInsert) {
+                return Add(inventoryDisplay);
+            }       
+        }
 
-            //if (inventoryOutConfig != null) {
-            //    inventoryOutConfig.CategoryID = CategoryID;
-            //    inventoryOutConfig.DiscardItemCategory = DiscardCategoryID;
-            //    inventoryOutConfig.QtyType = QuantityTypeID;
-            //    inventoryOutConfig.PerSaleQuantity = Quantity;
-
-            //    db.SaveChanges();
-            //} else {
-            //    throw new Exception("Record not found.");
-            //}
-
+        public void Remove(InventoryOutConfigViewDisplay inventoryDisplay) {
+        
         }
 
 
