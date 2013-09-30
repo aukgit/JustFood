@@ -39,7 +39,7 @@
             <a href="#" title="Add new config." data-role="button" class="AddConfig" data-inventory-id="@inventoryId">Add Config</a>
             
             <div class="starting-point inventoryid-@inventoryId">
-                <div class="structure">
+                <div class="structure hide">
                     @using (Html.BeginForm("Save", "InventoryConfig", FormMethod.Post, new { data_inventory_id = @inventoryId,data_config_id=-1 })) {
                         <hr />
                         <span class="Hidden-Inputs-Creator">
@@ -78,6 +78,9 @@
                         </div>
                     }
                 </div>
+                <div class="addObjects-here">
+                
+                </div>
             </div>
             @if (inventoryOutExist) {
                 <!-- Inventory out config by salableItems.Category -->
@@ -103,7 +106,7 @@
                                 <input name="Quantity" title="Please click on the check button to save." data-mini="true" value="@inventoryOutConfigSingle.PerSaleQuantity.ToString("########.##")" />
                             </div>
                             <div class="ui-block-c">
-                                <select name="QuantityTypeID" data-mini="true"  >
+                                <select name="QuantityTypeID" data-mini="true">
                                     @foreach (var quantitytype in quantityTypes) {
                                         <option value="@quantitytype.QuantityTypeID" @if (inventoryOutConfigSingle.QtyType == quantitytype.QuantityTypeID) { <text>selected="selected"</text> }>@quantitytype.QtyType</option>
                                     }

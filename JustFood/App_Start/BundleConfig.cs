@@ -18,7 +18,7 @@ namespace JustFood {
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include("~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/jquerymobile").Include(
-                "~/Scripts/jquery.mobile*"
+                "~/Scripts/jquery.mobile-1.3.2.min.js"
             ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css"));

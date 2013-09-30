@@ -3,7 +3,7 @@
     ViewBag.Title = "Index";
 }
 <h2>
-    Index</h2>
+    Category</h2>
 <p>
     @Html.ActionLink("Create", "Create", "Category", null, new { data_role = "button" })
 </p>
@@ -17,6 +17,9 @@
                 Salable
             </th>
             <th>
+                Type
+            </th>
+            <th>
             </th>
         </tr>
     </thead>
@@ -28,6 +31,9 @@
                 </td>
                 <td>
                     @Html.CheckBoxFor(modelItem => item.IsSalable)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuantityType.QtyType)
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.CategoryID })

@@ -22,7 +22,6 @@ namespace JustFood.Modules.UserError {
             public string Message { get; set; }
             [Required]
             public ErrorType Type { get; set; }
-
         }
 
         /// <summary>
@@ -46,39 +45,42 @@ namespace JustFood.Modules.UserError {
         /// </summary>
         /// <param name="msg">set your message.</param>
         /// <param name="quantityTypeIsNotValidPleaseSelectAValidQuantityType"></param>
-        public void Add(string msg, string quantityTypeIsNotValidPleaseSelectAValidQuantityType) {
+        public int Add(string msg, string quantityTypeIsNotValidPleaseSelectAValidQuantityType) {
             var error = new BasicError() {
                 OrderID = orderIncrementer++,
                 Message = msg,
                 Type = ErrorType.Low
             };
             errors.Add(error);
+            return error.OrderID;
         }
 
         /// <summary>
         /// add error message with high priority
         /// </summary>
         /// <param name="msg">set your message.</param>
-        public void AddHigh(string msg) {
+        public int AddHigh(string msg) {
             var error = new BasicError() {
                 OrderID = orderIncrementer++,
                 Message = msg,
                 Type = ErrorType.High
             };
             errors.Add(error);
+            return error.OrderID;
         }
 
         /// <summary>
         /// add error message with medium priority
         /// </summary>
         /// <param name="msg">set your message.</param>
-        public void AddMedium(string msg) {
+        public int AddMedium(string msg) {
             var error = new BasicError() {
                 OrderID = orderIncrementer++,
                 Message = msg,
                 Type = ErrorType.Medium
             };
             errors.Add(error);
+            return error.OrderID;
         }
 
         /// <summary>
@@ -86,26 +88,28 @@ namespace JustFood.Modules.UserError {
         /// </summary>
         /// <param name="msg">set your message.</param>
         /// <param name="type">Type of your error message.</param>
-        public void Add(string msg) {
+        public int Add(string msg) {
             var error = new BasicError() {
                 OrderID = orderIncrementer++,
                 Message = msg,
                 Type = ErrorType.Low
             };
             errors.Add(error);
+            return error.OrderID;
         }
         /// <summary>
         /// add error message with given priority
         /// </summary>
         /// <param name="msg">set your message.</param>
         /// <param name="type">Type of your error message.</param>
-        public void Add(string msg, ErrorType type) {
+        public int Add(string msg, ErrorType type) {
             var error = new BasicError() {
                 OrderID = orderIncrementer++,
                 Message = msg,
                 Type = type
             };
             errors.Add(error);
+            return error.OrderID;
         }
 
         /// <summary>
@@ -123,6 +127,20 @@ namespace JustFood.Modules.UserError {
         /// <returns>Returns all error message as Error Object.</returns>
         public List<BasicError> GetErrors() {
             return errors.ToList();
+        }
+
+        public void Remove(int OrderID) {
+            var error = errors.FirstOrDefault(n => n.OrderID == OrderID);
+            if (error != null) {
+                errors.Remove(error);
+            }
+        }
+
+        public void Remove(string Message) {
+            var error = errors.FirstOrDefault(n => n.Message == Message);
+            if (error != null) {
+                errors.Remove(error);
+            }
         }
 
         /// <summary>

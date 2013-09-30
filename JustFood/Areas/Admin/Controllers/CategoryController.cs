@@ -2,17 +2,22 @@
 using System.Linq;
 using System.Web.Mvc;
 using JustFood.Models;
-
+using System.Data.Entity;
 namespace JustFood.Areas.Admin.Controllers {
     public class CategoryController : Controller {
         private readonly JustFoodDBEntities db = new JustFoodDBEntities();
 
-       void GetDropDowns() {
-           ViewBag.QtyType = new SelectList(db.QuantityTypes.ToList(), "QuantityTypeID", "QtyType");
-       }
+        void GetDropDowns(Category category = null) {
+            if (category != null) {
+                ViewBag.QtyType = new SelectList(db.QuantityTypes.ToList(), "QuantityTypeID", "QtyType",category.QtyType);
+                
+            } else {
+                ViewBag.QtyType = new SelectList(db.QuantityTypes.ToList(), "QuantityTypeID", "QtyType");
+            }
+        }
 
         public ActionResult Index() {
-            return View(db.Categories.ToList());
+            return View(db.Categories.Include(n => n.QuantityType).ToList());
         }
 
         public ActionResult Create() {
@@ -27,7 +32,7 @@ namespace JustFood.Areas.Admin.Controllers {
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            GetDropDowns();
+            GetDropDowns(category);
             return View(category);
         }
 
@@ -39,7 +44,7 @@ namespace JustFood.Areas.Admin.Controllers {
             if (category == null) {
                 return HttpNotFound();
             }
-            GetDropDowns();
+            GetDropDowns(category);
             return View(category);
         }
 
@@ -54,6 +59,7 @@ namespace JustFood.Areas.Admin.Controllers {
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            GetDropDowns(category);
             return View(category);
         }
 

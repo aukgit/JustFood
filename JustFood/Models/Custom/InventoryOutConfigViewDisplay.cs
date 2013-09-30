@@ -33,7 +33,7 @@ namespace JustFood.Models.Custom {
         /// It should be validated before saving to the database.
         /// Connection with database's [QtyType] field.
         /// </summary>
-        public decimal QuantityTypeID { get; set; }
+        public byte QuantityTypeID { get; set; }
 
         /// <summary>
         /// Inventory config id to detect it is saved before or not.
