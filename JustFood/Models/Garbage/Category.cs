@@ -32,6 +32,7 @@ namespace JustFood.Models
         public bool IsExpense { get; set; }
         public byte QtyType { get; set; }
         public bool IsRelatedToSalary { get; set; }
+        public Nullable<bool> IsMonthlyLedger { get; set; }
     
         public virtual ICollection<AccountBalance> AccountBalances { get; set; }
         public virtual QuantityType QuantityType { get; set; }

@@ -20,6 +20,7 @@
           <EntitySet Name="InventoryOutConfig" EntityType="JustFoodDBModel.Store.InventoryOutConfig" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Notification" EntityType="JustFoodDBModel.Store.Notification" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="NotificationSeen" EntityType="JustFoodDBModel.Store.NotificationSeen" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="NotificationSpecific" EntityType="JustFoodDBModel.Store.NotificationSpecific" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="QuantityConversation" EntityType="JustFoodDBModel.Store.QuantityConversation" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="QuantityType" EntityType="JustFoodDBModel.Store.QuantityType" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Requisition" EntityType="JustFoodDBModel.Store.Requisition" store:Type="Tables" Schema="dbo" />
@@ -208,6 +209,10 @@
             <End Role="User" EntitySet="User" />
             <End Role="NotificationSeen" EntitySet="NotificationSeen" />
           </AssociationSet>
+          <AssociationSet Name="FK_NotificationSpecific_Notification" Association="JustFoodDBModel.Store.FK_NotificationSpecific_Notification">
+            <End Role="Notification" EntitySet="Notification" />
+            <End Role="NotificationSpecific" EntitySet="NotificationSpecific" />
+          </AssociationSet>
           <AssociationSet Name="FK_QuantityConversation_QuantityType" Association="JustFoodDBModel.Store.FK_QuantityConversation_QuantityType">
             <End Role="QuantityType" EntitySet="QuantityType" />
             <End Role="QuantityConversation" EntitySet="QuantityConversation" />
@@ -267,6 +272,7 @@
           <Property Name="IsExpense" Type="bit" Nullable="false" />
           <Property Name="QtyType" Type="tinyint" Nullable="false" />
           <Property Name="IsRelatedToSalary" Type="bit" Nullable="false" />
+          <Property Name="IsMonthlyLedger" Type="bit" />
         </EntityType>
         <EntityType Name="CategoryWiseSold">
           <Key>
@@ -415,6 +421,14 @@
           <Property Name="SeenAt" Type="smalldatetime" Nullable="false" />
           <Property Name="IsSeen" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="NotificationSpecific">
+          <Key>
+            <PropertyRef Name="NotificationSpecificID" />
+          </Key>
+          <Property Name="NotificationSpecificID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="NotificationID" Type="bigint" Nullable="false" />
+        </EntityType>
         <EntityType Name="QuantityConversation">
           <Key>
             <PropertyRef Name="QuantityConversationID" />
@@ -516,7 +530,7 @@
           <Property Name="Editable" Type="bit" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-      warning 6002: The table/view 'E:\WORKING\DEVELOPERS ORGANISM\YEAR 2013\JUSTFOOD\JUSTFOOD\APP_DATA\JUSTFOODDB.MDF.dbo.ViewAccountBalance' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'C:\USERS\ALIM\DOCUMENTS\GITHUB\JUSTFOOD\JUSTFOOD\APP_DATA\JUSTFOODDB.MDF.dbo.ViewAccountBalance' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
         <EntityType Name="ViewAccountBalance">
           <Key>
@@ -547,7 +561,7 @@
           <Property Name="AmountAbs" Type="float" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-      warning 6002: The table/view 'E:\WORKING\DEVELOPERS ORGANISM\YEAR 2013\JUSTFOOD\JUSTFOOD\APP_DATA\JUSTFOODDB.MDF.dbo.ViewInventoryIn' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'C:\USERS\ALIM\DOCUMENTS\GITHUB\JUSTFOOD\JUSTFOOD\APP_DATA\JUSTFOODDB.MDF.dbo.ViewInventoryIn' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
         <EntityType Name="ViewInventoryIn">
           <Key>
@@ -559,7 +573,7 @@
           <Property Name="Category" Type="varchar" MaxLength="30" />
         </EntityType>
         <!--Errors Found During Generation:
-      warning 6002: The table/view 'E:\WORKING\DEVELOPERS ORGANISM\YEAR 2013\JUSTFOOD\JUSTFOOD\APP_DATA\JUSTFOODDB.MDF.dbo.ViewInventoryInOutSummary' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'C:\USERS\ALIM\DOCUMENTS\GITHUB\JUSTFOOD\JUSTFOOD\APP_DATA\JUSTFOODDB.MDF.dbo.ViewInventoryInOutSummary' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
         <EntityType Name="ViewInventoryInOutSummary">
           <Key>
@@ -571,7 +585,7 @@
           <Property Name="ProductLeft" Type="decimal" Precision="38" Scale="10" />
         </EntityType>
         <!--Errors Found During Generation:
-      warning 6002: The table/view 'E:\WORKING\DEVELOPERS ORGANISM\YEAR 2013\JUSTFOOD\JUSTFOOD\APP_DATA\JUSTFOODDB.MDF.dbo.ViewInventoryOut' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'C:\USERS\ALIM\DOCUMENTS\GITHUB\JUSTFOOD\JUSTFOOD\APP_DATA\JUSTFOODDB.MDF.dbo.ViewInventoryOut' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
         <EntityType Name="ViewInventoryOut">
           <Key>
@@ -582,7 +596,7 @@
           <Property Name="Category" Type="varchar" MaxLength="30" />
         </EntityType>
         <!--Errors Found During Generation:
-      warning 6002: The table/view 'E:\WORKING\DEVELOPERS ORGANISM\YEAR 2013\JUSTFOOD\JUSTFOOD\APP_DATA\JUSTFOODDB.MDF.dbo.ViewInventorySalables' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'C:\USERS\ALIM\DOCUMENTS\GITHUB\JUSTFOOD\JUSTFOOD\APP_DATA\JUSTFOODDB.MDF.dbo.ViewInventorySalables' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
         <EntityType Name="ViewInventorySalables">
           <Key>
@@ -598,7 +612,7 @@
           <Property Name="Category" Type="varchar" MaxLength="30" />
         </EntityType>
         <!--Errors Found During Generation:
-      warning 6002: The table/view 'E:\WORKING\DEVELOPERS ORGANISM\YEAR 2013\JUSTFOOD\JUSTFOOD\APP_DATA\JUSTFOODDB.MDF.dbo.ViewSummaryAccountBalance' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'C:\USERS\ALIM\DOCUMENTS\GITHUB\JUSTFOOD\JUSTFOOD\APP_DATA\JUSTFOODDB.MDF.dbo.ViewSummaryAccountBalance' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
         <EntityType Name="ViewSummaryAccountBalance">
           <Key>
@@ -611,7 +625,7 @@
           <Property Name="AccountOf" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
-      warning 6002: The table/view 'E:\WORKING\DEVELOPERS ORGANISM\YEAR 2013\JUSTFOOD\JUSTFOOD\APP_DATA\JUSTFOODDB.MDF.dbo.ViewSummarySales' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'C:\USERS\ALIM\DOCUMENTS\GITHUB\JUSTFOOD\JUSTFOOD\APP_DATA\JUSTFOODDB.MDF.dbo.ViewSummarySales' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
         <EntityType Name="ViewSummarySales">
           <Key>
@@ -952,6 +966,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_NotificationSpecific_Notification">
+          <End Role="Notification" Type="JustFoodDBModel.Store.Notification" Multiplicity="1" />
+          <End Role="NotificationSpecific" Type="JustFoodDBModel.Store.NotificationSpecific" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Notification">
+              <PropertyRef Name="NotificationID" />
+            </Principal>
+            <Dependent Role="NotificationSpecific">
+              <PropertyRef Name="NotificationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_QuantityConversation_QuantityType">
           <End Role="QuantityType" Type="JustFoodDBModel.Store.QuantityType" Multiplicity="1" />
           <End Role="QuantityConversation" Type="JustFoodDBModel.Store.QuantityConversation" Multiplicity="*" />
@@ -1056,6 +1082,7 @@
           <EntitySet Name="InventoryOutConfigs" EntityType="JustFoodDBModel.InventoryOutConfig" />
           <EntitySet Name="Notifications" EntityType="JustFoodDBModel.Notification" />
           <EntitySet Name="NotificationSeens" EntityType="JustFoodDBModel.NotificationSeen" />
+          <EntitySet Name="NotificationSpecifics" EntityType="JustFoodDBModel.NotificationSpecific" />
           <EntitySet Name="QuantityConversations" EntityType="JustFoodDBModel.QuantityConversation" />
           <EntitySet Name="QuantityTypes" EntityType="JustFoodDBModel.QuantityType" />
           <EntitySet Name="Requisitions" EntityType="JustFoodDBModel.Requisition" />
@@ -1175,6 +1202,10 @@
             <End Role="Notification" EntitySet="Notifications" />
             <End Role="NotificationSeen" EntitySet="NotificationSeens" />
           </AssociationSet>
+          <AssociationSet Name="FK_NotificationSpecific_Notification" Association="JustFoodDBModel.FK_NotificationSpecific_Notification">
+            <End Role="Notification" EntitySet="Notifications" />
+            <End Role="NotificationSpecific" EntitySet="NotificationSpecifics" />
+          </AssociationSet>
           <AssociationSet Name="FK_NotificationSeen_User" Association="JustFoodDBModel.FK_NotificationSeen_User">
             <End Role="User" EntitySet="Users" />
             <End Role="NotificationSeen" EntitySet="NotificationSeens" />
@@ -1242,6 +1273,7 @@
           <Property Type="Boolean" Name="IsExpense" Nullable="false" />
           <Property Type="Byte" Name="QtyType" Nullable="false" />
           <Property Type="Boolean" Name="IsRelatedToSalary" Nullable="false" />
+          <Property Type="Boolean" Name="IsMonthlyLedger" />
           <NavigationProperty Name="AccountBalances" Relationship="JustFoodDBModel.FK_AccountBalance_Category" FromRole="Category" ToRole="AccountBalance" />
           <NavigationProperty Name="QuantityType" Relationship="JustFoodDBModel.FK_Category_QuantityType" FromRole="Category" ToRole="QuantityType" />
           <NavigationProperty Name="CategoryWiseSolds" Relationship="JustFoodDBModel.FK_CategoryWiseSold_Category" FromRole="Category" ToRole="CategoryWiseSold" />
@@ -1409,6 +1441,7 @@
           <Property Type="Boolean" Name="IsForSpecificUsersOnly" Nullable="false" />
           <NavigationProperty Name="User" Relationship="JustFoodDBModel.FK_Notification_User" FromRole="Notification" ToRole="User" />
           <NavigationProperty Name="NotificationSeens" Relationship="JustFoodDBModel.FK_NotificationSeen_Notification" FromRole="Notification" ToRole="NotificationSeen" />
+          <NavigationProperty Name="NotificationSpecifics" Relationship="JustFoodDBModel.FK_NotificationSpecific_Notification" FromRole="Notification" ToRole="NotificationSpecific" />
         </EntityType>
         <EntityType Name="NotificationSeen">
           <Key>
@@ -1421,6 +1454,15 @@
           <Property Type="Boolean" Name="IsSeen" Nullable="false" />
           <NavigationProperty Name="Notification" Relationship="JustFoodDBModel.FK_NotificationSeen_Notification" FromRole="NotificationSeen" ToRole="Notification" />
           <NavigationProperty Name="User" Relationship="JustFoodDBModel.FK_NotificationSeen_User" FromRole="NotificationSeen" ToRole="User" />
+        </EntityType>
+        <EntityType Name="NotificationSpecific">
+          <Key>
+            <PropertyRef Name="NotificationSpecificID" />
+          </Key>
+          <Property Type="Guid" Name="NotificationSpecificID" Nullable="false" />
+          <Property Type="Int32" Name="UserID" Nullable="false" />
+          <Property Type="Int64" Name="NotificationID" Nullable="false" />
+          <NavigationProperty Name="Notification" Relationship="JustFoodDBModel.FK_NotificationSpecific_Notification" FromRole="NotificationSpecific" ToRole="Notification" />
         </EntityType>
         <EntityType Name="QuantityConversation">
           <Key>
@@ -1958,6 +2000,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_NotificationSpecific_Notification">
+          <End Type="JustFoodDBModel.Notification" Role="Notification" Multiplicity="1" />
+          <End Type="JustFoodDBModel.NotificationSpecific" Role="NotificationSpecific" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Notification">
+              <PropertyRef Name="NotificationID" />
+            </Principal>
+            <Dependent Role="NotificationSpecific">
+              <PropertyRef Name="NotificationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_NotificationSeen_User">
           <End Type="JustFoodDBModel.User" Role="User" Multiplicity="1" />
           <End Type="JustFoodDBModel.NotificationSeen" Role="NotificationSeen" Multiplicity="*" />
@@ -2085,6 +2139,7 @@
           <EntitySetMapping Name="Categories">
             <EntityTypeMapping TypeName="JustFoodDBModel.Category">
               <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="IsMonthlyLedger" ColumnName="IsMonthlyLedger" />
                 <ScalarProperty Name="IsRelatedToSalary" ColumnName="IsRelatedToSalary" />
                 <ScalarProperty Name="QtyType" ColumnName="QtyType" />
                 <ScalarProperty Name="IsExpense" ColumnName="IsExpense" />
@@ -2249,6 +2304,15 @@
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="NotificationID" ColumnName="NotificationID" />
                 <ScalarProperty Name="NotificationSeenID" ColumnName="NotificationSeenID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NotificationSpecifics">
+            <EntityTypeMapping TypeName="JustFoodDBModel.NotificationSpecific">
+              <MappingFragment StoreEntitySet="NotificationSpecific">
+                <ScalarProperty Name="NotificationID" ColumnName="NotificationID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="NotificationSpecificID" ColumnName="NotificationSpecificID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2468,317 +2532,333 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="JustFoodModel" ZoomLevel="92">
-        <EntityTypeShape EntityType="JustFoodDBModel.AccountBalance" Width="1.5" PointX="5.25" PointY="19.125" Height="4.6725065104166674" />
-        <EntityTypeShape EntityType="JustFoodDBModel.Category" Width="1.5" PointX="3" PointY="8.5" Height="3.9033007812500102" />
-        <EntityTypeShape EntityType="JustFoodDBModel.CategoryWiseSold" Width="1.5" PointX="8.25" PointY="10.125" Height="2.1725878906250102" />
+        <EntityTypeShape EntityType="JustFoodDBModel.AccountBalance" Width="1.5" PointX="5.25" PointY="19.875" Height="4.6725065104166674" />
+        <EntityTypeShape EntityType="JustFoodDBModel.Category" Width="1.5" PointX="3" PointY="9.125" Height="4.0956022135416674" />
+        <EntityTypeShape EntityType="JustFoodDBModel.CategoryWiseSold" Width="1.5" PointX="8.25" PointY="10.875" Height="2.1725878906250102" />
         <EntityTypeShape EntityType="JustFoodDBModel.Code" Width="1.5" PointX="0.75" PointY="0.75" Height="2.7494921875000102" />
-        <EntityTypeShape EntityType="JustFoodDBModel.Config" Width="1.5" PointX="3" PointY="13.5" Height="3.7109993489583246" />
-        <EntityTypeShape EntityType="JustFoodDBModel.DailyStock" Width="1.5" PointX="11.25" PointY="10.125" Height="2.3648893229166674" />
-        <EntityTypeShape EntityType="JustFoodDBModel.DetailedSale" Width="1.5" PointX="8.25" PointY="19.25" Height="4.2879036458333246" />
-        <EntityTypeShape EntityType="JustFoodDBModel.Inventory" Width="1.5" PointX="5.25" PointY="15" Height="2.7494921875000102" />
-        <EntityTypeShape EntityType="JustFoodDBModel.InventoryIn" Width="1.5" PointX="5.25" PointY="24.875" Height="3.1340950520833246" />
-        <EntityTypeShape EntityType="JustFoodDBModel.InventoryOut" Width="1.5" PointX="8.25" PointY="5.625" Height="3.7109993489583388" />
-        <EntityTypeShape EntityType="JustFoodDBModel.InventoryOutConfig" Width="1.5" PointX="5.25" PointY="5.125" Height="2.5571907552083246" />
-        <EntityTypeShape EntityType="JustFoodDBModel.Notification" Width="1.5" PointX="5.25" PointY="35.75" Height="3.5186979166666674" />
-        <EntityTypeShape EntityType="JustFoodDBModel.NotificationSeen" Width="1.5" PointX="7.5" PointY="27.75" Height="2.3648893229166674" />
-        <EntityTypeShape EntityType="JustFoodDBModel.QuantityConversation" Width="1.5" PointX="3" PointY="5.5" Height="2.1725878906250102" />
-        <EntityTypeShape EntityType="JustFoodDBModel.QuantityType" Width="1.5" PointX="0.75" PointY="8.75" Height="3.3263964843750102" />
-        <EntityTypeShape EntityType="JustFoodDBModel.Requisition" Width="1.5" PointX="8.25" PointY="14.75" Height="3.3263964843750102" />
-        <EntityTypeShape EntityType="JustFoodDBModel.SalaryPaid" Width="1.5" PointX="5.25" PointY="44.125" Height="2.7494921874999818" />
-        <EntityTypeShape EntityType="JustFoodDBModel.Sale" Width="1.5" PointX="6" PointY="8.875" Height="5.0571093749999818" />
-        <EntityTypeShape EntityType="JustFoodDBModel.TimeZone" Width="1.5" PointX="0.75" PointY="18.25" Height="1.9802864583333246" />
-        <EntityTypeShape EntityType="JustFoodDBModel.User" Width="1.5" PointX="3" PointY="18.625" Height="5.6340136718749818" />
+        <EntityTypeShape EntityType="JustFoodDBModel.Config" Width="1.5" PointX="3" PointY="14.125" Height="3.7109993489583246" />
+        <EntityTypeShape EntityType="JustFoodDBModel.DailyStock" Width="1.5" PointX="11.25" PointY="10.875" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="JustFoodDBModel.DetailedSale" Width="1.5" PointX="8.25" PointY="20" Height="4.2879036458333246" />
+        <EntityTypeShape EntityType="JustFoodDBModel.Inventory" Width="1.5" PointX="5.25" PointY="15.75" Height="2.7494921875000102" />
+        <EntityTypeShape EntityType="JustFoodDBModel.InventoryIn" Width="1.5" PointX="5.25" PointY="25.625" Height="3.1340950520833246" />
+        <EntityTypeShape EntityType="JustFoodDBModel.InventoryOut" Width="1.5" PointX="8.25" PointY="6.375" Height="3.7109993489583388" />
+        <EntityTypeShape EntityType="JustFoodDBModel.InventoryOutConfig" Width="1.5" PointX="5.25" PointY="5.875" Height="2.5571907552083246" />
+        <EntityTypeShape EntityType="JustFoodDBModel.Notification" Width="1.5" PointX="5.25" PointY="36.375" Height="3.7109993489583246" />
+        <EntityTypeShape EntityType="JustFoodDBModel.NotificationSeen" Width="1.5" PointX="7.5" PointY="28.625" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="JustFoodDBModel.NotificationSpecific" Width="1.5" PointX="7.5" PointY="40.5" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="JustFoodDBModel.QuantityConversation" Width="1.5" PointX="3" PointY="6.25" Height="2.1725878906250102" />
+        <EntityTypeShape EntityType="JustFoodDBModel.QuantityType" Width="1.5" PointX="0.75" PointY="9.5" Height="3.3263964843750102" />
+        <EntityTypeShape EntityType="JustFoodDBModel.Requisition" Width="1.5" PointX="8.25" PointY="15.5" Height="3.3263964843749818" />
+        <EntityTypeShape EntityType="JustFoodDBModel.SalaryPaid" Width="1.5" PointX="5.25" PointY="45" Height="2.7494921874999818" />
+        <EntityTypeShape EntityType="JustFoodDBModel.Sale" Width="1.5" PointX="6" PointY="9.625" Height="5.0571093749999818" />
+        <EntityTypeShape EntityType="JustFoodDBModel.TimeZone" Width="1.5" PointX="0.75" PointY="19" Height="1.9802864583333246" />
+        <EntityTypeShape EntityType="JustFoodDBModel.User" Width="1.5" PointX="3" PointY="19.375" Height="5.6340136718749818" />
         <EntityTypeShape EntityType="JustFoodDBModel.UserRole" Width="1.5" PointX="2.75" PointY="0.75" Height="1.5956835937499818" />
-        <EntityTypeShape EntityType="JustFoodDBModel.ViewAccountBalance" Width="1.5" PointX="10.75" PointY="0.75" Height="4.0956022135416674" />
-        <EntityTypeShape EntityType="JustFoodDBModel.ViewInventoryIn" Width="1.5" PointX="4.75" PointY="0.75" Height="1.7879850260416674" />
-        <EntityTypeShape EntityType="JustFoodDBModel.ViewInventoryInOutSummary" Width="1.5" PointX="6.75" PointY="0.75" Height="1.7879850260416674" />
-        <EntityTypeShape EntityType="JustFoodDBModel.ViewInventoryOut" Width="1.5" PointX="10.75" PointY="5.75" Height="1.5956835937499818" />
-        <EntityTypeShape EntityType="JustFoodDBModel.ViewInventorySalable" Width="1.5" PointX="12.75" PointY="0.75" Height="1.9802864583333246" />
-        <EntityTypeShape EntityType="JustFoodDBModel.ViewSummaryAccountBalance" Width="1.5" PointX="12.75" PointY="3.75" Height="1.7879850260416674" />
-        <EntityTypeShape EntityType="JustFoodDBModel.ViewSummarySale" Width="1.5" PointX="12.75" PointY="6.75" Height="2.5571907552083246" />
+        <EntityTypeShape EntityType="JustFoodDBModel.ViewAccountBalance" Width="1.5" PointX="4.75" PointY="0.75" Height="4.0956022135416674" />
+        <EntityTypeShape EntityType="JustFoodDBModel.ViewInventoryIn" Width="1.5" PointX="6.75" PointY="0.75" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="JustFoodDBModel.ViewInventoryInOutSummary" Width="1.5" PointX="7.75" PointY="3.75" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="JustFoodDBModel.ViewInventoryOut" Width="1.5" PointX="8.75" PointY="0.75" Height="1.5956835937499818" />
+        <EntityTypeShape EntityType="JustFoodDBModel.ViewInventorySalable" Width="1.5" PointX="10.75" PointY="0.75" Height="1.9802864583333246" />
+        <EntityTypeShape EntityType="JustFoodDBModel.ViewSummaryAccountBalance" Width="1.5" PointX="9.75" PointY="3.75" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="JustFoodDBModel.ViewSummarySale" Width="1.5" PointX="10.75" PointY="6.75" Height="2.5571907552083246" />
         <AssociationConnector Association="JustFoodDBModel.FK_AccountBalance_Category" >
-          <ConnectorPoint PointX="4.5" PointY="12.346761319711549" />
-          <ConnectorPoint PointX="4.9410744349011217" PointY="12.787835754612669" />
-          <ConnectorPoint PointX="5.0589255650988791" PointY="12.905686884810427" />
-          <ConnectorPoint PointX="5.09375" PointY="12.940511319711549" />
-          <ConnectorPoint PointX="5.09375" PointY="21.461253255208334" />
-          <ConnectorPoint PointX="5.25" PointY="21.461253255208334" />
+          <ConnectorPoint PointX="4.5" PointY="13.164062752003206" />
+          <ConnectorPoint PointX="4.9410744349011217" PointY="13.605137186904326" />
+          <ConnectorPoint PointX="5.0589255650988791" PointY="13.722988317102084" />
+          <ConnectorPoint PointX="5.09375" PointY="13.757812752003206" />
+          <ConnectorPoint PointX="5.09375" PointY="22.211253255208334" />
+          <ConnectorPoint PointX="5.25" PointY="22.211253255208334" />
         </AssociationConnector>
         <AssociationConnector Association="JustFoodDBModel.FK_AccountBalance_QuantityType" >
-          <ConnectorPoint PointX="2.25" PointY="10.413198242187505" />
-          <ConnectorPoint PointX="2.4166666666666665" PointY="10.413198242187505" />
-          <ConnectorPoint PointX="2.5833333333333335" PointY="10.413198242187505" />
-          <ConnectorPoint PointX="2.75" PointY="10.413198242187505" />
-          <ConnectorPoint PointX="2.75" PointY="12.65330078125001" />
-          <ConnectorPoint PointX="4.6424358974358979" PointY="12.65330078125001" />
-          <ConnectorPoint PointX="4.8898727948717946" PointY="12.65330078125001" />
-          <ConnectorPoint PointX="5" PointY="12.65330078125001" />
-          <ConnectorPoint PointX="5" PointY="18.75" />
-          <ConnectorPoint PointX="5.010416666666667" PointY="18.75" />
-          <ConnectorPoint PointX="5.177083333333333" PointY="18.75" />
-          <ConnectorPoint PointX="6" PointY="18.75" />
-          <ConnectorPoint PointX="6" PointY="19.125" />
+          <ConnectorPoint PointX="2.25" PointY="11.163198242187505" />
+          <ConnectorPoint PointX="2.4166666666666665" PointY="11.163198242187505" />
+          <ConnectorPoint PointX="2.5833333333333335" PointY="11.163198242187505" />
+          <ConnectorPoint PointX="2.75" PointY="11.163198242187505" />
+          <ConnectorPoint PointX="2.75" PointY="13.470602213541667" />
+          <ConnectorPoint PointX="4.6424358974358979" PointY="13.470602213541667" />
+          <ConnectorPoint PointX="4.8898727948717946" PointY="13.470602213541667" />
+          <ConnectorPoint PointX="5" PointY="13.470602213541667" />
+          <ConnectorPoint PointX="5" PointY="19.5" />
+          <ConnectorPoint PointX="5.010416666666667" PointY="19.5" />
+          <ConnectorPoint PointX="5.177083333333333" PointY="19.5" />
+          <ConnectorPoint PointX="6" PointY="19.5" />
+          <ConnectorPoint PointX="6" PointY="19.875" />
         </AssociationConnector>
         <AssociationConnector Association="JustFoodDBModel.FK_AccountBalance_User" >
-          <ConnectorPoint PointX="4.5" PointY="20.230626627604167" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="20.230626627604167" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="20.230626627604167" />
-          <ConnectorPoint PointX="5.010416666666667" PointY="20.230626627604167" />
-          <ConnectorPoint PointX="5.177083333333333" PointY="20.230626627604167" />
-          <ConnectorPoint PointX="5.25" PointY="20.230626627604167" />
+          <ConnectorPoint PointX="4.5" PointY="20.980626627604167" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="20.980626627604167" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="20.980626627604167" />
+          <ConnectorPoint PointX="5.010416666666667" PointY="20.980626627604167" />
+          <ConnectorPoint PointX="5.177083333333333" PointY="20.980626627604167" />
+          <ConnectorPoint PointX="5.25" PointY="20.980626627604167" />
         </AssociationConnector>
         <AssociationConnector Association="JustFoodDBModel.FK_AccountBalance_User1" >
-          <ConnectorPoint PointX="4.5" PointY="22.6918798828125" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="22.6918798828125" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="22.6918798828125" />
-          <ConnectorPoint PointX="5.25" PointY="22.6918798828125" />
+          <ConnectorPoint PointX="4.5" PointY="23.4418798828125" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="23.4418798828125" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="23.4418798828125" />
+          <ConnectorPoint PointX="5.25" PointY="23.4418798828125" />
         </AssociationConnector>
         <AssociationConnector Association="JustFoodDBModel.FK_Category_QuantityType" >
-          <ConnectorPoint PointX="2.25" PointY="9.5190991210937526" />
-          <ConnectorPoint PointX="2.4166666666666665" PointY="9.5190991210937526" />
-          <ConnectorPoint PointX="2.5833333333333335" PointY="9.5190991210937526" />
-          <ConnectorPoint PointX="3" PointY="9.5190991210937526" />
+          <ConnectorPoint PointX="2.25" PointY="10.269099121093753" />
+          <ConnectorPoint PointX="2.4166666666666665" PointY="10.269099121093753" />
+          <ConnectorPoint PointX="2.5833333333333335" PointY="10.269099121093753" />
+          <ConnectorPoint PointX="3" PointY="10.269099121093753" />
         </AssociationConnector>
         <AssociationConnector Association="JustFoodDBModel.FK_CategoryWiseSold_Category" >
-          <ConnectorPoint PointX="3.75" PointY="8.5" />
-          <ConnectorPoint PointX="3.75" PointY="8.25" />
-          <ConnectorPoint PointX="5.291666666666667" PointY="8.25" />
-          <ConnectorPoint PointX="5.458333333333333" PointY="8.25" />
-          <ConnectorPoint PointX="5.541666666666667" PointY="8.25" />
-          <ConnectorPoint PointX="5.708333333333333" PointY="8.25" />
-          <ConnectorPoint PointX="7.875" PointY="8.25" />
-          <ConnectorPoint PointX="7.875" PointY="11.211293945312505" />
-          <ConnectorPoint PointX="8.25" PointY="11.211293945312505" />
+          <ConnectorPoint PointX="4.5" PointY="11.141549106770839" />
+          <ConnectorPoint PointX="5.416666666666667" PointY="11.141549106770839" />
+          <ConnectorPoint PointX="5.583333333333333" PointY="11.141549106770839" />
+          <ConnectorPoint PointX="5.75" PointY="11.141549106770839" />
+          <ConnectorPoint PointX="5.75" PointY="9.375" />
+          <ConnectorPoint PointX="7.666666666666667" PointY="9.375" />
+          <ConnectorPoint PointX="7.833333333333333" PointY="9.375" />
+          <ConnectorPoint PointX="8" PointY="9.375" />
+          <ConnectorPoint PointX="8" PointY="10.335999348958339" />
+          <ConnectorPoint PointX="9" PointY="10.335999348958339" />
+          <ConnectorPoint PointX="9" PointY="10.875" />
         </AssociationConnector>
         <AssociationConnector Association="JustFoodDBModel.FK_DetailedSale_Category" >
-          <ConnectorPoint PointX="4.5" PointY="10.42039839062501" />
-          <ConnectorPoint PointX="5.416666666666667" PointY="10.42039839062501" />
-          <ConnectorPoint PointX="5.583333333333333" PointY="10.42039839062501" />
-          <ConnectorPoint PointX="5.75" PointY="10.42039839062501" />
-          <ConnectorPoint PointX="5.75" PointY="14.5" />
-          <ConnectorPoint PointX="7.791666666666667" PointY="14.5" />
-          <ConnectorPoint PointX="7.958333333333333" PointY="14.5" />
-          <ConnectorPoint PointX="8" PointY="14.5" />
-          <ConnectorPoint PointX="8" PointY="18.875" />
-          <ConnectorPoint PointX="9" PointY="18.875" />
-          <ConnectorPoint PointX="9" PointY="19.25" />
+          <ConnectorPoint PointX="4.5" PointY="12.181075660156253" />
+          <ConnectorPoint PointX="5.416666666666667" PointY="12.181075660156253" />
+          <ConnectorPoint PointX="5.583333333333333" PointY="12.181075660156253" />
+          <ConnectorPoint PointX="5.75" PointY="12.181075660156253" />
+          <ConnectorPoint PointX="5.75" PointY="15.25" />
+          <ConnectorPoint PointX="7.791666666666667" PointY="15.25" />
+          <ConnectorPoint PointX="7.958333333333333" PointY="15.25" />
+          <ConnectorPoint PointX="8" PointY="15.25" />
+          <ConnectorPoint PointX="8" PointY="19.625" />
+          <ConnectorPoint PointX="9" PointY="19.625" />
+          <ConnectorPoint PointX="9" PointY="20" />
         </AssociationConnector>
         <AssociationConnector Association="JustFoodDBModel.FK_Inventory_Category" >
-          <ConnectorPoint PointX="4.5" PointY="8.65625" />
-          <ConnectorPoint PointX="5.5" PointY="8.65625" />
-          <ConnectorPoint PointX="5.5" PointY="15" />
+          <ConnectorPoint PointX="4.5" PointY="9.25" />
+          <ConnectorPoint PointX="5.291666666666667" PointY="9.25" />
+          <ConnectorPoint PointX="5.458333333333333" PointY="9.25" />
+          <ConnectorPoint PointX="5.5" PointY="9.25" />
+          <ConnectorPoint PointX="5.5" PointY="15.75" />
         </AssociationConnector>
         <AssociationConnector Association="JustFoodDBModel.FK_InventoryIn_Category" >
-          <ConnectorPoint PointX="4.47576923076923" PointY="12.40330078125001" />
-          <ConnectorPoint PointX="4.875" PointY="12.802531550480779" />
-          <ConnectorPoint PointX="4.875" PointY="26.442047526041662" />
-          <ConnectorPoint PointX="5.25" PointY="26.442047526041662" />
+          <ConnectorPoint PointX="4.47576923076923" PointY="13.220602213541667" />
+          <ConnectorPoint PointX="4.875" PointY="13.619832982772437" />
+          <ConnectorPoint PointX="4.875" PointY="27.192047526041662" />
+          <ConnectorPoint PointX="5.25" PointY="27.192047526041662" />
         </AssociationConnector>
         <AssociationConnector Association="JustFoodDBModel.FK_InventoryOut_Category" >
-          <ConnectorPoint PointX="4.5" PointY="8.796875" />
-          <ConnectorPoint PointX="5.416666666666667" PointY="8.796875" />
-          <ConnectorPoint PointX="5.583333333333333" PointY="8.796875" />
-          <ConnectorPoint PointX="7.791666666666667" PointY="8.7968749999999982" />
-          <ConnectorPoint PointX="8.0833333333333339" PointY="8.796875" />
-          <ConnectorPoint PointX="8.25" PointY="8.796875" />
+          <ConnectorPoint PointX="4.5" PointY="9.53125" />
+          <ConnectorPoint PointX="5.416666666666667" PointY="9.53125" />
+          <ConnectorPoint PointX="5.583333333333333" PointY="9.53125" />
+          <ConnectorPoint PointX="5.666666666666667" PointY="9.53125" />
+          <ConnectorPoint PointX="5.833333333333333" PointY="9.53125" />
+          <ConnectorPoint PointX="7.666666666666667" PointY="9.53125" />
+          <ConnectorPoint PointX="7.833333333333333" PointY="9.53125" />
+          <ConnectorPoint PointX="7.916666666666667" PointY="9.53125" />
+          <ConnectorPoint PointX="8.0833333333333339" PointY="9.53125" />
+          <ConnectorPoint PointX="8.25" PointY="9.53125" />
         </AssociationConnector>
         <AssociationConnector Association="JustFoodDBModel.FK_InventoryOutConfig_Category" >
-          <ConnectorPoint PointX="4.5" PointY="8.5468725000000063" />
-          <ConnectorPoint PointX="5.375" PointY="8.5468725000000063" />
-          <ConnectorPoint PointX="5.375" PointY="7.6821907552083246" />
+          <ConnectorPoint PointX="4.5" PointY="9.4218725000000063" />
+          <ConnectorPoint PointX="5.375" PointY="9.4218725000000063" />
+          <ConnectorPoint PointX="5.375" PointY="8.4321907552083246" />
         </AssociationConnector>
         <AssociationConnector Association="JustFoodDBModel.FK_InventoryOutConfig_Category1" >
-          <ConnectorPoint PointX="4.5" PointY="8.6875024999999937" />
-          <ConnectorPoint PointX="5.625" PointY="8.6875024999999937" />
-          <ConnectorPoint PointX="5.625" PointY="7.6821907552083246" />
+          <ConnectorPoint PointX="4.5" PointY="9.2187475000000063" />
+          <ConnectorPoint PointX="5.291666666666667" PointY="9.2187475000000063" />
+          <ConnectorPoint PointX="5.458333333333333" PointY="9.2187475000000063" />
+          <ConnectorPoint PointX="5.625" PointY="9.2187475000000063" />
+          <ConnectorPoint PointX="5.625" PointY="8.4321907552083246" />
         </AssociationConnector>
         <AssociationConnector Association="JustFoodDBModel.FK_CategoryWiseSold_Sale" >
-          <ConnectorPoint PointX="7.5" PointY="10.605646972656253" />
-          <ConnectorPoint PointX="7.791666666666667" PointY="10.605646972656253" />
-          <ConnectorPoint PointX="7.958333333333333" PointY="10.605646972656253" />
-          <ConnectorPoint PointX="8.25" PointY="10.605646972656253" />
+          <ConnectorPoint PointX="7.5" PointY="11.961293945312505" />
+          <ConnectorPoint PointX="8.25" PointY="11.961293945312505" />
         </AssociationConnector>
         <AssociationConnector Association="JustFoodDBModel.FK_Config_TimeZone" >
-          <ConnectorPoint PointX="1.5" PointY="18.25" />
-          <ConnectorPoint PointX="1.5" PointY="15.355499674479162" />
-          <ConnectorPoint PointX="1.7916666666666667" PointY="15.355499674479162" />
-          <ConnectorPoint PointX="1.9583333333333333" PointY="15.355499674479162" />
-          <ConnectorPoint PointX="2.5416666666666665" PointY="15.355499674479162" />
-          <ConnectorPoint PointX="2.7083333333333335" PointY="15.355499674479162" />
-          <ConnectorPoint PointX="3" PointY="15.355499674479162" />
+          <ConnectorPoint PointX="1.5" PointY="19" />
+          <ConnectorPoint PointX="1.5" PointY="15.980499674479162" />
+          <ConnectorPoint PointX="1.7916666666666667" PointY="15.980499674479162" />
+          <ConnectorPoint PointX="1.9583333333333333" PointY="15.980499674479162" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="15.980499674479162" />
+          <ConnectorPoint PointX="2.7083333333333335" PointY="15.980499674479162" />
+          <ConnectorPoint PointX="3" PointY="15.980499674479162" />
         </AssociationConnector>
         <AssociationConnector Association="JustFoodDBModel.FK_DailyStock_QuantityType" >
-          <ConnectorPoint PointX="2.25" PointY="11.276049363281253" />
-          <ConnectorPoint PointX="2.5" PointY="11.276049363281253" />
-          <ConnectorPoint PointX="2.5" PointY="8" />
-          <ConnectorPoint PointX="5.291666666666667" PointY="7.9999999999999991" />
-          <ConnectorPoint PointX="5.458333333333333" PointY="8" />
-          <ConnectorPoint PointX="5.541666666666667" PointY="7.9999999999999991" />
-          <ConnectorPoint PointX="5.708333333333333" PointY="8" />
-          <ConnectorPoint PointX="8" PointY="8" />
-          <ConnectorPoint PointX="8" PointY="9.5859993489583388" />
-          <ConnectorPoint PointX="12" PointY="9.5859993489583388" />
-          <ConnectorPoint PointX="12" PointY="10.125" />
+          <ConnectorPoint PointX="2.25" PointY="12.026049363281253" />
+          <ConnectorPoint PointX="2.5" PointY="12.026049363281253" />
+          <ConnectorPoint PointX="2.5" PointY="8.875" />
+          <ConnectorPoint PointX="5.291666666666667" PointY="8.875" />
+          <ConnectorPoint PointX="5.458333333333333" PointY="8.875" />
+          <ConnectorPoint PointX="5.541666666666667" PointY="8.875" />
+          <ConnectorPoint PointX="5.708333333333333" PointY="8.875" />
+          <ConnectorPoint PointX="7.75" PointY="8.875" />
+          <ConnectorPoint PointX="7.75" PointY="10.585999348958339" />
+          <ConnectorPoint PointX="8.9166666666666661" PointY="10.585999348958339" />
+          <ConnectorPoint PointX="9.0833333333333339" PointY="10.585999348958339" />
+          <ConnectorPoint PointX="12" PointY="10.585999348958339" />
+          <ConnectorPoint PointX="12" PointY="10.875" />
         </AssociationConnector>
         <AssociationConnector Association="JustFoodDBModel.FK_DailyStock_Sale" >
-          <ConnectorPoint PointX="7.5" PointY="12.424988606770839" />
-          <ConnectorPoint PointX="11.25" PointY="12.424988606770839" />
+          <ConnectorPoint PointX="7.5" PointY="13.174988606770839" />
+          <ConnectorPoint PointX="11.25" PointY="13.174988606770839" />
         </AssociationConnector>
         <AssociationConnector Association="JustFoodDBModel.FK_DetailedSale_JustFood" >
-          <ConnectorPoint PointX="7.5" PointY="13.932109374999982" />
-          <ConnectorPoint PointX="7.875" PointY="14.307109374999982" />
-          <ConnectorPoint PointX="7.875" PointY="21.393951822916662" />
-          <ConnectorPoint PointX="8.25" PointY="21.393951822916662" />
+          <ConnectorPoint PointX="7.5" PointY="14.682109374999982" />
+          <ConnectorPoint PointX="7.875" PointY="15.057109374999982" />
+          <ConnectorPoint PointX="7.875" PointY="22.143951822916662" />
+          <ConnectorPoint PointX="8.25" PointY="22.143951822916662" />
         </AssociationConnector>
         <AssociationConnector Association="JustFoodDBModel.FK_DetailedSale_User" >
-          <ConnectorPoint PointX="4.5" PointY="24.059510091145825" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="24.059510091145825" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="24.059510091145825" />
-          <ConnectorPoint PointX="9" PointY="24.059510091145825" />
-          <ConnectorPoint PointX="9" PointY="23.537903645833325" />
+          <ConnectorPoint PointX="4.5" PointY="24.809510091145825" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="24.809510091145825" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="24.809510091145825" />
+          <ConnectorPoint PointX="9" PointY="24.809510091145825" />
+          <ConnectorPoint PointX="9" PointY="24.287903645833325" />
         </AssociationConnector>
         <AssociationConnector Association="JustFoodDBModel.FK_Inventory_QuantityType" >
-          <ConnectorPoint PointX="1.875" PointY="12.07639648437501" />
-          <ConnectorPoint PointX="1.875" PointY="17.511495768229167" />
-          <ConnectorPoint PointX="2.5416666666666665" PointY="17.511495768229167" />
-          <ConnectorPoint PointX="2.7083333333333335" PointY="17.511495768229167" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="17.511495768229167" />
-          <ConnectorPoint PointX="5.177083333333333" PointY="17.511495768229167" />
-          <ConnectorPoint PointX="5.25" PointY="17.511495768229167" />
+          <ConnectorPoint PointX="1.875" PointY="12.82639648437501" />
+          <ConnectorPoint PointX="1.875" PointY="18.198995768229167" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="18.198995768229167" />
+          <ConnectorPoint PointX="2.7083333333333335" PointY="18.198995768229167" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="18.198995768229167" />
+          <ConnectorPoint PointX="5.177083333333333" PointY="18.198995768229167" />
+          <ConnectorPoint PointX="5.25" PointY="18.198995768229167" />
         </AssociationConnector>
         <AssociationConnector Association="JustFoodDBModel.FK_Inventory_User" >
-          <ConnectorPoint PointX="4.4630769230769225" PointY="18.625" />
-          <ConnectorPoint PointX="4.4841609240238656" PointY="18.603915999053054" />
-          <ConnectorPoint PointX="4.6020120542216238" PointY="18.486064868855298" />
-          <ConnectorPoint PointX="4.8160744349011209" PointY="18.2720024881758" />
-          <ConnectorPoint PointX="4.9339255650988791" PointY="18.154151357978044" />
-          <ConnectorPoint PointX="4.9375" PointY="18.150576923076922" />
-          <ConnectorPoint PointX="4.9375" PointY="16.224495884114589" />
-          <ConnectorPoint PointX="5.010416666666667" PointY="16.224495884114589" />
-          <ConnectorPoint PointX="5.177083333333333" PointY="16.224495884114589" />
-          <ConnectorPoint PointX="5.25" PointY="16.224495884114589" />
+          <ConnectorPoint PointX="4.4630769230769225" PointY="19.375" />
+          <ConnectorPoint PointX="4.4841609240238656" PointY="19.353915999053054" />
+          <ConnectorPoint PointX="4.6020120542216238" PointY="19.236064868855298" />
+          <ConnectorPoint PointX="4.8160744349011209" PointY="19.0220024881758" />
+          <ConnectorPoint PointX="4.9339255650988791" PointY="18.904151357978044" />
+          <ConnectorPoint PointX="4.9375" PointY="18.900576923076922" />
+          <ConnectorPoint PointX="4.9375" PointY="16.943245884114589" />
+          <ConnectorPoint PointX="5.010416666666667" PointY="16.943245884114589" />
+          <ConnectorPoint PointX="5.177083333333333" PointY="16.943245884114589" />
+          <ConnectorPoint PointX="5.25" PointY="16.943245884114589" />
         </AssociationConnector>
         <AssociationConnector Association="JustFoodDBModel.FK_InventoryIn_QuantityType" >
-          <ConnectorPoint PointX="2.2499999999999996" PointY="12.07639648437501" />
-          <ConnectorPoint PointX="2.625" PointY="12.45139648437501" />
-          <ConnectorPoint PointX="2.625" PointY="25.627271763020836" />
-          <ConnectorPoint PointX="3.2604141666666666" PointY="25.627271763020836" />
-          <ConnectorPoint PointX="3.4270808333333336" PointY="25.627271763020836" />
-          <ConnectorPoint PointX="3.6666666666666665" PointY="25.627271763020836" />
-          <ConnectorPoint PointX="3.8333333333333335" PointY="25.627271763020836" />
-          <ConnectorPoint PointX="4.0729191666666669" PointY="25.627271763020836" />
-          <ConnectorPoint PointX="4.2395858333333329" PointY="25.627271763020836" />
-          <ConnectorPoint PointX="4.2760454166666664" PointY="25.627271763020836" />
-          <ConnectorPoint PointX="4.4427120833333325" PointY="25.627271763020836" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="25.627271763020836" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="25.627271763020836" />
-          <ConnectorPoint PointX="5.25" PointY="25.627271763020836" />
+          <ConnectorPoint PointX="2.2499999999999996" PointY="12.82639648437501" />
+          <ConnectorPoint PointX="2.625" PointY="13.20139648437501" />
+          <ConnectorPoint PointX="2.625" PointY="26.377271763020836" />
+          <ConnectorPoint PointX="3.2604141666666666" PointY="26.377271763020836" />
+          <ConnectorPoint PointX="3.4270808333333336" PointY="26.377271763020836" />
+          <ConnectorPoint PointX="3.6666666666666665" PointY="26.377271763020836" />
+          <ConnectorPoint PointX="3.8333333333333335" PointY="26.377271763020836" />
+          <ConnectorPoint PointX="4.0729191666666669" PointY="26.377271763020836" />
+          <ConnectorPoint PointX="4.2395858333333329" PointY="26.377271763020836" />
+          <ConnectorPoint PointX="4.2760454166666664" PointY="26.377271763020836" />
+          <ConnectorPoint PointX="4.4427120833333325" PointY="26.377271763020836" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="26.377271763020836" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="26.377271763020836" />
+          <ConnectorPoint PointX="5.25" PointY="26.377271763020836" />
         </AssociationConnector>
         <AssociationConnector Association="JustFoodDBModel.FK_InventoryIn_User" >
-          <ConnectorPoint PointX="3.75" PointY="24.259013671874982" />
-          <ConnectorPoint PointX="3.75" PointY="27.256823789062487" />
-          <ConnectorPoint PointX="4.0729191666666669" PointY="27.256823789062487" />
-          <ConnectorPoint PointX="4.2395858333333329" PointY="27.256823789062487" />
-          <ConnectorPoint PointX="4.2760454166666664" PointY="27.256823789062487" />
-          <ConnectorPoint PointX="4.4427120833333325" PointY="27.256823789062487" />
-          <ConnectorPoint PointX="5.25" PointY="27.256823789062487" />
+          <ConnectorPoint PointX="3.75" PointY="25.009013671874982" />
+          <ConnectorPoint PointX="3.75" PointY="28.006823789062487" />
+          <ConnectorPoint PointX="4.0729191666666669" PointY="28.006823789062487" />
+          <ConnectorPoint PointX="4.2395858333333329" PointY="28.006823789062487" />
+          <ConnectorPoint PointX="4.2760454166666664" PointY="28.006823789062487" />
+          <ConnectorPoint PointX="4.4427120833333325" PointY="28.006823789062487" />
+          <ConnectorPoint PointX="5.25" PointY="28.006823789062487" />
         </AssociationConnector>
         <AssociationConnector Association="JustFoodDBModel.FK_InventoryOut_QuantityType" >
-          <ConnectorPoint PointX="1.5" PointY="8.75" />
-          <ConnectorPoint PointX="1.5" PointY="7.8723453776041623" />
-          <ConnectorPoint PointX="1.8229191666666667" PointY="7.8723453776041614" />
-          <ConnectorPoint PointX="1.9895858333333332" PointY="7.8723453776041623" />
-          <ConnectorPoint PointX="2.0260454166666664" PointY="7.8723453776041614" />
-          <ConnectorPoint PointX="2.1927120833333333" PointY="7.8723453776041623" />
-          <ConnectorPoint PointX="5.291666666666667" PointY="7.8723453776041614" />
-          <ConnectorPoint PointX="5.458333333333333" PointY="7.8723453776041623" />
-          <ConnectorPoint PointX="5.541666666666667" PointY="7.8723453776041614" />
-          <ConnectorPoint PointX="5.708333333333333" PointY="7.8723453776041623" />
-          <ConnectorPoint PointX="8.25" PointY="7.8723453776041623" />
+          <ConnectorPoint PointX="1.5" PointY="9.5" />
+          <ConnectorPoint PointX="1.5" PointY="8.6848453776041623" />
+          <ConnectorPoint PointX="1.8229191666666667" PointY="8.6848453776041623" />
+          <ConnectorPoint PointX="1.9895858333333332" PointY="8.6848453776041623" />
+          <ConnectorPoint PointX="2.0260454166666664" PointY="8.6848453776041623" />
+          <ConnectorPoint PointX="2.1927120833333333" PointY="8.6848453776041623" />
+          <ConnectorPoint PointX="5.291666666666667" PointY="8.6848453776041623" />
+          <ConnectorPoint PointX="5.458333333333333" PointY="8.6848453776041623" />
+          <ConnectorPoint PointX="5.541666666666667" PointY="8.6848453776041623" />
+          <ConnectorPoint PointX="5.708333333333333" PointY="8.6848453776041623" />
+          <ConnectorPoint PointX="8.25" PointY="8.6848453776041623" />
         </AssociationConnector>
         <AssociationConnector Association="JustFoodDBModel.FK_InventoryOutConfig_QuantityType" >
-          <ConnectorPoint PointX="1.9062525" PointY="8.75" />
-          <ConnectorPoint PointX="1.9062525" PointY="5.28125" />
-          <ConnectorPoint PointX="5.25" PointY="5.28125" />
+          <ConnectorPoint PointX="1.9062525" PointY="9.5" />
+          <ConnectorPoint PointX="1.9062525" PointY="6.03125" />
+          <ConnectorPoint PointX="5.25" PointY="6.03125" />
         </AssociationConnector>
         <AssociationConnector Association="JustFoodDBModel.FK_Notification_User" >
-          <ConnectorPoint PointX="4.1562525" PointY="24.259013671874982" />
-          <ConnectorPoint PointX="4.1562525" PointY="37.509348958333334" />
-          <ConnectorPoint PointX="4.2760454166666664" PointY="37.509348958333334" />
-          <ConnectorPoint PointX="4.4427120833333325" PointY="37.509348958333334" />
-          <ConnectorPoint PointX="5.25" PointY="37.509348958333334" />
+          <ConnectorPoint PointX="4.1562525" PointY="25.009013671874982" />
+          <ConnectorPoint PointX="4.1562525" PointY="38.230499674479162" />
+          <ConnectorPoint PointX="4.2760454166666664" PointY="38.230499674479162" />
+          <ConnectorPoint PointX="4.4427120833333325" PointY="38.230499674479162" />
+          <ConnectorPoint PointX="5.25" PointY="38.230499674479162" />
         </AssociationConnector>
         <AssociationConnector Association="JustFoodDBModel.FK_NotificationSeen_Notification" >
-          <ConnectorPoint PointX="6.75" PointY="37.509348958333334" />
-          <ConnectorPoint PointX="8.25" PointY="37.509348958333334" />
-          <ConnectorPoint PointX="8.25" PointY="30.114889322916667" />
+          <ConnectorPoint PointX="6.75" PointY="38.230499674479162" />
+          <ConnectorPoint PointX="8.25" PointY="38.230499674479162" />
+          <ConnectorPoint PointX="8.25" PointY="30.989889322916667" />
+        </AssociationConnector>
+        <AssociationConnector Association="JustFoodDBModel.FK_NotificationSpecific_Notification" >
+          <ConnectorPoint PointX="6.75" PointY="39.189502011718737" />
+          <ConnectorPoint PointX="7.875" PointY="39.189502011718737" />
+          <ConnectorPoint PointX="7.875" PointY="40.5" />
         </AssociationConnector>
         <AssociationConnector Association="JustFoodDBModel.FK_NotificationSeen_User" >
-          <ConnectorPoint PointX="3.3437475" PointY="24.259013671874982" />
-          <ConnectorPoint PointX="3.3437475" PointY="29.093242187499996" />
-          <ConnectorPoint PointX="4.0729191666666669" PointY="29.093242187499996" />
-          <ConnectorPoint PointX="4.2395858333333329" PointY="29.093242187499996" />
-          <ConnectorPoint PointX="4.2760454166666664" PointY="29.093242187499996" />
-          <ConnectorPoint PointX="4.4427120833333325" PointY="29.093242187499996" />
-          <ConnectorPoint PointX="7.5" PointY="29.093242187499996" />
+          <ConnectorPoint PointX="3.3437475" PointY="25.009013671874982" />
+          <ConnectorPoint PointX="3.3437475" PointY="29.905742187499996" />
+          <ConnectorPoint PointX="4.0729191666666669" PointY="29.905742187499996" />
+          <ConnectorPoint PointX="4.2395858333333329" PointY="29.905742187499996" />
+          <ConnectorPoint PointX="4.2760454166666664" PointY="29.905742187499996" />
+          <ConnectorPoint PointX="4.4427120833333325" PointY="29.905742187499996" />
+          <ConnectorPoint PointX="7.5" PointY="29.905742187499996" />
         </AssociationConnector>
         <AssociationConnector Association="JustFoodDBModel.FK_QuantityConversation_QuantityType" >
-          <ConnectorPoint PointX="1.0937475" PointY="8.75" />
-          <ConnectorPoint PointX="1.0937475" PointY="6.5862939453125051" />
-          <ConnectorPoint PointX="1.8229191666666667" PointY="6.5862939453125042" />
-          <ConnectorPoint PointX="1.9895858333333332" PointY="6.5862939453125051" />
-          <ConnectorPoint PointX="3" PointY="6.5862939453125051" />
+          <ConnectorPoint PointX="1.0937475" PointY="9.5" />
+          <ConnectorPoint PointX="1.0937475" PointY="7.3362939453125051" />
+          <ConnectorPoint PointX="1.8229191666666667" PointY="7.3362939453125042" />
+          <ConnectorPoint PointX="1.9895858333333332" PointY="7.3362939453125051" />
+          <ConnectorPoint PointX="3" PointY="7.3362939453125051" />
         </AssociationConnector>
         <AssociationConnector Association="JustFoodDBModel.FK_QuantityConversation_QuantityType1" >
-          <ConnectorPoint PointX="2.10937875" PointY="8.75" />
-          <ConnectorPoint PointX="2.10937875" PointY="7.1606934179687514" />
-          <ConnectorPoint PointX="3" PointY="7.1606934179687514" />
+          <ConnectorPoint PointX="2.10937875" PointY="9.5" />
+          <ConnectorPoint PointX="2.10937875" PointY="7.9106934179687514" />
+          <ConnectorPoint PointX="3" PointY="7.9106934179687514" />
         </AssociationConnector>
         <AssociationConnector Association="JustFoodDBModel.FK_Requisition_QuantityType" >
-          <ConnectorPoint PointX="1.125" PointY="12.07639648437501" />
-          <ConnectorPoint PointX="1.125" PointY="17.94419433593751" />
-          <ConnectorPoint PointX="1.4166666666666667" PointY="17.94419433593751" />
-          <ConnectorPoint PointX="1.5833333333333333" PointY="17.94419433593751" />
-          <ConnectorPoint PointX="2.5416666666666665" PointY="17.94419433593751" />
-          <ConnectorPoint PointX="2.7083333333333335" PointY="17.94419433593751" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="17.94419433593751" />
-          <ConnectorPoint PointX="5.177083333333333" PointY="17.94419433593751" />
-          <ConnectorPoint PointX="7.791666666666667" PointY="17.94419433593751" />
-          <ConnectorPoint PointX="8.0833333333333339" PointY="17.94419433593751" />
-          <ConnectorPoint PointX="8.25" PointY="17.94419433593751" />
+          <ConnectorPoint PointX="1.125" PointY="12.82639648437501" />
+          <ConnectorPoint PointX="1.125" PointY="18.694194335937496" />
+          <ConnectorPoint PointX="1.4166666666666667" PointY="18.694194335937496" />
+          <ConnectorPoint PointX="1.5833333333333333" PointY="18.694194335937496" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="18.694194335937496" />
+          <ConnectorPoint PointX="2.7083333333333335" PointY="18.694194335937496" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="18.694194335937496" />
+          <ConnectorPoint PointX="5.177083333333333" PointY="18.694194335937496" />
+          <ConnectorPoint PointX="7.791666666666667" PointY="18.694194335937496" />
+          <ConnectorPoint PointX="8.0833333333333339" PointY="18.694194335937496" />
+          <ConnectorPoint PointX="8.25" PointY="18.694194335937496" />
         </AssociationConnector>
         <AssociationConnector Association="JustFoodDBModel.FK_Requisition_User" >
-          <ConnectorPoint PointX="4.5" PointY="18.663075923076921" />
-          <ConnectorPoint PointX="4.71875" PointY="18.444325923076921" />
-          <ConnectorPoint PointX="4.71875" PointY="18.51389648437501" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="18.51389648437501" />
-          <ConnectorPoint PointX="5.177083333333333" PointY="18.51389648437501" />
-          <ConnectorPoint PointX="7.8378836153846159" PointY="18.51389648437501" />
-          <ConnectorPoint PointX="7.9410744349011209" PointY="18.410705664858504" />
-          <ConnectorPoint PointX="8.0589255650988783" PointY="18.292854534660748" />
-          <ConnectorPoint PointX="8.2753836153846159" PointY="18.07639648437501" />
+          <ConnectorPoint PointX="4.5" PointY="19.413075923076921" />
+          <ConnectorPoint PointX="4.71875" PointY="19.194325923076921" />
+          <ConnectorPoint PointX="4.71875" PointY="19.263896484374982" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="19.263896484374982" />
+          <ConnectorPoint PointX="5.177083333333333" PointY="19.263896484374982" />
+          <ConnectorPoint PointX="7.8378836153846159" PointY="19.263896484374982" />
+          <ConnectorPoint PointX="7.9410744349011209" PointY="19.160705664858476" />
+          <ConnectorPoint PointX="8.0589255650988783" PointY="19.042854534660719" />
+          <ConnectorPoint PointX="8.2753836153846159" PointY="18.826396484374982" />
         </AssociationConnector>
         <AssociationConnector Association="JustFoodDBModel.FK_Requisition_User1" >
-          <ConnectorPoint PointX="4.5" PointY="18.657306692307689" />
-          <ConnectorPoint PointX="4.65625" PointY="18.25" />
-          <ConnectorPoint PointX="4.65625" PointY="18.45139648437501" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="18.45139648437501" />
-          <ConnectorPoint PointX="5.177083333333333" PointY="18.45139648437501" />
-          <ConnectorPoint PointX="7.8507692307692309" PointY="18.45139648437501" />
-          <ConnectorPoint PointX="7.9410744349011209" PointY="18.361091280243119" />
-          <ConnectorPoint PointX="8.0589255650988783" PointY="18.243240150045363" />
-          <ConnectorPoint PointX="8.25" PointY="18.052165715144241" />
+          <ConnectorPoint PointX="4.5" PointY="19.407306692307689" />
+          <ConnectorPoint PointX="4.65625" PointY="19" />
+          <ConnectorPoint PointX="4.65625" PointY="19.201396484374982" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="19.201396484374982" />
+          <ConnectorPoint PointX="5.177083333333333" PointY="19.201396484374982" />
+          <ConnectorPoint PointX="7.8507692307692309" PointY="19.201396484374982" />
+          <ConnectorPoint PointX="7.9410744349011209" PointY="19.111091280243091" />
+          <ConnectorPoint PointX="8.0589255650988783" PointY="18.993240150045335" />
+          <ConnectorPoint PointX="8.25" PointY="18.802165715144213" />
         </AssociationConnector>
         <AssociationConnector Association="JustFoodDBModel.FK_SalaryPaid_User" >
-          <ConnectorPoint PointX="4.3593787499999994" PointY="24.259013671874982" />
-          <ConnectorPoint PointX="4.3593787499999994" PointY="45.499746093749991" />
-          <ConnectorPoint PointX="5.25" PointY="45.499746093749991" />
+          <ConnectorPoint PointX="4.3593787499999994" PointY="25.009013671874982" />
+          <ConnectorPoint PointX="4.3593787499999994" PointY="46.374746093749991" />
+          <ConnectorPoint PointX="5.25" PointY="46.374746093749991" />
         </AssociationConnector>
         <AssociationConnector Association="JustFoodDBModel.FK_User_TimeZone" >
-          <ConnectorPoint PointX="2.25" PointY="19.427643229166662" />
-          <ConnectorPoint PointX="2.5416666666666665" PointY="19.427643229166662" />
-          <ConnectorPoint PointX="2.7083333333333335" PointY="19.427643229166662" />
-          <ConnectorPoint PointX="3" PointY="19.427643229166662" />
+          <ConnectorPoint PointX="2.25" PointY="20.177643229166662" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="20.177643229166662" />
+          <ConnectorPoint PointX="2.7083333333333335" PointY="20.177643229166662" />
+          <ConnectorPoint PointX="3" PointY="20.177643229166662" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

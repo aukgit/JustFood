@@ -17,6 +17,7 @@ namespace JustFood.Models
         public Notification()
         {
             this.NotificationSeens = new HashSet<NotificationSeen>();
+            this.NotificationSpecifics = new HashSet<NotificationSpecific>();
         }
     
         public long NotificationID { get; set; }
@@ -33,5 +34,6 @@ namespace JustFood.Models
     
         public virtual User User { get; set; }
         public virtual ICollection<NotificationSeen> NotificationSeens { get; set; }
+        public virtual ICollection<NotificationSpecific> NotificationSpecifics { get; set; }
     }
 }

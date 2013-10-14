@@ -3,7 +3,7 @@ using System.Linq;
 using JustFood.Models;
 
 namespace JustFood.Modules.Extensions {
-    public class InventoryOutExtension {
+    public class InventoryOutConfigExtension {
         public List<InventoryOutConfig> GetInvenoryOutByCategory(List<InventoryOutConfig> list ,int CategoryID) {
             return list.Where(n => n.CategoryID == CategoryID).ToList();
         }

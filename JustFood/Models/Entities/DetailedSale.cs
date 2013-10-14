@@ -39,7 +39,7 @@ namespace JustFood.Models
         public virtual Sale Sale { get; set; }
         
         /// <summary>
-        /// Quantity for sale. If it is discarded then -1 or whatever.
+        /// How many quantities sold. If it is discarded then -1 or whatever the previous number is.
         /// </summary>
         public short Qty { get; set; }
 

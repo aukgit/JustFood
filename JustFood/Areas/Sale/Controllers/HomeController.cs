@@ -699,11 +699,9 @@ namespace JustFood.Areas.Sale.Controllers {
                     return RedirectToActionPermanent("Today");
                 }
                 return DetermineSaleDay(sale);
-
             } else {
                 throw new Exception("Information about discarding not found.");
             }
-            return DetermineSaleDay(sale);
         }
 
         #endregion

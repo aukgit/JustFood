@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace JustFood.Models {
     public class Sale {
         public Sale() {
-            this.CategoryWiseSolds = new HashSet<CategoryWiseSold>();
+            CategoryWiseSolds = new HashSet<CategoryWiseSold>();
             DailyStocks = new HashSet<DailyStock>();
             DetailedSales = new HashSet<DetailedSale>();
         }

@@ -202,9 +202,10 @@
     </Compile>
     <Compile Include="Controllers\TestingController.cs" />
     <Compile Include="Models\Custom\InventoryOutConfigViewDisplay.cs" />
+    <Compile Include="Models\Entities\NotificationSpecific.cs" />
     <Compile Include="Modules\AppConfig.cs" />
     <Compile Include="Modules\Extensions\InventoryExtension.cs" />
-    <Compile Include="Modules\Extensions\InventoryOutExtension.cs" />
+    <Compile Include="Modules\Extensions\InventoryOutConfigExtension.cs" />
     <Compile Include="Modules\Extensions\QuantityTypeExtension.cs" />
     <Compile Include="Modules\Extensions\UserAccountsExtension.cs" />
     <Compile Include="Models\Entities\Config.cs" />

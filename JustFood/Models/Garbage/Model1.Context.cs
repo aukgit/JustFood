@@ -39,6 +39,7 @@ namespace JustFood.Models
         public DbSet<InventoryOutConfig> InventoryOutConfigs { get; set; }
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<NotificationSeen> NotificationSeens { get; set; }
+        public DbSet<NotificationSpecific> NotificationSpecifics { get; set; }
         public DbSet<QuantityConversation> QuantityConversations { get; set; }
         public DbSet<QuantityType> QuantityTypes { get; set; }
         public DbSet<Requisition> Requisitions { get; set; }

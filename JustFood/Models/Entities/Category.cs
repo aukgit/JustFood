@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
+using System;
 
 namespace JustFood.Models {
     public partial class  Category {
@@ -32,6 +33,9 @@ namespace JustFood.Models {
 
         [DisplayName("Is Salary Related")]
         public bool IsRelatedToSalary { get; set; }
+
+        public Nullable<bool> IsMonthlyLedger { get; set; }
+
 
         public virtual ICollection<AccountBalance> AccountBalances { get; set; }
 
