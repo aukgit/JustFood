@@ -8,7 +8,7 @@
     ViewBag.Title = "Inventory Out Config";
     var inventoryOuts = (List<InventoryOutConfig>)ViewBag.InventoryOut;
     bool inventoryOutExist = inventoryOuts != null && inventoryOuts.Count > 0;
-    var inventoryOutExt = new InventoryOutExtension();
+    var inventoryOutExt = new InventoryOutConfigExtension();
     var categories = (List<Category>)ViewBag.Categories;
     var quantityTypes = (List<QuantityType>)ViewBag.QuantityTypes;
     List<InventoryOutConfig> inventoryOutListByCategory;
@@ -25,6 +25,7 @@
             This type of items will be deduct automatically.
         </div>
         Don't add recursive deduction config. It will force irrelevent result in your business.
+        When you are done, please make a Shift+F5 for complete refresh.
     </div>
 
     @foreach (var salableItems in Model) {

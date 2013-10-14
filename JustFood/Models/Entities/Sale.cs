@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace JustFood.Models {
     public class Sale {
@@ -13,17 +14,22 @@ namespace JustFood.Models {
         public int SaleID { get; set; }
         public System.DateTime Date { get; set; }
         public Nullable<double> Discount { get; set; }
+        [DisplayName("Total Sold(money)")]
         public int TotalSold { get; set; }
+        [DisplayName("Total Less(money)")]
         public Nullable<double> TotalLess { get; set; }
         /// <summary>
         /// Assumed achieved money from sales.
         /// </summary>
+        [DisplayName("Total Assumed Acheived(money)")]
         public decimal TotalAcheived { get; set; }
+        [DisplayName("Expenses")]
         public decimal OtherExpenses { get; set; }
         public bool IsDividedAmongPartners { get; set; }
         public int TotalWastages { get; set; }
         public int TotalDiscountNumber { get; set; }
         public string Noted { get; set; }
+        [DisplayName("Problem")]
         public bool AnyProblem { get; set; }
         public int DiscardSales { get; set; }
         public bool IsDiscardsChecked { get; set; }

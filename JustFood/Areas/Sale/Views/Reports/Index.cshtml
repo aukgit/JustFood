@@ -1,0 +1,26 @@
+﻿@model IList<JustFood.Models.Sale>
+@{
+    ViewBag.Title = "Report";
+    var timeZone = (TimeZoneInfo)ViewBag.TimeZone;
+}
+<h2>@ViewBag.Title</h2>
+
+@Html.Partial("_Back_Button")
+
+<ul data-role="listview" @*data-autodividers="true" data-filter="true"*@ data-filter-placeholder="Search @ViewBag.Title...." data-inset="true"  data-split-theme="b">
+	<li data-role="list-divider">Sale<span class="ui-li-count">@Model.Count()</span></li>
+@foreach (var item in Model) {
+    var isProblem = item.AnyProblem;
+	<li @if(isProblem) {<text>data-theme="g"</text>}>
+		<a href='@Url.Action("Finalize", new { id = item.SaleID , Controller="Sale"})' data-rel="dialog" data-transition="pop"  data-close-btn="right" title="Details of @item.Date">
+			<h2 class="display-field">
+				@Html.DisplayDate(timeZone,item.Date)
+			</h2>
+			<p>@Html.LabelFor(modelItem => item.TotalAcheived) : @Html.DisplayFor(modelItem => item.TotalAcheived)</p>
+			<p>@Html.LabelFor(modelItem => item.TotalLess) : @Html.DisplayFor(modelItem => item.TotalLess)</p>
+            <p>@Html.LabelFor(modelItem => item.Discount) : @Html.DisplayFor(modelItem => item.Discount)</p>
+            <p>@Html.LabelFor(modelItem => item.OtherExpenses) : @Html.DisplayFor(modelItem => item.OtherExpenses)</p>
+        </a>
+	</li>
+}
+</ul>

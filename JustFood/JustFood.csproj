@@ -193,6 +193,7 @@
     <Compile Include="Areas\Admin\Controllers\SalaryController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Areas\Sale\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Sale\Controllers\ReportsController.cs" />
     <Compile Include="Areas\Sale\SaleAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs">
       <SubType>Code</SubType>
@@ -544,6 +545,7 @@
     <Content Include="Areas\Sale\Views\Home\DetailsOf.cshtml" />
     <Content Include="Areas\Admin\Views\InventoryConfig\Index.cshtml" />
     <Content Include="Areas\Sale\Views\Home\InventorySetter.cshtml" />
+    <Content Include="Areas\Sale\Views\Reports\Index.cshtml" />
     <None Include="CodeTemplates\AddController\ApiController.tt" />
     <None Include="CodeTemplates\AddController\ApiControllerWithContext.tt" />
     <None Include="CodeTemplates\AddController\Controller.tt" />
