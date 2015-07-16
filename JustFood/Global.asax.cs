@@ -5,6 +5,8 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using JustFood.Modules.TimeZone;
 using System;
+using JustFood.Modules;
+using JustFood.Modules.Extensions;
 
 namespace JustFood {
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
@@ -23,6 +25,7 @@ namespace JustFood {
 
             Zone.SyncZoneInDatabase();
 
+            AppConfig.Setup();
 
         }
     }

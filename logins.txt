@@ -1,0 +1,11 @@
+auk is the super admin.
+
+
+u:auk
+p:testPassword
+
+
+admin doesn't have access to the sales.
+
+u:admin
+p:testPassword123@

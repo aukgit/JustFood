@@ -127,7 +127,7 @@ namespace JustFood.Controllers {
                     db.Entry(code).State = EntityState.Deleted;
                     db.Users.Add(user);
                     db.SaveChanges();
-                    Roles.CreateRole("");
+                    //Roles.CreateRole("");
                     var roleManager = new RoleManage();
                     string role = "";
                     if (user.IsAccessToAdmin) {
@@ -178,21 +178,25 @@ namespace JustFood.Controllers {
 
         //
         // GET: /Account/ChangePasswordSuccess
-
         public ActionResult ChangePasswordSuccess() { return View(); }
-
+        [AllowAnonymous]
         public ActionResult ForgotPassword() { return View(); }
 
-        [ValidateAntiForgeryToken]
+        [AllowAnonymous]
+        //[ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult ForgotPassword(ForgotPasswordModel forgotPasswordModel) {
             if (ModelState.IsValid) {
-                return ForgetPasswordSuccess();
+                var userName = Membership.GetUserNameByEmail(forgotPasswordModel.Email);
+                var user = Membership.GetUser(userName);
+                var password = user.ResetPassword();
+                string emailBody = "user: " + user.UserName + ",<br> email: " + user.Email + ",<br> new password: " + password + "<br><br> change password after login.";
+                DevMvcComponent.Starter.Mailer.QuickSend(user.Email, "Password generated! Repond soon!", emailBody);
+                return View("ForgetPasswordSuccess");
             }
-
             return View(forgotPasswordModel);
         }
-
+        [AllowAnonymous]
         public ActionResult ForgetPasswordSuccess() { return View(); }
 
         #region Status Codes

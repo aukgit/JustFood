@@ -17,6 +17,10 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -40,8 +44,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="DevMVCComponent">
-      <HintPath>ExtraLibraries\DevMVCComponent.dll</HintPath>
+    <Reference Include="DevMVCComponent, Version=1.0.14.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevMVCComponent.1.0.14\lib\DevMVCComponent.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Elmah">
       <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
@@ -204,7 +209,7 @@
     <Compile Include="Controllers\TestingController.cs" />
     <Compile Include="Models\Custom\InventoryOutConfigViewDisplay.cs" />
     <Compile Include="Models\Entities\NotificationSpecific.cs" />
-    <Compile Include="Modules\AppConfig.cs" />
+    <Compile Include="App_Start\AppConfig.cs" />
     <Compile Include="Modules\Extensions\InventoryExtension.cs" />
     <Compile Include="Modules\Extensions\InventoryOutConfigExtension.cs" />
     <Compile Include="Modules\Extensions\QuantityTypeExtension.cs" />
