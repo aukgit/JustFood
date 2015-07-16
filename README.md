@@ -1,7 +1,6 @@
 #Just Food (dead project | Unfinished)
-===================================================
 
-Open Source Restaurant Management Software (Free)
+Open source restaurant management mobile application (unfinished)
 
 #### Credentials
 	auk is super admin.
