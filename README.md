@@ -12,9 +12,11 @@ Open source restaurant management mobile application (unfinished)
     p:testPassword123@
 ## Screenshots
 ![Starting screen](https://raw.githubusercontent.com/aukgit/JustFood/master/Screen-shoots/00.%20Start.png)
+
 ![Logged in](https://raw.githubusercontent.com/aukgit/JustFood/master/Screen-shoots/01.%20home.png)
 
 ![Admin section](https://raw.githubusercontent.com/aukgit/JustFood/master/Screen-shoots/02.%20admin.png)
+
 #### Admin Section started
 ![Balance list](https://raw.githubusercontent.com/aukgit/JustFood/master/Screen-shoots/03.%20Balance%20list.png)
 
@@ -38,6 +40,7 @@ Open source restaurant management mobile application (unfinished)
 
 #### Sales module
 ![Sales module start screen](https://raw.githubusercontent.com/aukgit/JustFood/master/Screen-shoots/12.%20Sales%20modules.png)
+
 ![Starting a business day](https://raw.githubusercontent.com/aukgit/JustFood/master/Screen-shoots/13.%20Starting%20daily%20buinsess.png)
 
 ![Inventory before starting the day](https://raw.githubusercontent.com/aukgit/JustFood/master/Screen-shoots/14.%20Inventory%20customize%20for%20daily%20calculation.png)
